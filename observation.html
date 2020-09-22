@@ -4,6 +4,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+      crossorigin="anonymous"
+    />
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
@@ -17,6 +23,716 @@
         </ul>
       </nav>
     </header>
-    <section>Observation and Proposal</section>
+    <section>
+      <div class="container">
+        <h1 class="text-center">
+          Observation and Proposal
+        </h1>
+        <br />
+        <h4 class="text-center">1. Observation</h4>
+        <p>
+          In order to observe two user groups (presenters and participants), we
+          watched different recorded Zoom presentations and generated sticky
+          notes about our findings on white board software Miro to define mental
+          models. In the same videos, we observed the presenters and
+          participants at the same time. To validate our findings, we often
+          revisited a particular scene and watched in pairs.
+        </p>
+        <ul>
+          <li>
+            Setting: Recorded lecture
+            (https://www.youtube.com/watch?v=JpTDF4w-6Yc)
+          </li>
+          <li>
+            Setting: Tutorial session
+            (https://www.youtube.com/watch?v=jMMK9KKgOWY&t=669s)
+          </li>
+        </ul>
+        <p>
+          After listing all distinguished tasks on the white boards, we grouped
+          them by behavior affinity.
+        </p>
+        <img src="images/mental1.png" class="img-fluid" alt="Mental model 1" />
+        <img src="images/mental2.png" class="img-fluid" alt="Mental model 2" />
+        <br />
+        <br />
+        <p>
+          Presenters struggle to solicit and assess participant engagement and
+          responses to presentation. Presenters have been shown to ask (or
+          sometimes appear to plead in the instances of educational
+          presentations) for participant feedback. Participants that are
+          familiar with the presentation do manage to provide feedback through
+          unmuting and speaking, messaging in chat, or using features like hand
+          raising. Unfortunately, most participants don’t provide any feedback
+          to the presenter and have their camera off, seemingly disengaged. This
+          appears to make presenters feel uncomfortable. On the other hand, when
+          presenters want to assess participant reaction (for instance by
+          reading the chat), it often interrupts their presentation.
+        </p>
+        <br />
+        <div class="text-center">
+          <h3>Presenters</h3>
+          <p>
+            As far as presenters are concerned, they can be grouped by two core
+            attributes:<br />
+            <span class="badge badge-pill badge-danger"
+              >prior knowledge of video conferencing</span
+            >
+            and
+            <span class="badge badge-pill badge-danger"
+              >degree in interest to engage people.</span
+            >
+            <br /><br />
+          </p>
+          <img
+            src="images/att1.png"
+            class="img-fluid"
+            alt="Mental model 1"
+            width="70%"
+            height="70%"
+          />
+          <img
+            src="images/att2.png"
+            class="img-fluid"
+            alt="Mental model 1"
+            width="70%"
+            height="70%"
+          />
+          <br />
+          <br />
+
+          <h3>Participants</h3>
+          For participants, we can group them into several categories based on
+          two core attributes:
+          <span class="badge badge-pill badge-success">participation</span> and
+          <span class="badge badge-pill badge-success">focus</span>
+          <br />
+          <br />
+          <img
+            src="images/att3.png"
+            class="img-fluid"
+            alt="Mental model 1"
+            width="70%"
+            height="70%"
+          />
+          <img
+            src="images/att4.png"
+            class="img-fluid"
+            alt="Mental model 1"
+            width="70%"
+            height="70%"
+          />
+        </div>
+        <br />
+        <br />
+        In order to keep it manageable within the allotted time frame, we
+        selected core groups to focus for this project. For presenters, we
+        decided to target those with
+        <span class="badge badge-pill badge-danger">low</span> and
+        <span class="badge badge-pill badge-danger"
+          >medium prior knowledge of video-conferencing tools</span
+        >
+        , as well as those who look for<span
+          class="badge badge-pill badge-danger"
+          >high participation</span
+        >
+        from their audience. For participants, we targeted both
+        <span class="badge badge-pill badge-success">shy</span> and
+        <span class="badge badge-pill badge-success">active</span> participants
+        that are
+        <span class="badge badge-pill badge-success"
+          >focused on the presentation.</span
+        >
+
+        <br />
+        <br />
+        <br />
+        <h4 class="text-center">2. Problem identified</h4>
+        <p>
+          <br />
+          The inability for presenters and participants to engage and have
+          dialogue with one another is a major issue with video conferencing.
+          The lack of low risk, non-disruptive, simple-to-use features that
+          allow participants to comfortably engage with presentations results in
+          lower levels of engagement. For many presenters, participant
+          engagement and reaction serves as a measure of the presentation’s
+          success. Unfortunately, because of the suppressed participant
+          reaction, presenters can be made to feel boring and awkward.
+          Furthermore, this depression of participation can make participating
+          even harder as the norm becomes silence and turned off webcams, making
+          speaking up or asking a question all the more intimidating and
+          daunting to participants. This lack of engagement is especially
+          troublesome for presentations with educational objectives as
+          engagement is a necessary component for learning. So far, we have yet
+          to find a product that finds a way to support participants' engagement
+          and interaction with the presentation.
+        </p>
+        <br />
+        <br />
+        <br />
+
+        <div>
+          <h4 class="text-center">3. Personas</h4>
+          <div class="d-flex">
+            <div>
+              <img
+                src="images/per1.png"
+                width="400px"
+                class="rounded-left mr-5"
+                alt="..."
+              />
+            </div>
+            <div class="d-flex align-items-center">
+              <ul>
+                <b
+                  ><li>Diane</li>
+                  <li>Presenter in informal education community</li>
+                  <li>Age: 30s</li>
+                  <li>Role: presenter</li>
+                  <li>
+                    Prior knowledge of video conferencing software: some
+                    experience
+                  </li>
+                  <li>
+                    Attitude towards participation: Cares about and solicits
+                    interaction
+                  </li>
+                  <li>
+                    Presence on video conferencing tools: Zoom, Skype and
+                    facebook
+                  </li>
+                </b>
+              </ul>
+            </div>
+          </div>
+          <br />
+          <div>
+            Diane is a young professional who is a member of a peer supported
+            informal online learning community. A recurring activity in her
+            community is a peer-teaching event where different members of the
+            community present on a topic of their choosing. Being a PhD student,
+            Diane is familiar with teaching and giving presentations as she has
+            worked as TA for several years. She recently started giving
+            presentations online due to the pandemic but finds presenting online
+            is just not the same. Considering video conferencing software, she
+            has used Zoom, Skype and facebook video call. Trained to read body
+            language and facial expressions, Diane feels like she has no sense
+            of how her participants are doing through an online setting. Despite
+            her requests for participants to tell her how they’re following
+            along, participants often have their cameras off and only the same
+            few people interact with her. This is a serious problem for her and
+            interferes with her teaching ability and satisfaction with her work.
+          </div>
+          <br />
+          <div class="d-flex">
+            <div>
+              <img
+                src="images/per2.png"
+                width="400px"
+                class="rounded-left  mr-5"
+                alt="..."
+              />
+            </div>
+            <div class="d-flex align-items-center">
+              <ul>
+                <b
+                  ><li>Diane</li>
+                  <li>Presenter in informal education community</li>
+                  <li>Age: 30s</li>
+                  <li>Role: presenter</li>
+                  <li>
+                    Prior knowledge of video conferencing software: some
+                    experience
+                  </li>
+                  <li>
+                    Attitude towards participation: Cares about and solicits
+                    interaction
+                  </li>
+                  <li>
+                    Presence on video conferencing tools: Zoom, Skype and
+                    facebook
+                  </li>
+                </b>
+              </ul>
+            </div>
+          </div>
+          <br />
+          <div>
+            Diane is a young professional who is a member of a peer supported
+            informal online learning community. A recurring activity in her
+            community is a peer-teaching event where different members of the
+            community present on a topic of their choosing. Being a PhD student,
+            Diane is familiar with teaching and giving presentations as she has
+            worked as TA for several years. She recently started giving
+            presentations online due to the pandemic but finds presenting online
+            is just not the same. Considering video conferencing software, she
+            has used Zoom, Skype and facebook video call. Trained to read body
+            language and facial expressions, Diane feels like she has no sense
+            of how her participants are doing through an online setting. Despite
+            her requests for participants to tell her how they’re following
+            along, participants often have their cameras off and only the same
+            few people interact with her. This is a serious problem for her and
+            interferes with her teaching ability and satisfaction with her work.
+          </div>
+          <br />
+          <div class="d-flex">
+            <div>
+              <img
+                src="images/per3.png"
+                width="400px"
+                class="rounded-left  mr-5"
+                alt="..."
+              />
+            </div>
+            <br />
+            <div class="d-flex align-items-center">
+              <ul>
+                <b
+                  ><li>Diane</li>
+                  <li>Presenter in informal education community</li>
+                  <li>Age: 30s</li>
+                  <li>Role: presenter</li>
+                  <li>
+                    Prior knowledge of video conferencing software: some
+                    experience
+                  </li>
+                  <li>
+                    Attitude towards participation: Cares about and solicits
+                    interaction
+                  </li>
+                  <li>
+                    Presence on video conferencing tools: Zoom, Skype and
+                    facebook
+                  </li>
+                </b>
+              </ul>
+            </div>
+          </div>
+          <br />
+          <div>
+            Diane is a young professional who is a member of a peer supported
+            informal online learning community. A recurring activity in her
+            community is a peer-teaching event where different members of the
+            community present on a topic of their choosing. Being a PhD student,
+            Diane is familiar with teaching and giving presentations as she has
+            worked as TA for several years. She recently started giving
+            presentations online due to the pandemic but finds presenting online
+            is just not the same. Considering video conferencing software, she
+            has used Zoom, Skype and facebook video call. Trained to read body
+            language and facial expressions, Diane feels like she has no sense
+            of how her participants are doing through an online setting. Despite
+            her requests for participants to tell her how they’re following
+            along, participants often have their cameras off and only the same
+            few people interact with her. This is a serious problem for her and
+            interferes with her teaching ability and satisfaction with her work.
+          </div>
+          <br />
+          <div class="d-flex">
+            <div>
+              <img
+                src="images/per4.png"
+                width="400px"
+                class="rounded-left  mr-5"
+                alt="..."
+              />
+            </div>
+            <div class="d-flex align-items-center">
+              <ul>
+                <b
+                  ><li>Diane</li>
+                  <li>Presenter in informal education community</li>
+                  <li>Age: 30s</li>
+                  <li>Role: presenter</li>
+                  <li>
+                    Prior knowledge of video conferencing software: some
+                    experience
+                  </li>
+                  <li>
+                    Attitude towards participation: Cares about and solicits
+                    interaction
+                  </li>
+                  <li>
+                    Presence on video conferencing tools: Zoom, Skype and
+                    facebook
+                  </li>
+                </b>
+              </ul>
+            </div>
+          </div>
+          <br />
+          <div>
+            Diane is a young professional who is a member of a peer supported
+            informal online learning community. A recurring activity in her
+            community is a peer-teaching event where different members of the
+            community present on a topic of their choosing. Being a PhD student,
+            Diane is familiar with teaching and giving presentations as she has
+            worked as TA for several years. She recently started giving
+            presentations online due to the pandemic but finds presenting online
+            is just not the same. Considering video conferencing software, she
+            has used Zoom, Skype and facebook video call. Trained to read body
+            language and facial expressions, Diane feels like she has no sense
+            of how her participants are doing through an online setting. Despite
+            her requests for participants to tell her how they’re following
+            along, participants often have their cameras off and only the same
+            few people interact with her. This is a serious problem for her and
+            interferes with her teaching ability and satisfaction with her work.
+          </div>
+        </div>
+
+        <br />
+        <br />
+
+        <div>
+          <h4 class="text-center">4. Use cases</h4>
+          <h5><u>Presenters</u></h5>
+          <ul>
+            <li>
+              This presenter wants to host an online work training event for
+              employees.
+            </li>
+            <li>
+              Presenter opens the video conferencing app, logs in using their
+              credentials, and starts an online meeting by clicking the “Start
+              Meeting” button.
+            </li>
+            <li>
+              They are presented with a link to the meeting, share it with their
+              audience, and waits for people to join..
+            </li>
+            <li>
+              As the participants trickle in, the presenter uses this time to
+              get to know the audience by asking some questions, like:
+              <i
+                >“Are you familiar with the presentation topic? Raise your hand
+                if yes”</i
+              >
+            </li>
+            <li>
+              Now that all the participants have arrived, the presenter starts a
+              quick poll about the topic they are covering where participants
+              vote using A/B/C/D. The presenter is able to quickly assess their
+              response as the results live-tally on screen and reacts
+              accordingly.
+            </li>
+            <li>
+              During the more technical phase of the presentation, the presenter
+              notes that a lot of participants have anonymously reported they
+              are beginning to feel lost. This cues the presenter to slow down
+              and cover the material with more details so participants don’t
+              feel lost.
+            </li>
+            <li>
+              At the end of the presentation, the participants overwhelmingly
+              give the presenter clapping emojis and the presenters feels
+              satisfied knowing they did a good job!
+            </li>
+          </ul>
+          <br />
+          <h5><u>Participants</u></h5>
+          <ul>
+            <li>
+              The participant follows the link given by the presenter to attend
+              a class and joins the class early.
+            </li>
+            <li>
+              The class already has quite a few students in it, so this
+              participant doesn’t feel comfortable using their microphone to say
+              ‘Hi’ to the others. Instead, they give a “wave” emoji to signal
+              their presence.
+            </li>
+            <li>
+              As the class is starting, the teacher asks the students to tell
+              them how they feel with an anonymous emoji reaction. This student
+              knows they’re anonymous so they answer honestly with a sleepy face
+              emoji. They watch as the live tally of student's emoji reactions
+              pour in: many students are responding with a “meh”, “sleepy” or
+              x_x face emoji. This student feels a little less alone.
+            </li>
+            <li>
+              The teacher asks review questions covering content in the previous
+              class. Again, because the poll is anonymous and the button to
+              respond is on the main app interface, they respond.
+            </li>
+            <li>
+              During the discussion of new content, the student begins to feel
+              lost. They emote anonymously that they feel lost and see the tally
+              of lost feeling students increase by one. Soon the number begins
+              to climb to about ¼ of the class, so the teacher pauses their
+              instruction to solicit clarifying questions from students.
+            </li>
+            <li>
+              Students begin raising their hand and a queue is populated based
+              on first come first serve. This student was 3rd to raise their
+              hand so they wait for their turn. It turns out that the first
+              question asked is the same as theirs, so they lower their hand
+              which automatically removes them from the queue of questions.
+            </li>
+            <li>
+              By the end of the class, the professor again asks students to
+              anonymously respond with how well they understood that day's
+              content with an emoji poll. The student responds with a green
+              checkmark.
+            </li>
+          </ul>
+        </div>
+        <br />
+        <br />
+        <br />
+
+        <div>
+          <h4 class="text-center">5. Related products</h4>
+          <br />
+          <h5><u>Zoom</u></h5>
+          <p>
+            Due to its high level of security and a variety of useful features
+            that support educators, Zoom has been used as a virtual classroom
+            platform in many educational institutions including McGill
+            University. On Zoom, students are able to provide feedback to their
+            lecturers via emoji and express their reactions by sending a clap or
+            thumbs up. Moreover, students can display a “raise hand” icon if
+            they want to get permission to speak during the class. These various
+            features of Zoom allow students to transform their behavior in
+            off-line class into a virtual class so that students are able to
+            feel strong telepresence throughout the class.
+          </p>
+          <p>
+            However, These emoji buttons are scattered on the software so it
+            sometimes invites undesired confusion. For example, you can express
+            “thumbs up” via emoji of reactions tab or participants list. Users
+            will likely be confused with the differences between the two. In
+            addition, emojis are often not noticed when a shared screen is
+            occupied on an educator’s screen. Therefore, students often don’t
+            get a chance to interact with an educator.
+          </p>
+          <p>
+            The current layout of Zoom is poorly designed. Students need to
+            manually place windows of participants and chat on their screen when
+            needed as Zoom only provides one default layout; chatbox on the left
+            corner, participants list on the left top and screen shared on the
+            middle. Therefore, on a default layout if a chat box is too small
+            due to one’s laptop size, having a discussion in a chat is somewhat
+            challenging.
+          </p>
+          <br />
+          <h5><u>Cisco Webex Training</u></h5>
+          <p>
+            Cisco Systems also has a video conferencing tool: WebEx, which
+            offers a range of useful features for presenters and participants in
+            online training sessions such as presentations, webinars or online
+            classes.
+          </p>
+          <p>
+            First, it offers an easy way of tracking questions and documenting
+            responses using threaded Q&A as well as collecting feedback from the
+            participants through live polling. Participants are also able to
+            react to the presentation through the ‘raise hand’, ‘yes’, ‘no’, ‘go
+            faster’ and ‘go slower’ buttons as well as express their feelings
+            through emojis.
+          </p>
+          <img
+            src="images/web1.png"
+            class="rounded mx-auto d-block"
+            alt="Mental model 2"
+            width="70%"
+          />
+          <br />
+          <i>
+            Retrieved on September 20 from the Cisco WebEx Training Center User
+            Guide:
+            https://www.cisco.com/c/dam/en/us/td/docs/collaboration/training_center/wbs29/wx_tc_host_ug.pdf</i
+          >
+          <br />
+          <br />
+          <p>
+            Furthermore, presenters can track participant’s attention by using
+            the Attention Indicator which shows if a participant has minimized
+            the training session window or has brought another window in focus
+            on top of the training session window. This is useful for recording
+            student’s participation when teaching remotely.
+          </p>
+          <img
+            src="images/web2.png"
+            class="rounded mx-auto d-block"
+            alt="Mental model 2"
+          />
+          <br />
+          <i>
+            Retrieved on September 20 from the Cisco WebEx Training Center User
+            Guide:
+            https://www.cisco.com/c/dam/en/us/td/docs/collaboration/training_center/wbs29/wx_tc_host_ug.pdf</i
+          >
+
+          <br />
+          <br />
+          <p>
+            However, WebEx is slow in connecting to meetings and its video
+            quality is lower than Zoom. It also does not have a lot of room for
+            customization and only allows to visualize a summary of
+            participant’s yes/no reactions. When reacting with emojis or other
+            buttons, the presenter has to check the symbols next to the
+            participant’s name in the list, which is hard to do in a session
+            with many participants. Additionally, participants can’t react
+            anonymously nor is WebEx free to use.
+          </p>
+          <br />
+          <h5><u>Adobe Connect for learning </u></h5>
+          <p>
+            Adobe has several products in the line of video conferencing tools
+            for online meeting, online learning and webinar ; Adobe Connect is
+            especially designed for educational settings. Adobe connect has a
+            variety of interactive features both for educators and students.
+          </p>
+          <img
+            src="images/adobe1.png"
+            class="rounded mx-auto d-block"
+            alt="Mental model 2"
+            width="40%"
+          />
+          <br />
+          <i>
+            Retrieved September 20, 2020 from Adobe Connect for Learning.
+            https://www.adobe.com/products/adobeconnect/learning.html#learner-engagement
+          </i>
+          <br />
+          <br />
+          <p>
+            First, presenters can easily run a poll including yes or no,
+            multi-choice or open-ended short answers during the class. And the
+            results will be well visualized right after the poll. Students (or
+            meeting participants) can display reactions via emoji. Apart from
+            “raise hand”, “agree or disagree”, “applaud”, “laugh” and “step
+            away” emojis, they also have request emojis for asking educators to
+            “speak loader”, “speak softer”, “speed up” and “speed down”.
+          </p>
+          <p>
+            Second, Adobe Connect has the most advanced feature to display the
+            audience’s participation. By analysing various interactive
+            participation parameters, Adobe Connect shows to educators a score
+            in real-time that aggregates the digital body language of
+            participants. Engagement Index Calculation includes chat activity,
+            Q&A activity, poll activity, file download, status updates, etc.
+          </p>
+          <img
+            src="images/adobe2.png"
+            class="rounded mx-auto d-block"
+            alt="Mental model 2"
+            width="40%"
+          />
+          <br />
+          <i>
+            Retrieved September 20, 2020 from Adobe Connect for Learning.
+            https://www.adobe.com/products/adobeconnect/learning.html#learner-engagement
+          </i>
+          <br />
+          <br />
+          <p>
+            Lastly, Adobe Connect provides a different layout depending on the
+            purpose of sessions (sharing, discussion, collaboration and
+            customized layout). With a single click, Adobe Connect’s layout is
+            automatically adjusted.
+          </p>
+          <p>
+            However, Adobe Connect is one of the most expensive available
+            solutions for web conferencing. For example one of their published
+            plans costs 50$ per month and can only host up to 25 participants;
+            for bigger meetings (100-1500 participants) the plans start at 130$
+            per month.
+          </p>
+          <p>
+            Furthermore, with the ‘Status View’, hosts can only see the
+            reactions of participants that are raising their hands, agreeing,
+            disagreeing, or have stepped away. For the remaining reactions and
+            request, the host has to switch to the ‘Participant List View’ and
+            see them next to their names (similar to Zoom). Additionally,
+            participants can’t share their reactions anonimously.
+          </p>
+
+          <img
+            src="images/adobe3.png"
+            class="rounded mx-auto d-block"
+            alt="Mental model 2"
+            width="70%"
+          />
+          <br />
+          <i>
+            Retrieved September 20, 2020 from Adobe Connect for Learning.
+            https://www.adobe.com/products/adobeconnect/learning.html#learner-engagement
+          </i>
+          <br />
+          <br />
+          <p>
+            Other disadvantages of Adobe Connect include its dependency on
+            internet bandwidth (when viewing on the browser) or its slowness to
+            load (when using the desktop app). Therewith, the interface might be
+            fairly complicated for new users.
+          </p>
+        </div>
+        <br />
+        <h4 class="text-center">6. Product comparison</h4>
+        <br />
+        <br />
+        <p>
+          One of the main advantages of the system we are proposing is the
+          ability for the participants to react and respond anonymously during a
+          presentation, without garnering overwhelming attention and/or
+          disrupting the class.
+        </p>
+        <p>
+          Furthermore, we propose an easy visualization of participant’s
+          reactions and responses for the presenters, with no need of switching
+          to different tabs, or changing the view mode.
+        </p>
+        <p>
+          Finally, our system is intended to be free and open-source so
+          presenters can customize it to their needs and can use it with any
+          pre-existing video-conferencing tool without having to spend extra
+          dollars.
+        </p>
+        <p>The system will benefit our personas in the following ways:</p>
+        <p>
+          For Diane, the student member of a peer-teaching community, the system
+          will allow her to easily visualize her peer’s reactions when
+          presenting a topic during one of their teaching sessions. She will be
+          able to get a sense of how many participants are following and which
+          are the reactions to her presentation. That way, she can immediately
+          pause and give further explanations when the crowd is feeling lost or
+          speed up her presentation if they’re feeling bored.
+        </p>
+        <p>
+          On the other hand, Dakota will be able to interact with their audience
+          when presenting during class. They will be able to see when
+          participants found their jokes funny, and if they are liking the
+          content they are presenting. They will also be able to poll their
+          audience to make sure they are following their presentation and
+          realize interactive exercises that engage everyone with the content.
+        </p>
+        <p>
+          With our system, Jamie (the active convention participant) can
+          actively participate in discussions around business presentations, he
+          will be able to raise his hand and be sure he gets noticed. He won’t
+          have to interrupt the presentation in order to ask questions and will
+          get a chance to be designated to speak in an orderly manner.
+          Furthermore, he will be able to see other participants reactions and
+          not feel like he is alone in the presentation.
+        </p>
+        <p>
+          Finally, Priscilla, the shy student who is afraid of sounding stupid
+          when participating in discussions, giving a wrong answer when asked or
+          asking for clarification when she is lost, will benefit from our
+          system because she will be able of anonimously vote in quick polls as
+          well as expressing her feelings and reacting to the presentation
+          without being noticed by other participants and/or the presenter.
+        </p>
+        <br />
+        <h4 class="text-center">7. High-level design of system</h4>
+        <br />
+        <p>Will be updated</p>
+        <br />
+        <br />
+        <h4 class="text-center">8. Feasibility</h4>
+        <br />
+        <p>Will be updated</p>
+      </div>
+    </section>
   </body>
 </html>

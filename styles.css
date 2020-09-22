@@ -1,7 +1,9 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300&display=swap");
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  font-family: "Montserrat", "Arial", "sans-serif";
 }
 body,
 html {
@@ -14,7 +16,7 @@ a {
   font-weight: 500;
   font-size: 16px;
   text-decoration: none;
-  color: #ffb001;
+  font-family: "Montserrat", "Arial", "sans-serif";
 }
 
 header {
@@ -25,6 +27,10 @@ header {
   position: sticky;
   top: 0;
   background-color: white;
+}
+
+header a {
+  color: #ffb001;
 }
 
 .logo a {
@@ -45,7 +51,7 @@ header {
 }
 
 .nav__links li a:hover {
-  color: #0088a9;
+  color: #715026;
 }
 
 .bg {
@@ -67,4 +73,12 @@ header {
 }
 .text p span {
   font-weight: 400;
+}
+
+.wrapper {
+  display: grid;
+  grid-template-columns: 500px 500px;
+  grid-template-rows: 280px;
+  width: 841px;
+  margin: 0 auto;
 }
