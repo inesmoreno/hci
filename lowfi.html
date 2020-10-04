@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Observation and Proposal</title>
+    <title>Low-fidelity prototype and Test Plan</title>
     <link
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
@@ -29,188 +29,118 @@
     <section>
       <div class="container">
         <h1 class="text-center">
-          Observation and Proposal
+          Low-Fidelity Prototype and test plan
         </h1>
         <br />
-        <h4 class="text-center">1. Observation</h4>
+        <h4 class="text-center">1. Design Concepts</h4>
         <p>
-          In order to observe two user groups (presenters and participants), we
-          watched different recorded Zoom presentations and generated sticky
-          notes about our findings on white board software Miro to define mental
-          models. In the same videos, we observed the presenters and
-          participants at the same time. To validate our findings, we often
-          revisited a particular scene and watched in pairs.
+          Here are the ideas that were generated in our first 10 idea brainstorming session. First, we didn’t constrain the technology feasibility and the layout of our possible designs, rather we explored all possible design options. 
+
         </p>
+      </p>
+      <img src="images/sketch1.jpg" class="img-fluid" alt="Mental model 1" />
+      <br>
+      <br>
+      <img src="images/sketch2.jpg" class="img-fluid" alt="Mental model 2" />
+      <br />
+      <br />
+        <p>
+          After this session, we settled on a single column interface which doesn’t incorporate video conferencing tools because we wanted our system to be used by anyone, no matter their choice of video-conferencing platform. From that, we generated many ideas about the structure and format of this program, namely where key features like raising hand or emoting would go. Here are the ideas we came up with:
+        </p>
+        <img src="images/sketch3.jpg" class="img-fluid" alt="Mental model 1" />
+        <br>
+        <br>
+        <img src="images/sketch4.jpg" class="img-fluid" alt="Mental model 2" />
+        <br />
+        <br />
+     
+        <br />
+        <br />
+        <br />
+        <h4 class="text-center">2. Prototypes</h4>
+        <p>
+          <br />
+          We bounced our ideas off each other with sketches  and conducted usability testing with our paper prototypes. For the usability testing, we ran the wizard of Oz testing as below:
+
+        </p>
+        <h3>Working flow for participants</h3>
+        <img src="images/workingflow1.jpg" class="img-fluid" alt="Mental model 1" />
+        <br>
+        <br>
+        <img src="images/workingflow2.jpg" class="img-fluid" alt="Mental model 2" />
+        <br />
+        <br />
+        <img src="images/workingflow3.jpg" class="img-fluid" alt="Mental model 1" />
+        <br>
+        <br>
+        <img src="images/workingflow4.jpg" class="img-fluid" alt="Mental model 2" />
+        <br />
+        <br />
+        <img src="images/workingflow5.jpg" class="img-fluid" alt="Mental model 1" />
+        <br>
+        <br>
+        <h3>Working flow for Presenters</h3>
+        <img src="images/workingflow6.jpg" class="img-fluid" alt="Mental model 2"  />
+        <br />
+        <br />
+        <img src="images/workingflow7.jpg" class="img-fluid" alt="Mental model 1" height= "541" />
+        <br>
+        <br>
+        <img src="images/workingflow8.jpg" class="img-fluid" alt="Mental model 2" height= "541" />
+        <br />
+        <br />
+        <br>
+        <br>
+        <h3>Design decisions</h3>
+        Having worked on our sketches and prototypes, we made several design decisions. 
+        <br />
         <ul>
-          <li>
-            Setting: Recorded lecture
-            (https://www.youtube.com/watch?v=JpTDF4w-6Yc)<br />
-            <ul>
-              <li>
-                This video is a university lecture of an introductory history
-                class over zoom.
-              </li>
-            </ul>
-          </li>
-          <li>
-            Setting: Tutorial session
-            (https://www.youtube.com/watch?v=jMMK9KKgOWY&t=669s) <br />
-            <ul>
-              <li>
-                In this video, the presenter gives an instruction for lecturers
-                about how to use Zoom in online classes. Participants(lecturers)
-                try out various features of Zoom by following the guidance.
-              </li>
-            </ul>
-          </li>
-          <li>
-            Setting: Tutorial session
-            (https://www.youtube.com/watch?v=jMMK9KKgOWY&t=669s) <br />
-            <ul>
-              <li>
-                One of our group members participated in an online webinar
-                hosted by a tech company remotely recruiting on campus. The
-                webinar had more than 500 participants, 1 presenter (or
-                moderator) and 2 guest speakers. The participant cameras and
-                microphones were disabled, they were only able to ask questions
-                on the chat, but with an overwhelming number of questions,
-                sometimes one would ask something that will get lost in the
-                chat. The moderator read some selected questions for the guest
-                speakers to answer, but sometimes will unintentionally cut one
-                another when answering. Furthermore, if one of the guests left
-                their microphone on while not speaking, noises in their room
-                will interrupt the person speaking and participants attending
-                the webinar ‘on speaker’ view will lose the focus on the person
-                they were listening to.
-              </li>
-            </ul>
-          </li>
+          <li>Not to incorporate videoconferencing in our website.</li>
+          <ul><li>In order to make our system accessible to everyone, we decided not to integrate it into any existing video-conferencing platform. Rather, we opted to create a stand-alone web app that can be opened in a separate window and positioned next to the video conferencing software. That way, our system can be used by anyone, no matter their choice of video-conferencing platform. This will also help us in terms of feasibility as we will not have to deal with complicated code bases and integrating our features with existing platforms like Zoom. </li></ul>
         </ul>
-        <p>
-          After listing all distinguished tasks on the white boards, we grouped
-          them by behavior affinity.
-        </p>
-        <img src="images/mental1.png" class="img-fluid" alt="Mental model 1" />
-        <img src="images/mental2.png" class="img-fluid" alt="Mental model 2" />
-        <br />
-        <br />
-        <p>
-          Presenters struggle to solicit and assess participant engagement and
-          responses to presentation. Presenters have been shown to ask (or
-          sometimes appear to plead in the instances of educational
-          presentations) for participant feedback. Participants that are
-          familiar with the presentation do manage to provide feedback through
-          unmuting and speaking, messaging in chat, or using features like hand
-          raising. Unfortunately, most participants don’t provide any feedback
-          to the presenter and have their camera off, seemingly disengaged. This
-          appears to make presenters feel uncomfortable. On the other hand, when
-          presenters want to assess participant reaction (for instance by
-          reading the chat), it often interrupts their presentation.
-        </p>
-        <br />
-        <div class="text-center">
-          <h3>Presenters</h3>
-          <p>
-            As far as presenters are concerned, they can be grouped by two core
-            attributes:<br />
-            <span class="badge badge-pill badge-danger"
-              >prior knowledge of video conferencing</span
-            >
-            and
-            <span class="badge badge-pill badge-danger"
-              >degree in interest to engage people.</span
-            >
-            <br /><br />
-          </p>
-          <img
-            src="images/att1.png"
-            class="img-fluid"
-            alt="Mental model 1"
-            width="70%"
-            height="70%"
-          />
-          <img
-            src="images/att2.png"
-            class="img-fluid"
-            alt="Mental model 1"
-            width="70%"
-            height="70%"
-          />
-          <br />
-          <br />
-
-          <h3>Participants</h3>
-          Then, we grouped participants into different categories based on two
-          core attributes:
-          <span class="badge badge-pill badge-success">participation</span> and
-          <span class="badge badge-pill badge-success">focus</span>
-          <br />
-          <br />
-          <img
-            src="images/att3.png"
-            class="img-fluid"
-            alt="Mental model 1"
-            width="70%"
-            height="70%"
-          />
-          <img
-            src="images/att4.png"
-            class="img-fluid"
-            alt="Mental model 1"
-            width="70%"
-            height="70%"
-          />
-        </div>
-        <br />
-        <br />
-        In order to keep it manageable within the allotted time frame, we
-        selected core groups to focus for this project. For presenters, we
-        decided to target those with
-        <span class="badge badge-pill badge-danger">low</span> and
-        <span class="badge badge-pill badge-danger"
-          >medium prior knowledge of video-conferencing tools</span
-        >
-        , as well as those who look for<span
-          class="badge badge-pill badge-danger"
-          >high participation</span
-        >
-        from their audience. For participants, we targeted both
-        <span class="badge badge-pill badge-success">shy</span> and
-        <span class="badge badge-pill badge-success">active</span> participants
-        that are
-        <span class="badge badge-pill badge-success"
-          >focused on the presentation.</span
-        >
-
-        <br />
-        <br />
-        <br />
-        <h4 class="text-center">2. Problem identified</h4>
-        <p>
-          <br />
-          The inability for presenters and participants to engage and have
-          dialogue with one another is a major issue with video conferencing.
-          The lack of low risk, non-disruptive, simple-to-use features that
-          allow participants to comfortably engage with presentations results in
-          lower levels of engagement. For many presenters, participant
-          engagement and reaction serves as a measure of the presentation’s
-          success. Unfortunately, because of the suppressed participant
-          reaction, presenters can be made to feel boring and awkward.
-          Furthermore, this depression of participation can make participating
-          even harder as the norm becomes silence and turned off webcams, making
-          speaking up or asking a question all the more intimidating and
-          daunting to participants. This lack of engagement is especially
-          troublesome for presentations with educational objectives as
-          engagement is a necessary component for learning. So far, we have yet
-          to find a product that finds a way to support participants' engagement
-          and interaction with the presentation.
-        </p>
-        <br />
+        <ul>
+          <li> Vertical display </li>
+          <ul>
+            <li>We chose a vertical display as it is easy to organize our features from top to bottom while sharing the screen real estate with a video conferencing software. This also facilitates displaying on tablets or phones if users decide to use those instead of having two different windows open. </li>
+          </ul>
+        </ul>
+        <ul>
+          <li>Integrate chat feature</li>
+          <ul>
+            <li>At first, we were debating whether we should create a chat feature in our app, or rely on the user video conferencing platform’s chat feature. We ultimately decided to add a chat feature to our application. Having chat functionality in our app means that users don’t need to continually go back to the video conferencing software they use. Having a chat feature rounds out our application and provides more of a “one stop” app that meets more use cases. </li>
+          </ul>
+        </ul>
+        <ul>
+          <li>Toggle display for aggregate emoji reacts
+          </li>
+          <ul>
+            <li>We were unsure if we should show aggregated emoji responses as a raw number beside the respective emoji, or as a bar graph histogram of emoji responses. Instead of choosing between these two views, we decided to give users the option to toggle between both views (number score and bar graph). This way users can adjust the display of the app in a way that works best for them.</li>
+          </ul>
+        </ul>
+        <ul>
+          <li>Express participant level of understanding on a 2D line + visualize it in a distribution 
+          </li>
+          <ul>
+            <li>When it comes to the “level of understanding” feature that aggregates how participants self report their understanding of the presentation content, we chose to have users input their level of understanding as a point on a spectrum and display the class aggregate as a distribution. For participants, articulating their understanding on a spectrum opposed to discrete emoji allows for more precise expression on the part of the participant. Displaying the aggregated level of understanding, we opted for a distribution as this will make it easier for the presenter to draw conclusions from the data, as he will be able to see in real-time how the ‘level of understanding’ trend for the audience moves when they make further explanations or present new topics. 
+            </li>
+          </ul>
+        </ul>
+        <ul>
+          <li>Display participant position in questions queue  </li>
+          <ul><li>Regarding the “hand raising” queue populated by participants raising their hand, we chose to not show participants the names of the other participants in the queue. Instead, we decided to simply display the number of participants with their hand up, and if the participant raised their hand, what position they are in the queue. We did this to declutter the UI. We thought the position in the queue would be helpful as students can anticipate when they will be called on to ask their question to the presenter and provide a fair (first come, first serve) order to questions.</li></ul>
+        </ul>
+        <ul>
+            <li>Polling with emoji
+              </li>
+            <ul><li>Most polling features in video conferencing software opens a new popup window. We decided to have an integrated poll feature embedded directly in the interface. We chose this because our observation findings showed us pop up windows can be distracting and annoying to users. </li>
+            <li>We also decided to reuse the “reactions” panel that displays popular participant reactions to display polling answers. This means students vote with an emoji (ex 🅰, 🅱) and class aggregates are displayed in the reactions panel. This is better than a dedicated polling panel for two reasons: it saves space, and allows participants to express “I don’t know” or “thinking” emojis while answering. These latter emoji reactions are particularly valuable to a presenter. </li>
+            </ul>
+          </ul>
         <br />
         <br />
 
         <div>
-          <h4 class="text-center">3. Personas</h4>
+          <h4 class="text-center">3. Usability goals & benchmark tasks</h4>
           <div class="d-flex">
             <div>
               <img
