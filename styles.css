@@ -82,3 +82,19 @@ header a {
   width: 841px;
   margin: 0 auto;
 }
+
+.prototypes img {
+  height: 540px;
+  display: block;
+  margin: 0 auto;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.design ul li {
+  margin-left: 20px;
+}
+
+.usablegoals ul li {
+  margin-left: 20px;
+}

@@ -32,743 +32,311 @@
           Low-Fidelity Prototype and test plan
         </h1>
         <br />
-        <h4 class="text-center">1. Design Concepts</h4>
+        <h2 class="text-center">1. Design Concepts</h2>
         <p>
-          Here are the ideas that were generated in our first 10 idea brainstorming session. First, we didn’t constrain the technology feasibility and the layout of our possible designs, rather we explored all possible design options. 
-
+          Here are the ideas that were generated in our first 10 idea
+          brainstorming session. First, we didn’t constrain the technology
+          feasibility and the layout of our possible designs, rather we explored
+          all possible design options.
         </p>
-      </p>
-      <img src="images/sketch1.jpg" class="img-fluid" alt="Mental model 1" />
-      <br>
-      <br>
-      <img src="images/sketch2.jpg" class="img-fluid" alt="Mental model 2" />
-      <br />
-      <br />
+        <img src="images/sketch1.jpg" class="img-fluid" alt="Mental model 1" />
+        <br />
+        <br />
+        <img src="images/sketch2.jpg" class="img-fluid" alt="Mental model 2" />
+        <br />
+        <br />
         <p>
-          After this session, we settled on a single column interface which doesn’t incorporate video conferencing tools because we wanted our system to be used by anyone, no matter their choice of video-conferencing platform. From that, we generated many ideas about the structure and format of this program, namely where key features like raising hand or emoting would go. Here are the ideas we came up with:
+          After this session, we settled on a single column interface which
+          doesn’t incorporate video conferencing tools because we wanted our
+          system to be used by anyone, no matter their choice of
+          video-conferencing platform. From that, we generated many ideas about
+          the structure and format of this program, namely where key features
+          like raising hand or emoting would go. Here are the ideas we came up
+          with:
         </p>
         <img src="images/sketch3.jpg" class="img-fluid" alt="Mental model 1" />
-        <br>
-        <br>
+        <br />
+        <br />
         <img src="images/sketch4.jpg" class="img-fluid" alt="Mental model 2" />
         <br />
         <br />
-     
-        <br />
-        <br />
-        <br />
-        <h4 class="text-center">2. Prototypes</h4>
-        <p>
-          <br />
-          We bounced our ideas off each other with sketches  and conducted usability testing with our paper prototypes. For the usability testing, we ran the wizard of Oz testing as below:
 
-        </p>
-        <h3>Working flow for participants</h3>
-        <img src="images/workingflow1.jpg" class="img-fluid" alt="Mental model 1" />
-        <br>
-        <br>
-        <img src="images/workingflow2.jpg" class="img-fluid" alt="Mental model 2" />
         <br />
-        <br />
-        <img src="images/workingflow3.jpg" class="img-fluid" alt="Mental model 1" />
-        <br>
-        <br>
-        <img src="images/workingflow4.jpg" class="img-fluid" alt="Mental model 2" />
-        <br />
-        <br />
-        <img src="images/workingflow5.jpg" class="img-fluid" alt="Mental model 1" />
-        <br>
-        <br>
-        <h3>Working flow for Presenters</h3>
-        <img src="images/workingflow6.jpg" class="img-fluid" alt="Mental model 2"  />
-        <br />
-        <br />
-        <img src="images/workingflow7.jpg" class="img-fluid" alt="Mental model 1" height= "541" />
-        <br>
-        <br>
-        <img src="images/workingflow8.jpg" class="img-fluid" alt="Mental model 2" height= "541" />
-        <br />
-        <br />
-        <br>
-        <br>
-        <h3>Design decisions</h3>
-        Having worked on our sketches and prototypes, we made several design decisions. 
-        <br />
-        <ul>
-          <li>Not to incorporate videoconferencing in our website.</li>
-          <ul><li>In order to make our system accessible to everyone, we decided not to integrate it into any existing video-conferencing platform. Rather, we opted to create a stand-alone web app that can be opened in a separate window and positioned next to the video conferencing software. That way, our system can be used by anyone, no matter their choice of video-conferencing platform. This will also help us in terms of feasibility as we will not have to deal with complicated code bases and integrating our features with existing platforms like Zoom. </li></ul>
-        </ul>
-        <ul>
-          <li> Vertical display </li>
-          <ul>
-            <li>We chose a vertical display as it is easy to organize our features from top to bottom while sharing the screen real estate with a video conferencing software. This also facilitates displaying on tablets or phones if users decide to use those instead of having two different windows open. </li>
-          </ul>
-        </ul>
-        <ul>
-          <li>Integrate chat feature</li>
-          <ul>
-            <li>At first, we were debating whether we should create a chat feature in our app, or rely on the user video conferencing platform’s chat feature. We ultimately decided to add a chat feature to our application. Having chat functionality in our app means that users don’t need to continually go back to the video conferencing software they use. Having a chat feature rounds out our application and provides more of a “one stop” app that meets more use cases. </li>
-          </ul>
-        </ul>
-        <ul>
-          <li>Toggle display for aggregate emoji reacts
-          </li>
-          <ul>
-            <li>We were unsure if we should show aggregated emoji responses as a raw number beside the respective emoji, or as a bar graph histogram of emoji responses. Instead of choosing between these two views, we decided to give users the option to toggle between both views (number score and bar graph). This way users can adjust the display of the app in a way that works best for them.</li>
-          </ul>
-        </ul>
-        <ul>
-          <li>Express participant level of understanding on a 2D line + visualize it in a distribution 
-          </li>
-          <ul>
-            <li>When it comes to the “level of understanding” feature that aggregates how participants self report their understanding of the presentation content, we chose to have users input their level of understanding as a point on a spectrum and display the class aggregate as a distribution. For participants, articulating their understanding on a spectrum opposed to discrete emoji allows for more precise expression on the part of the participant. Displaying the aggregated level of understanding, we opted for a distribution as this will make it easier for the presenter to draw conclusions from the data, as he will be able to see in real-time how the ‘level of understanding’ trend for the audience moves when they make further explanations or present new topics. 
-            </li>
-          </ul>
-        </ul>
-        <ul>
-          <li>Display participant position in questions queue  </li>
-          <ul><li>Regarding the “hand raising” queue populated by participants raising their hand, we chose to not show participants the names of the other participants in the queue. Instead, we decided to simply display the number of participants with their hand up, and if the participant raised their hand, what position they are in the queue. We did this to declutter the UI. We thought the position in the queue would be helpful as students can anticipate when they will be called on to ask their question to the presenter and provide a fair (first come, first serve) order to questions.</li></ul>
-        </ul>
-        <ul>
-            <li>Polling with emoji
-              </li>
-            <ul><li>Most polling features in video conferencing software opens a new popup window. We decided to have an integrated poll feature embedded directly in the interface. We chose this because our observation findings showed us pop up windows can be distracting and annoying to users. </li>
-            <li>We also decided to reuse the “reactions” panel that displays popular participant reactions to display polling answers. This means students vote with an emoji (ex 🅰, 🅱) and class aggregates are displayed in the reactions panel. This is better than a dedicated polling panel for two reasons: it saves space, and allows participants to express “I don’t know” or “thinking” emojis while answering. These latter emoji reactions are particularly valuable to a presenter. </li>
-            </ul>
-          </ul>
         <br />
         <br />
 
-        <div>
-          <h4 class="text-center">3. Usability goals & benchmark tasks</h4>
-          <div class="d-flex">
-            <div>
-              <img
-                src="images/per1.png"
-                width="400px"
-                class="rounded-left mr-5"
-                alt="..."
-              />
-            </div>
-            <div class="d-flex align-items-center">
-              <ul>
-                <b
-                  ><li>Diane</li>
-                  <li>Presenter in informal education community</li>
-                  <li>Age: 30s</li>
-                  <li>Role: presenter</li>
-                  <li>
-                    Prior knowledge of video conferencing software: some
-                    experience
-                  </li>
-                  <li>
-                    Attitude towards participation: Cares about and solicits
-                    interaction
-                  </li>
-                  <li>
-                    Presence on video conferencing tools: Zoom, Skype and
-                    facebook
-                  </li>
-                </b>
-              </ul>
-            </div>
-          </div>
-          <br />
-          <div>
-            Diane is a young professional who is a member of a peer supported
-            informal online learning community. A recurring activity in her
-            community is a peer-teaching event where different members of the
-            community present on a topic of their choosing. Being a PhD student,
-            Diane is familiar with teaching and giving presentations as she has
-            worked as TA for several years. She recently started giving
-            presentations online due to the pandemic but finds presenting online
-            is just not the same. Considering video conferencing software, she
-            has used Zoom, Skype and facebook video call. Trained to read body
-            language and facial expressions, Diane feels like she has no sense
-            of how her participants are doing through an online setting. Despite
-            her requests for participants to tell her how they’re following
-            along, participants often have their cameras off and only the same
-            few people interact with her. Furthermore, every time she tries some
-            interactive features like polling or emoji reactions, she struggles
-            to set up them up and visualize participant responses, this makes
-            her lose time and slows down her presentation. This is a serious
-            problem for her and interferes with her teaching ability and
-            satisfaction with her work.
-          </div>
-          <br />
-          <div class="d-flex">
-            <div>
-              <img
-                src="images/per2.png"
-                width="400px"
-                class="rounded-left  mr-5"
-                alt="..."
-              />
-            </div>
-            <div class="d-flex align-items-center">
-              <ul>
-                <b
-                  ><li>Dakota</li>
-                  <li>Student presenter</li>
-                  <li>Age: 22</li>
-                  <li>Role: presenter</li>
-                  <li>
-                    Prior knowledge of video conferencing software: Tech savvy
-                  </li>
-                  <li>
-                    Attitude towards participation: Cares about and solicits
-                    interaction
-                  </li>
-                  <li>
-                    Presence on video conferencing tools: Zoom, Skype, Google
-                    hangout, and Duo
-                  </li>
-                </b>
-              </ul>
-            </div>
-          </div>
-          <br />
-          <div>
-            Dakota is a fourth-year university student. They are actively
-            looking for job opportunities in business development. Dakota is a
-            natural leader and is always willing to be a presenter for the team
-            project. They know how to interact with classmates and joke around
-            to make their presentation more enjoyable. They also enjoy seeing
-            their peers’ reactions to their jokes and comments. As video
-            conferencing seems to be the new normal, they want to be more
-            familiar with tools to give a presentation that amaze everyone.
-            Dakota often imagines themself sitting relaxed, smoothly interacting
-            with participants and making them more engaged in the presentation.
-            They have tried many video conferencing tools such as Zoom, Skype,
-            Google hangout and Duo but are unsatisfied with them.
-          </div>
-          <br />
-          <div class="d-flex">
-            <div>
-              <img
-                src="images/per4.png"
-                width="400px"
-                class="rounded-left  mr-5"
-                alt="..."
-              />
-            </div>
+        <section class="prototypes">
+          <h2 class="text-center">2. Prototypes</h2>
+          <p>
             <br />
-            <div class="d-flex align-items-center">
-              <ul>
-                <b
-                  ><li>Jamie</li>
-                  <li>Business convention participant</li>
-                  <li>Age: mid-50s</li>
-                  <li>Role: Participant</li>
+            We bounced our ideas off each other with sketches and conducted
+            usability testing with our paper prototypes. For the usability
+            testing, we ran the wizard of Oz testing as below:
+          </p>
+          <h4 class="text-center">Working flow for participants</h4>
+          <br>
+          <img
+            src="images/workingflow1.jpg"
+            class="img-fluid"
+            alt="Mental model 1"
+          />
+          <br />
+          <br />
+          <img
+            src="images/workingflow2.jpg"
+            class="img-fluid"
+            alt="Mental model 2"
+          />
+          <br />
+          <br />
+          <img
+            src="images/workingflow3.jpg"
+            class="img-fluid"
+            alt="Mental model 1"
+          />
+          <br />
+          <br />
+          <img
+            src="images/workingflow4.jpg"
+            class="img-fluid"
+            alt="Mental model 2"
+          />
+          <br />
+          <br />
+          <img
+            src="images/workingflow5.jpg"
+            class="img-fluid"
+            alt="Mental model 1"
+          />
+          <br />
+          <br />
+          <h4  class="text-center" >Working flow for Presenters</h4>
+          <img
+            src="images/workingflow6.jpg"
+            class="img-fluid"
+            alt="Mental model 2"
+          />
+          <br />
+          <br />
+          <img
+            src="images/workingflow7.jpg"
+            class="img-fluid"
+            alt="Mental model 1"
+          />
+          <br />
+          <br />
+          <img
+            src="images/workingflow8.jpg"
+            class="img-fluid"
+            alt="Mental model 2"
+          />
+          <br />
+          <br />
+          <br />
+          <br />
+          <div class="design">
+            <h4 class="text-center">Design decisions</h4>
+            Having worked on our sketches and prototypes, we made several design
+            decisions.
+            <br />
+            <br>
+            <ul>
+              <li>
+               <u>  Not to incorporate videoconferencing in our website. </u>
+                <ul>
                   <li>
-                    Attitude towards participation: Active participants
+                    In order to make our system accessible to everyone, we
+                    decided not to integrate it into any existing
+                    video-conferencing platform. Rather, we opted to create a
+                    stand-alone web app that can be opened in a separate window
+                    and positioned next to the video conferencing software. That
+                    way, our system can be used by anyone, no matter their
+                    choice of video-conferencing platform. This will also help
+                    us in terms of feasibility as we will not have to deal with
+                    complicated code bases and integrating our features with
+                    existing platforms like Zoom.
                   </li>
-                  <li>Degree of focus: Highly focused</li>
+                </ul>
+              </li>
+            </ul>
+            <ul>
+              <li>
+               <u>Vertical display </u> 
+                <ul>
                   <li>
-                    Presence on video conferencing tools: Zoom, Facebook, and
-                    Google hangout.
+                    We chose a vertical display as it is easy to organize our
+                    features from top to bottom while sharing the screen real
+                    estate with a video conferencing software. This also
+                    facilitates displaying on tablets or phones if users decide
+                    to use those instead of having two different windows open.
                   </li>
-                </b>
-              </ul>
-            </div>
+                </ul>
+              </li>
+            </ul>
+            <ul>
+              <li>
+               <u>Integrate chat feature </u> 
+                <ul>
+                  <li>
+                    At first, we were debating whether we should create a chat
+                    feature in our app, or rely on the user video conferencing
+                    platform’s chat feature. We ultimately decided to add a chat
+                    feature to our application. Having chat functionality in our
+                    app means that users don’t need to continually go back to
+                    the video conferencing software they use. Having a chat
+                    feature rounds out our application and provides more of a
+                    “one stop” app that meets more use cases.
+                  </li>
+                </ul>
+              </li>
+            </ul>
+            <ul>
+              <li>
+               <u> Toggle display for aggregate emoji reacts </u>
+                <ul>
+                  <li>
+                    We were unsure if we should show aggregated emoji responses
+                    as a raw number beside the respective emoji, or as a bar
+                    graph histogram of emoji responses. Instead of choosing
+                    between these two views, we decided to give users the option
+                    to toggle between both views (number score and bar graph).
+                    This way users can adjust the display of the app in a way
+                    that works best for them.
+                  </li>
+                </ul>
+              </li>
+            </ul>
+            <ul>
+              <li>
+               <u>  Express participant level of understanding on a 2D line +
+                visualize it in a distribution </u>
+
+                <ul>
+                  <li>
+                    When it comes to the “level of understanding” feature that
+                    aggregates how participants self report their understanding
+                    of the presentation content, we chose to have users input
+                    their level of understanding as a point on a spectrum and
+                    display the class aggregate as a distribution. For
+                    participants, articulating their understanding on a spectrum
+                    opposed to discrete emoji allows for more precise expression
+                    on the part of the participant. Displaying the aggregated
+                    level of understanding, we opted for a distribution as this
+                    will make it easier for the presenter to draw conclusions
+                    from the data, as he will be able to see in real-time how
+                    the ‘level of understanding’ trend for the audience moves
+                    when they make further explanations or present new topics.
+                  </li>
+                </ul>
+              </li>
+            </ul>
+            <ul>
+              <li>
+              <u> Display participant position in questions queue </u> 
+                <ul>
+                  <li>
+                    Regarding the “hand raising” queue populated by participants
+                    raising their hand, we chose to not show participants the
+                    names of the other participants in the queue. Instead, we
+                    decided to simply display the number of participants with
+                    their hand up, and if the participant raised their hand,
+                    what position they are in the queue. We did this to
+                    declutter the UI. We thought the position in the queue would
+                    be helpful as students can anticipate when they will be
+                    called on to ask their question to the presenter and provide
+                    a fair (first come, first serve) order to questions.
+                  </li>
+                </ul>
+              </li>
+            </ul>
+            <ul>
+              <li>
+               <u> Polling with emoji </u> 
+                <ul>
+                  <li>
+                    Most polling features in video conferencing software opens a
+                    new popup window. We decided to have an integrated poll
+                    feature embedded directly in the interface. We chose this
+                    because our observation findings showed us pop up windows
+                    can be distracting and annoying to users.
+                  </li>
+                  <li>
+                    We also decided to reuse the “reactions” panel that displays
+                    popular participant reactions to display polling answers.
+                    This means students vote with an emoji (ex 🅰, 🅱) and class
+                    aggregates are displayed in the reactions panel. This is
+                    better than a dedicated polling panel for two reasons: it
+                    saves space, and allows participants to express “I don’t
+                    know” or “thinking” emojis while answering. These latter
+                    emoji reactions are particularly valuable to a presenter.
+                  </li>
+                </ul>
+              </li>
+            </ul>
           </div>
           <br />
-          <div>
-            Jamie is a long time member of a well respected business convention.
-            Jamie has been attending this convention for decades and he is well
-            known in this community. The convention Jamie attends has moved
-            online recently and it has changed the way Jamie feels about it.
-            Before, Jamie loved to see his peers, watch their reactions, and
-            participate in lively discussions during business presentations.
-            Jamie has no idea how the virtual conference works at this time.
-            Although he uses facebook video calls to chat with his children
-            living abroad, he has never used video conferencing tools for
-            meetings. Jamie is still looking for that lively engagement and
-            discussion during presentations. He tries out as many features as
-            possible to express his reactions without distracting others during
-            the presentation, but is disappointed when he finds out that he is
-            the only one participating in this way, or at all.
-          </div>
           <br />
+        </section>
+
+        
+          <div class="usablegoals">
+          <h2 class="text-center">3. Usability goals & benchmark tasks</h2>
+          <br>
+          <h4>Working flow for Presenters</h4>
           <div class="d-flex">
-            <div>
-              <img
-                src="images/per3.png"
-                width="400px"
-                class="rounded-left  mr-5"
-                alt="..."
-              />
-            </div>
-            <div class="d-flex align-items-center">
+             
+           <ul>
+            <li> Effective: Effective to use
               <ul>
-                <b
-                  ><li>Priscillia</li>
-                  <li>University student</li>
-                  <li>Age: 19</li>
-                  <li>Role: Participant</li>
-                  <li>
-                    Attitude towards participation: Shy participants
-                  </li>
-                  <li>Degree of focus: Highly focused</li>
-                  <li>
-                    Presence on video conferencing tools: Zoom, facebook, Jitsi,
-                    google hangout and skype.
-                  </li>
-                </b>
+                <li>
+                  Description here
+                </li>
               </ul>
-            </div>
-          </div>
-          <br />
-          <div>
-            Priscillia is a first-year university student. She was so excited to
-            meet new friends and learn the topic she is interested in at
-            University, then the pandemic happened and all classes were moved to
-            online. She has never had an online class before but has watched
-            some videos from Cousera and Khan academy while studying in CEGEP.
-            During the online class on Zoom, she is often hesitant to jump in
-            the discussion and speak as she doesn’t know anyone in a class yet.
-            She sometimes uses the raise hand feature but it is often not
-            noticed. Everything is so new and she feels totally unprepared and
-            overwhelmed. Most importantly, she usually enjoys actively
-            participating in the class and answering questions, but feels way
-            too afraid to be put on the spot which prevents her from
-            participating.
-          </div>
-        </div>
-
-        <br />
-        <br />
-
+            </li>
+            <li> Efficient: efficient to use
+                <ul>
+                  <li>
+                    Description here
+                  </li>
+                </ul>
+              </li>
+              <li> Utility: have good utility
+                  <ul>
+                    <li>
+                      Description here
+                    </li>
+                  </ul>
+                </li>
+                <li> Learnable: easy to learn
+                    <ul>
+                      <li>
+                        Description here
+                      </li>
+                    </ul>
+                  </li>
+                  <li> Memorable: easy to remember how to use
+                      <ul>
+                        <li>
+                          Description here
+                        </li>
+                      </ul>
+                    </li>
+           </ul>
+        </div>    
+        <br>
+        <br>
         <div>
-          <h4 class="text-center">4. Use cases</h4>
-          <h5><u>Presenter use case</u></h5>
-          <ul>
-            <li>
-              In this use case scenario, Diane wants to host an online
-              educational presentation for her community.
-            </li>
-            <li>
-              She opens the video conferencing app, logs in using her
-              credentials, and starts an online meeting by clicking the “Start
-              Meeting” button.
-            </li>
-            <li>
-              She is presented with a link to the meeting, share it with her
-              audience, and waits for people to join.
-            </li>
-            <li>
-              As the participants trickle in, she uses this time to get to know
-              her peers by asking some questions, like:
-              <i
-                >“Are you familiar with the presentation topic? Raise your hand
-                if yes”</i
-              >
-            </li>
-            <li>
-              Now that all the participants have arrived, she starts a quick
-              poll about the topic they are covering where participants vote
-              using A/B/C/D. She is able to quickly assess their response as the
-              results live-tally on screen and reacts accordingly.
-            </li>
-            <li>
-              During the more technical phase of the presentation, she notes
-              that a lot of participants have anonymously reported they are
-              beginning to feel lost. This cues her to slow down and cover the
-              material with more details so participants don’t feel lost.
-            </li>
-            <li>
-              At the end of the presentation, the participants overwhelmingly
-              give her clapping emojis and she feels satisfied knowing she did a
-              good job!
-            </li>
-          </ul>
-          <br />
-          <h5><u>Participant use case</u></h5>
-          <ul>
-            <li>
-              In this use case scenario, Priscillia is attending one of her
-              online classes.
-            </li>
-            <li>
-              She follows the link given by the instructor to attend a class and
-              joins the class early.
-            </li>
-            <li>
-              The class already has quite a few students in it, so she doesn’t
-              feel comfortable using their microphone to say ‘Hi’ to the others.
-              Instead, she gives a “wave” emoji to signal her presence.
-            </li>
-            <li>
-              As the class is starting, the teacher asks the students to tell
-              them how they feel with an anonymous emoji reaction. Priscillia
-              knows she is anonymous so she answers honestly with a sleepy face
-              emoji. She watches as the live tally of student's emoji reactions
-              pour in: many students are responding with a “meh”, “sleepy” or
-              x_x face emoji. She feels a little less alone.
-            </li>
-            <li>
-              The teacher asks review questions covering content in the previous
-              class. Again, because the poll is anonymous and the button to
-              respond is on the main app interface, she responds.
-            </li>
-            <li>
-              During the discussion of new content, Priscillia begins to feel
-              lost. She emotes anonymously that she feels lost and sees the
-              tally of lost feeling students increase by one. Soon the number
-              begins to climb to about ¼ of the class, so the teacher pauses
-              their instruction to solicit clarifying questions from students.
-            </li>
-            <li>
-              Students begin raising their hand and a queue is populated based
-              on first come first serve. Priscillia was 3rd to raise her hand so
-              she waits for her turn.
-            </li>
-            <li>
-              It turns out that the first question asked is the same as hers, so
-              she lowers her hand which automatically removes her from the queue
-              of questions.
-            </li>
-            <li>
-              By the end of the class, the professor again asks students to
-              anonymously respond with how well they understood that day's
-              content with an emoji poll. She responds with a green checkmark.
-            </li>
-          </ul>
+          <h2 class="text-center">4. Test Materials</h2>
+        
         </div>
         <br />
         <br />
         <br />
 
         <div>
-          <h4 class="text-center">5. Related products</h4>
+          <h2 class="text-center">5. Summary of Test</h2>
           <br />
-          <h5>
-            <u
-              ><a href="https://blog.zoom.us/category/industries/education-2/"
-                >Zoom</a
-              ></u
-            >
-          </h5>
-          <p>
-            Due to its high level of security and variety of useful features
-            that support educators, Zoom is used as a virtual classroom platform
-            in many educational institutions including McGill University. On
-            Zoom, students are able to provide feedback to their lecturers via
-            emoji and express their reactions by sending a clap or thumbs up.
-            Moreover, students can display a “raise hand” icon if they want to
-            get permission to speak during the class. These various features of
-            Zoom allow students to transform their behavior in off-line class
-            into a virtual class so that students are able to feel strong
-            telepresence throughout the class.
-          </p>
-          <p>
-            However, these emoji buttons are scattered throughout the software
-            which sometimes results in undesired confusion. For example, you can
-            express “thumbs up” via emoji reactions tab or participants list.
-            Users will likely be confused with the differences between the two.
-            In addition, emojis reactions are often not noticed by lecturers as
-            features like screen sharing often occupies the entire lecturer’s
-            screen. Therefore, students often don’t get a chance to interact
-            with an educator.
-          </p>
-          <p>
-            Finally, the current layout of Zoom is poorly designed. Students
-            need to manually place windows of participants and chat on their
-            screen when needed as Zoom only provides one default layout; chatbox
-            on the left corner, participants list on the left top and screen
-            shared on the middle. Therefore, on a default layout if a chat box
-            is too small due to one’s laptop size, having a discussion in a chat
-            is somewhat challenging.
-          </p>
-          <br />
-          <h5>
-            <u><a href="https://www.webex.com/">Cisco Webex Training</a></u>
-          </h5>
-          <p>
-            Cisco Systems also has a video conferencing tool: WebEx, which
-            offers a range of useful features for presenters and participants in
-            online training sessions such as presentations, webinars or online
-            classes.
-          </p>
-          <p>
-            Cisco Webex Training offers an easy way of tracking questions and
-            documenting responses using a threaded Q&A window as well as
-            collecting feedback from the participants through live polling.
-            Participants are able to react to the presentation through the
-            ‘raise hand’, ‘yes’, ‘no’, ‘go faster’ and ‘go slower’ buttons as
-            well as express their feelings through emojis.
-          </p>
-          <img
-            src="images/web1.png"
-            class="rounded mx-auto d-block"
-            alt="Mental model 2"
-            width="70%"
-          />
-          <br />
-          <div class="text-center">
-            <i>
-              Retrieved on September 20 from the Cisco WebEx Training Center
-              User Guide:
-              https://www.cisco.com/c/dam/en/us/td/docs/collaboration/training_center/wbs29/wx_tc_host_ug.pdf</i
-            >
-          </div>
-          <br />
-          <br />
-          <p>
-            Furthermore, presenters can track participant’s attention by using
-            the Attention Indicator which shows if a participant has minimized
-            the training session window or has brought another window in focus
-            on top of the training session window. This is useful for recording
-            student’s participation when teaching remotely.
-          </p>
-
-          <img
-            src="images/web2.png"
-            class="rounded mx-auto d-block"
-            alt="Mental model 2"
-          />
-
-          <br />
-          <div class="text-center">
-            <i>
-              Retrieved on September 20 from the Cisco WebEx Training Center
-              User Guide:
-              https://www.cisco.com/c/dam/en/us/td/docs/collaboration/training_center/wbs29/wx_tc_host_ug.pdf</i
-            >
-          </div>
-          <br />
-          <br />
-          <p>
-            However, WebEx is slow when connecting to meetings and its video
-            quality is lower than Zoom’s. It also does not have a lot of room
-            for customization and only allows to visualize a summary of
-            participant’s yes/no reactions. When reacting with emojis or other
-            buttons, the presenter has to check the symbols next to each
-            participant’s name in the list, which is hard to do in a session
-            with many participants. Additionally, participants can’t react
-            anonymously and WebEx isn’t free to use.
-          </p>
-          <br />
-          <h5>
-            <u
-              ><a
-                href="https://www.adobe.com/products/adobeconnect/learning.html
-              "
-                >Adobe Connect for learning
-              </a></u
-            >
-          </h5>
-          <p>
-            Adobe has several video conferencing products for online meetings,
-            online learning and webinars; Adobe Connect is especially designed
-            for educational settings. Adobe Connect has a variety of interactive
-            features both for educators and students.
-          </p>
-          <img
-            src="images/adobe1.png"
-            class="rounded mx-auto d-block"
-            alt="Mental model 2"
-            width="40%"
-          />
-          <br />
-          <div class="text-center">
-            <i>
-              Retrieved September 20, 2020 from Adobe Connect for Learning.
-              https://www.adobe.com/products/adobeconnect/learning.html#learner-engagement
-            </i>
-          </div>
-          <br />
-          <br />
-          <p>
-            First, presenters can easily run a poll including yes or no,
-            multiple choice or open-ended short answers questions during the
-            presentation. The results are visualized right after the poll is
-            closed. Students (or meeting participants) can display reactions via
-            emoji. Apart from “raise hand”, “agree or disagree”, “applaud”,
-            “laugh” and “step away” emojis, they also have “request” emojis for
-            asking educators to “speak louder”, “speak softer”, “speed up” and
-            “speed down”.
-          </p>
-          <p>
-            Second, Adobe Connect has a very sophisticated feature to assess
-            audience participation. Connect collects and analyses various
-            parameters related to participant engagement and provides presenters
-            with a real-time aggregate “engagement score”. The Engagement Index
-            Calculation uses: chat activity, Q&A activity, poll activity, file
-            download, status updates, and other metrics to come up with the
-            engagement score.
-          </p>
-          <img
-            src="images/adobe2.png"
-            class="rounded mx-auto d-block"
-            alt="Mental model 2"
-            width="40%"
-          />
-          <br />
-          <div class="text-center">
-            <i>
-              Retrieved September 20, 2020 from Adobe Connect for Learning.
-              https://www.adobe.com/products/adobeconnect/learning.html#learner-engagement
-            </i>
-          </div>
-          <br />
-          <br />
-          <p>
-            Lastly, Adobe Connect provides a different layout depending on the
-            purpose of sessions (sharing, discussion, collaboration and
-            customized layout). With a single click, Adobe Connect’s layout is
-            automatically adjusted.
-          </p>
-          <p>
-            However, Adobe Connect is one of the most expensive available
-            solutions for web conferencing. For example one of their published
-            plans costs 50$ per month and can only host up to 25 participants;
-            for bigger meetings (100-1500 participants) the plans start at 130$
-            per month.
-          </p>
-          <p>
-            Furthermore, with the ‘Status View’, hosts can only see the
-            reactions of participants that are raising their hands, agreeing,
-            disagreeing, or have stepped away. For the remaining reactions and
-            requests, the host has to switch to the ‘Participant List View’ and
-            see the reactions next to each participant name (similar to Zoom).
-            Additionally, participants can’t share their reactions anonimously.
-          </p>
-
-          <img
-            src="images/adobe3.png"
-            class="rounded mx-auto d-block"
-            alt="Mental model 2"
-            width="70%"
-          />
-          <br />
-          <div class="text-center">
-            <i>
-              Retrieved September 20, 2020 from Adobe Connect for Learning.
-              https://www.adobe.com/products/adobeconnect/learning.html#learner-engagement
-            </i>
-          </div>
-          <br />
-          <br />
-          <p>
-            Other disadvantages of Adobe Connect include its dependency on
-            internet bandwidth (when viewing on the browser) or its slowness to
-            load (when using the desktop app). Therewith, the interface might be
-            fairly complicated for new users.
-          </p>
-        </div>
-        <br />
-        <h4 class="text-center">6. Product comparison</h4>
-        <br />
-        <br />
-        <p>
-          One of the main advantages of our proposed system is the ability for
-          participants to react and engage in a presentation without garnering
-          overwhelming attention and/or being disrupting, while still being
-          easily visible to the presenter.
-        </p>
-        <p>
-          Presenters will be able to interpret participant engagement with ease
-          through our proposed real time visualization and aggregation of
-          participant’s reactions and responses This eliminates the need for
-          presenters to switch to different tabs or change the view mode to
-          engage more comfortably with participants.
-        </p>
-        <p>
-          Finally, our system is intended to be free and open-source so
-          presenters can customize it to their needs and can use it with any
-          pre-existing video-conferencing tool without having to spend the extra
-          dollars.
-        </p>
-        <p>The system will benefit our personas in the following ways:</p>
-        <p><h5>Diane</h5></p>
-        <p>
-          As a member of a peer-teaching community, our system will allow her to
-          easily visualize her peer’s reactions when presenting a topic during
-          one of their teaching sessions. She will be able to get a sense of how
-          many participants are following and assess their reactions easily.
-          This way, she can immediately pause and give further explanations when
-          the crowd is feeling lost or speed up her presentation if they’re
-          feeling bored. She will be able to visualize all this information on
-          the same window preventing her from losing time and/or participant’s
-          attention during interactive exercises.
-        </p>
-        <p><h5>Dakota</h5></p>
-        <p>
-          Dakota will be able to interact with their audience with more ease using our software. They will be able to see when participants found their jokes funny, and if they are liking the content they are presenting. They will also be able to poll their audience to make sure they are following their presentation and realize interactive exercises that engage everyone with the content.
-        </p>
-        <p><h5>Jamie</h5></p>
-        <p>
-          With our system, Jamie can actively participate in discussions around business presentations, he will be able to raise his hand without having to dig through several menus or drop downs. He won’t have to interrupt the presentation in order to ask questions and will get a chance to be designated to speak in an orderly manner. Furthermore, he will be able to see other participants' reactions and not feel like he is alone in the presentation. 
-
-        </p>
-        <p><h5>Priscilla</h5></p>
-        <p>
-          Finally, Priscilla, the shy student who is afraid of sounding stupid when participating in discussions, and is too shy to giving a wrong answer or asking for clarification when she is lost, will benefit from our system. The ability to anonymously vote in quick polls as well as expressing her feelings and reactions to the presentation without being the center of attention will allow her to participate in low risk ways with the class. 
-        </p>
-        <br />
-        <h4 class="text-center">7. High-level design of system</h4>
-        <br />
-        <p>
-          <img
-            src="images/diagram.png"
-            class="rounded mx-auto d-block"
-            alt="Mental model 2"
-            width="70%"
-          />
-        </p>
-        <br />
-        <br />
-        <h4 class="text-center">8. Feasibility</h4>
-        <br />
-        <p>
-          Our team is composed by one master’s CS student, one Information
-          Studies master student and one fourth-year undergraduate CS student.
-          We are all enthusiastic in user-centered design. We have splitted the
-          tasks to match each team member's skills while allowing us to work
-          collectively and learn from each other in the domains that we feel
-          less comfortable.
-        </p>
-        <h5><u>Team member’s relevant skills:</u></h5>
-        <br />
-        <li>Eric: Web dev/Python/Java/Networking</li>
-        <li>Hyejin: HTML/Javascript/CSS/Python/Adobe creative suite</li>
-        <li>Ines: Python/Java/C++/HTML/CSS/Django</li>
-        <br />
-        <h5><u>Estimated Integration Effort:</u></h5>
-        <br />
-        <li>
-          Complete System design including sketching, wireframing and flow chart
-          (Cooperative) ~ 10 hours
-        </li>
-        <li>Implement front end UI (Hyejin) ~12 hours</li>
-        <li>Aggregates and analyze user reactions (Ines) ~12 hours</li>
-        <li>Develop server-client web socket connectivity (Eric) ~12 hours</li>
-        <li>
-          Development of the poll feature in Javascript (Copperative) ~12 hours
-        </li>
-        <li>Compatibility testing (Cooperative) ~ 5 hours</li>
-        <li>Bug fixing and polishing (Cooperative) ~ 5 hours</li>
-        <br />
-        <p>
-          We feel confident we will be able to implement at least a prototype of
-          this system. In order to minimize technical complications and focus on
-          the user design aspect, we plan to implement the features we would
-          like to have in a video conferencing system as a stand alone dynamic
-          website.
-        </p>
-        <p>
-          Using a website prototype is particularly helpful given our collective
-          programming experience. All of us (to varying degrees) have experience
-          with web development (both front end and back end) and client-server
-          applications.
-        </p>
-        <p>
-          To ensure we are on schedule, we have set weekly group meetings (every
-          Friday noon) to discuss the progress done, assess next steps, and
-          provide each other with support if need be :). We will use GitHub and
-          Google Drive to work collaboratively.
-        </p>
+         
         <br />
       </div>
     </section>
