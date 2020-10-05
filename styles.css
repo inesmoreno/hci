@@ -114,3 +114,14 @@ td {
   margin-right: auto;
   padding: 10px;
 }
+table tr#ROW1 {
+  background-color: #e16a66;
+  color: white;
+}
+table tr#ROW2 {
+  background-color: white;
+}
+table tr#ROW3 {
+  background-color: #ecede8;
+  color: black;
+}
