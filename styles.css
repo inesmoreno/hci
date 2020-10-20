@@ -9,7 +9,16 @@ body,
 html {
   height: 100%;
 }
-
+section {
+  margin: 0 50px;
+}
+ul,
+ol {
+  margin-left: 10px;
+}
+li {
+  margin-left: 10px;
+}
 li,
 a {
   font-family: sans-serif;
@@ -124,4 +133,24 @@ table tr#ROW2 {
 table tr#ROW3 {
   background-color: #ecede8;
   color: black;
+}
+
+.usablity {
+  border-top: 1px solid black;
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+}
+.usablity div {
+  border-bottom: 1px solid black;
+  padding: 5px;
+}
+.usablity li {
+  margin-left: 20px;
+}
+
+.usability-evaluation ol {
+  font-weight: bold;
+}
+.usability-evaluatio > ol:first-child > li {
+  font-weight: bold;
 }

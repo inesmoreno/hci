@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>High-fidelity Prototype</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header>
+      <div class="logo"><a href="index.html">👩‍💻</a></div>
+      <nav>
+        <ul class="nav__links">
+          <li><a href="observation.html">Observation and Proposal</a></li>
+          <li>
+              <a href="lowfi.html">Low-Fi Prototype</a>
+          </li>
+          <!-- <li><a href="#">low-fidelity Prototypes</a></li> -->
+          <!-- <li><a href="#">##</a></li> -->
+        </ul>
+      </nav>
+    </header>
+    <section>
+      <div class="container">
+        <h1 class="text-center">
+          High-fidelity Prototype
+        </h1>
+      </div>
+        <br />
+       
+      
+
+        <div class="usablegoals">
+          <h2 class="text-center">1. Design Evolution</h2>
+          <br>
+          <img src="images/designEvolution.png" class="img-fluid" alt="Mental model 1" />
+          <br>
+          <br>
+          <p>Based on the feedback provided by the users through our tests on and by the new member of our team, we decided to make the following changes to our project’s design:</p>
+          <ul>
+            <li><u>Error and problem signalling to the host</u>
+              <ul>
+                <li>
+                  A feature that we did not consider for our project was signalling errors to the host, which was incorporated in the project of our newest team member. We have decided to include such a feature because it helps participants to easily notify their presenter that something isn’t working as expected and that it should be addressed immediately. Additional emojis will be included in the reaction’s panel to signal the host if they are muted or if their camera is off.     
+                </li>
+              </ul>
+
+              <ul>
+                <li>
+                  A feature that we did not consider for our project was signalling errors to the host, which was incorporated in the project of our newest team member. We have decided to include such a feature because it helps participants to easily notify their presenter that something isn’t working as expected and that it should be addressed immediately. Additional emojis will be included in the reaction’s panel to signal the host if they are muted or if their camera is off.     
+                </li>
+              </ul>
+            </li>
+            <li> <u>Clearer labellings</u>
+
+            
+                <ul>
+                  <li>
+                    Both of our testers had issues initially using and interpreting the ‘level of understanding’ graph as well as identifying where to react. To remedy this, we decided to add some more clear labellings of all the features. We added titles to each of the components of our app to make sure the user can identify clearly what is the purpose of each of them.     </ul>
+              </li>
+              <li> <u> Clear queue buttons</u> <ul>
+                    <li>
+                      Rationale: Our system is aimed to be used during presentations so it must not be overly disruptive or distracting to the presenter and/or participants. It should also provide support for students to express their emotional state in real-time with a variety of features without disrupting the presentation. If features are hard to access, users waste their time and can lose focus on the presentation.       </li>
+
+                  </ul>
+                </li>
+
+                <li>
+                  <u>Improving the ‘level of understanding’ graph</u> 
+                    <br>
+                    <i>We had a lot of discussions around this feature as it is central to our project but caused quite a bit of confusion to our testers. Questions raised by our team members were:</i>
+                       <ul>
+                       
+                        <li> How do we better display the data in order to avoid scenarios where the graph is ambiguous?  
+                          <ul>
+                            <li>
+                                We crucially had to determine how we were going to deal with lack of responses from participants. Originally, we envisioned the level of understanding returning to a bell curve distribution after a certain time interval, where all participants' responses would slowly gravitate back to the middle. One fatal problem with this approach was we lost the difference between participants  being away from their computer versus  participants truly having a “middle” level of understanding. 
+                            </li>
+                          </ul>
+                          <ul>
+                              <li>
+                                  To remedy this, we decided  to have participants' responses reset to nothing, not the middle, after a 1 minute. This way, the graph is nonexistent when the app is first opened and grows overtime as participants report their level of understanding. The host is also able to clear the graph at any time to gain further clarity about where the participants are currently at.
+                              </li>
+                            </ul>
+                       </li>
+                       <li> How often do we reset the participant’s cursor? 
+                         <ul>
+                           <li>
+                              The above solution we had raised its own design decisions, namely, if we are going to reset the participants’ level of understanding, how often would we reset it? For instance, sometimes, participant’s may forget to move their cursor back after the presenter has finished re-explaining something, and if the distribution doesn’t move, this can cause confusion for the presenter. 
+                              To remedy this, we decided on a 1 minute lifespan for a participant response, where after a minute, their answer is removed from the aggregate and reset on their client. 
+                              
+                           </li>
+                         </ul>
+                      </li>
+                      <li>How often do we update the ‘level of understanding’ graph?
+ 
+                        <ul>
+                          <li>
+                              One of the aims of our project is to provide participants and hosts with reactions close to real-time. Hence, we decided to update the graph every 10 seconds, to be able to see how the distribution is moving over time.
+                          </li>
+                        </ul>
+                     </li>
+                <br>
+                 
+           </ul>
+           <br>
+            <br>
+            <br>
+          </div>
+
+
+            <div class="usablegoals">
+                <h2 class="text-center">2. User Population</h2>
+                <br>
+            
+                <br>
+                <p>Relier’s user base will be primarily populated by presenters who seek more interaction with their audience during their online presentations as well as the participants of such presenter’s talk.  Participants will be recruited according to the following criteria:</p>
+                <ul>
+                  <li> 1) Must have experienced an online webinar/class/presentation
+
+                  </li>
+                  <li> 2) Must have engaged in an online webinar/class/presentation
+
+                </li>
+                </ul>
+                <br>
+                <p>
+                However, more precisely, we will recruit participants who represent our different personas that could potentially interact with our system. We decided to apply the test plan on three of those:
+                </p>   
+                 <br>
+                <ul>
+                  <li>
+                      Diane, the presenter in an informal education community who has some experience with video conferencing software and cares about participation.
+                      For those presenters who care about participation and want to ensure their audience is following and understanding the content, Relier provides them with an outlet to convey all interactions. 
+                      We decided to remove the tech-savvy presenter persona (i.e Dakota) from the tests because the only difference between these two personas is their level of knowledge and comfort with video conferencing softwares and technology in general and, if someone with less experience (i.e. Diane) finds our system easy to use, it is clear that it would also be the case for someone with more experience (like Dakota).
+                      
+                  </li>
+                  <li>
+                      Priscillia, the shy university student who is highly focused during presentations.
+For those participants who usually stay quiet during presentations and are too socially anxious to ask questions or interrupt the presenter if they are feeling lost, Relier provides a way of anonymously reacting and voting via the ‘level of understanding’ cursor and emoji reactions. This will likely propel such participants to be more active and express themselves (anonymously) during presentations.
+
+                      
+                  </li>
+                 <li>Jamie, the active business convention participant who is highly focused during presentations.
+                    For those participants who like to participate in conversations and engage with the presenter, Relier provides them with a way of doing so in a less disruptive way. With our system, their hand raised and signals to the presenter are more likely to be noticed and they would not lose their chance to speak. 
+                    </li>
+                </ul>
+              <br>
+              <br>
+              </div>
+
+            <div>
+              <h2 class="text-center">3. Usability Goals</h2>
+              <br>
+                <p>We decided to test four of our five usability goals: ease of use, efficiency, effectiveness and satisfaction. 
+                    The reason why we decided not to test for learnability is because this would involve a much longer test as well as testing on second-time users. Here are the quantitative measures we used to evaluate each of the remaining goals: 
+                </p>
+
+                <div class="usablity">
+                  <div>1.  Ease of use: the system should be easy to interact with
+                  </div>
+                  <div>
+                      <p>Quantitative measurement: 
+                      </p>
+                    <ul>
+                      <li>Time-on-Task
+                      </li>
+                      <li>Completion rate </li>
+                      <Li>Error-free rate. </Li>
+                    </ul>
+                  </div>
+                  
+                  <div>Efficiency: Software supports live emotional expression and does not distract the user. 
+                  </div>
+
+                  
+                  <div>
+                    <p>Users should be able to react in real-time and view trends with minimal disruptions to focus. </p>
+                    <br>
+                    <p>Quantitative measurement: 
+                    </p>
+                    <ul>
+                      <li>Time on Task (TOT) of each task</li>
+                    
+                    </ul>
+                    <p>Qualitative measurement: </p>
+                    <ul>
+                      <li>Subject’s raw reaction to the system through the observer’s data.</li>
+                      <li>Self-reported measurements through the post-test questionnaire about the efficiency of the system and its level of distraction.</li>
+                    </ul>
+                  </div>
+
+                  <div>Effectiveness: Software increases engagement 
+                  </div>
+
+                  <div>
+                    <p>The user should feel more comfortable to express themselves and feel more a part of the presentation </p>
+                    <br>
+                    <p>Qualitative measurement:  
+                    </p>
+                    <ul>
+                      <li>Subject’s raw reaction to the system through the observer’s data.
+                      </li>
+                      <li>Self-reported measurements through the post-test questionnaire about whether the software helps increase engagement during video conferencing. 
+                      </li>
+                    </ul>
+                  </div>
+
+                  <div>Satisfaction: Users should be satisfied when using the system.
+                  </div>
+
+                  <div>
+                 
+                    <p>Qualitative measurement: 
+  
+                    </p>
+                    <ul>
+                      <li>Gather subject’s raw reaction to the system through the observer’s data.
+                      </li>
+                      <li>Self-reported measurements through the post-test questionnaire about their level of satisfaction with the system (likert-scale).
+                      </li>
+                    <li>Informal interview of the participant by the examiner to get feedback on the favorite features, what was distracting, etc.
+                      </li>
+                    </ul>
+                  </div>
+
+                </div>
+
+            </div>
+            <br>
+            <br>
+                  <div>
+             <h2 class="text-center">4. Usability test procedure</h2>
+             <br>
+             <p>Please view the attached Usability Test Plan document. This is a very extensive document, for the sake of peer-reviewers, here is a summary of all questions addressed. 
+                      </p>
+                    <br>
+                  </div>
+                    
+                  <div>
+                    <h2 class="text-center">5. Reporting</h2>
+                    <p>
+                        Each test session should be conducted via the video conferencing software of choice of the examination team given that there is a feature to record the meeting. The user should have their camera turned on and share their screen with the prototype visible on their screen. 
+                    </p>
+                    <br>
+                   <p>
+                      The examiner is expected to first ask the user to fill the pre-test questionnaire, before conducting the test. During the whole test session, an examiner should silently observe and record the user’s actions and comments and assess their task completion. These observations will allow us to identify potential usability problems with our computer prototype. Attached to the usability test plan is a data collection sheet which should be filled for each task that the participant has to complete. This includes gathering the time to complete the task (if completed), the number of mistakes the users make and any additional comments provided by the user. At the end of the test, the examiner should ask the user to fill the post-test questionnaire, these self-reported measurements will allow us to collect feedback on the design to help us design the future iterations of our product.
+                   </p>
+                   <br>
+                   <p> If time permits, we ask the evaluation team to also provide a summary of their findings including specific usability problems identified and recommendations for resolution. </p>
+                  </div>
+
+                   <br>
+                <div class="usability-evaluation">
+                   <h2 class="text-center">6. Usability Evaluation</h2>
+                   <br>
+                  <p>
+                     To assess usability, we decided to use Nielsen’s heuristic evaluation. These are the specific criteria that will be assessed:
+                  </p>
+                  <ol>
+                    <li>Visibility of system status
+                      <ul>
+                        <li>Provide feedback within 10 seconds when the user interacts with the system so the user is able to acknowledge that the action was performed and recognized by the system. For instance, when you submit your level of understanding, you are able to see that the value which you entered has a new count.</li>
+                        <li>Criteria: The user should be visually informed when their feedback has been received by the system.</li>
+                      </ul>
+                    </li>
+                    <li>Match between the system and the real world
+                        <ul>
+                          <li>Relier aims to allow presenters and participants to have online interactions that feel more real and close to in-person settings, by allowing them to give and view real-time reactions. The wording of the different elements should be familiar to the user such that the user does not need to spend significant time thinking about how to accomplish a task.</li>
+                          <li>Criteria: The wording used in the system should be easily understood by the users and they should not second guess what the different functionalities aim to accomplish.</li>
+                        </ul>
+                    </li>
+                    <li>User control and freedom
+                        <ul>
+                          <li>Our product aims to accommodate the users if they performed actions by mistake. In fact, we incorporated simple ways to undo the provided feedback. For the level of understanding, there is a reset button allowing participants to reset the value that they entered. As for the reactions’ panel, by clicking the enabled emojis, users are able to disable them and hence, “undo” that reaction. </li>
+                          <li>Criteria: The user should be able to undo their actions quickly, without feeling anxious and confused by the interface.</li>
+                        </ul>
+                    </li>
+                    <li>Consistency and standards
+                        <ul>
+                          <li>The different functionalities incorporated in Relier are not redundant and the terminology used follows the standards used in other video conferencing software. We designed our product so that the different actions that the user could perform should be straightforward. This way, users should not find our product confusing.</li>
+                          <li>Criteria: The user should not have trouble distinguishing the different features nor feel like different features and/or labels mean the same thing.</li>
+                        </ul>
+                    </li>
+                    <li>Recognition rather than recall
+                        <ul>
+                          <li>As Relier is a product that fits in the video conferencing software space, we wanted to ensure that the icons and the terminology used were consistent with commonly used software today. This way, our product will feel familiar to the user. For example, the feature for participants to raise their hands uses a hand icon which is consistent with several existing products in the space such as Zoom and Microsoft Teams. New users opening our product will then be able to recognize this icon and immediately know for which purpose it is displayed.</li>
+                          <li>Criteria: The user should not feel like they need to remember how to interact with the system and what the different icons mean in order to use our product effectively. </li>
+                        </ul>
+                    </li>
+                    <li>Flexibility and efficiency of use
+                        <ul>
+                          <li>We aimed to build a flexible and efficient system such that the users are able to perform their tasks in their preferred workflow. For example, presenters are able to lower the hands of participants individually, if they’re addressing questions one at a time but they’re also also to clear the whole queue with a click of a button if none of the participants who raised their hand still have questions but forgot to lower their hands. In the second context, it would be very tedious and time consuming if the presenter had to lower the hands one by one and we believe that by allowing our users to be flexible with their interactions will improve the efficiency of use.</li>
+                          <li>We also incorporated the concept of flexibility when reacting and for the viewing of the reaction panel. For example, participants are able to add themselves to popular reactions by either clicking on the corresponding emoji on the reaction panel or by clicking on the bar of such reaction.</li>
+                          <li>Criteria: The user should be comfortable with the different actions and shortcuts available in Relier, and feel that the interactions are efficient.</li>
+                        </ul>
+                    </li>
+                    <li>Aesthetic and minimalist design
+                        <ul>
+                          <li>Relier’s design aims for all the features to be directly accessible on the main page such that the user does not need to navigate through collapsed interfaces and menus. The goal is to only include relevant information to the user so that they do not feel overwhelmed by the product.</li>
+                          <li>Criteria: The user should feel like the interface only displays pertinent information that is easy to interpret. </li>
+                        </ul>
+                    </li>
+                  </ol>
+                  
+                </div>
+        
+
+                <div>
+
+          <h2 class="text-center">7. Test Materials</h2>
+        <ul>
+          <li>
+            <a href="images/Observer briefing.pdf" download>Observer briefing</a>
+        </li>
+        <li>
+            <a href="images/User Introduction.pdf" download>User Introduction</a>
+        </li>
+        <li>
+            <a href="images/Pre-test-presenter.pdf" download>Preset questionnaire for Presenters</a>
+        </li>
+        <li>
+            <a href="images/Pre-test-presenter.pdf" download>Preset questionnaire for Participants</a>
+        </li>
+        <li>
+            <a href="images/participant-documentation.pdf" download>User training documentation for participants</a> 
+        </li>
+        <li>
+          <a href="images/presenter-documentation.pdf" download>User training documentation for presenters</a> 
+      </li>
+        <li>
+            <a href="images/Task Descriptions.pdf" download>Task descriptions</a> 
+        </li>
+        <li>
+            <a href="images/Test script.pdf" download>Test Script</a>
+        </li>
+        <li>
+            <a href="images/DataCollectionSheet.pdf" download>Data collection sheet</a>
+        </li>
+        <li>
+            <a href="images/Post-test-q-pre.pdf" download> Post-test questionnaire for Presenters</a>
+        </li>
+        <li>
+            <a href="images/Post-test-q-part.pdf" download> Post-test questionnaire for Participants</a>
+        </li>
+      </ul>
+        </div>
+        <br />
+        <br />
+        <br />
+
+       
+    </div>
+    </section>
+  </body>
+</html>
