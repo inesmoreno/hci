@@ -34,6 +34,7 @@ app.get('/start-socket', { websocket: true }, (connection, req) => {
   })
 })
 // Run the server!
+// this is the port the server is listening for requests
 app.listen(4000, function (err, address) {
     if (err) {
       app.log.error(err)
