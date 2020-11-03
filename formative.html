@@ -364,8 +364,8 @@
           All members of our team completed the Usability Evaluation form:
 
           <a
-            href=" http://www.cim.mcgill.ca/~jer/courses/hci/project/2020/jiachengyuewang.github.io/ECSE424project/"
-            >download the documents</a
+            href="https://drive.google.com/drive/folders/1ITSIOs4NkGe0dGzKKEZ3LWl42OrEENdo?usp=sharing"
+            >See the documents</a
           >
         </p>
         <br />
@@ -721,13 +721,69 @@
 
         <br />
         <br />
-        <h4>Table of Issues</h4>
+        <h4 class="text-center">Table of Issues</h4>
         <br />
         <table>
           <tr id="ROW3">
             <td>Issues</td>
-            <td>Rating</td>
-            <td>Rationale + Evidence</td>
+            <td>Priority</td>
+            <td>Justification</td>
+          </tr>
+          <tr>
+            <td>Progressing prototype requires unnecessary clicks</td>
+            <td id="cell1">High</td>
+            <td>
+              To be able to use the prototype effectively, many clicks were
+              required and unnecessary. For example all notifications (‘You’re
+              in the queue’, ‘You’re next’) had to be clicked on in order to
+              continue. This was confusing for subject 1 in task 4, subject 3 in
+              task 6 and subject 4 in tasks 4 and 6. <br />
+              The notification does not look like a button to be clicked on:
+              <img
+                src="images/buttons.png"
+                class="img-fluid"
+                alt="Mental model 2"
+              />
+            </td>
+          </tr>
+          <tr>
+            <td>Cursor functionality unimplemented</td>
+            <td id="cell1">High</td>
+            <td>
+              The cursor was not functional in the prototype. Although all
+              testers were able to find it, none of them could move it and
+              hence, test the design and provide feedback about it.
+              Specifically, subject 1 mentioned this on their post-test
+              questionnaire.
+            </td>
+          </tr>
+          <tr>
+            <td>Unclear purpose and utility of queue</td>
+            <td id="cell1">High</td>
+            <td>
+              Subject 3 mentioned that they thought it was useless to have a
+              queue in order to be able to zoom-in and out the image. If the
+              zoomed image is available to everyone once a request is granted,
+              it is trivial to have a queue, as everyone will be able to see the
+              enlarged image at once.
+            </td>
+          </tr>
+          <tr>
+            <td>Dequeue button too small</td>
+            <td id="cell2">Med</td>
+            <td>
+              When inspecting the queue, users are able to both click on their
+              name (which puts them next in queue) or on the cross next to their
+              name (to be dequeued). However, this leads to a lot of errors
+              since the elements that can be clicked on are relatively small and
+              next to each other. For example, it led to an error for subject 3,
+              who instead of clicking precisely on the red cross, clicked next
+              to it and was brought up to the next task automatically. Subject 2
+              also mentioned this in their feedback; for them, after clicking on
+              their name to show which position they were at, they were unable
+              to come back to dequeue themselves as their action had been
+              interpreted as ‘being next’ on the queue.
+            </td>
           </tr>
         </table>
 
