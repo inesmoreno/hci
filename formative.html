@@ -58,7 +58,7 @@
           they requested it.
         </p>
 
-        <img src="images/sketch4.jpg" class="img-fluid" alt="Mental model 2" />
+        <img src="images/easy.png" class="img-fluid" alt="Mental model 2" />
         <br />
         <br />
         <br />
@@ -926,7 +926,242 @@
             </ul>
           </li>
         </ul>
+        <br />
+        <h5>
+          4. The system should not cause any disruptions to the users based on
+          users’ preferences and situations
+        </h5>
+        <ul>
+          <li>
+            Proposed measurement:
+            <ul>
+              <li>
+                <i
+                  >Number of elements that can be turned on/off. For example,
+                  mute button and silent mode.
+                </i>
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <ul>
+          <li>
+            Problems:
+            <ul>
+              <li>
+                The measurement is unclearly written
+              </li>
+              <li>
+                This was not implemented in the prototype (Ex. it is not clear
+                that participants adding themselves to the queue actually
+                creates an notification sounds )
+              </li>
+              <li>
+                This was not tested for in the test materials
+              </li>
+              <li>
+                No instructions/explanation of this feature was provided in the
+                user docs
+              </li>
+            </ul>
+          </li>
+          <li>
+            Modification:
+            <ul>
+              <li>
+                As any notification should not be disruptive but informative,
+                participants’ subject feedback about the notification can be
+                gathered in a short interview as a qualitative measurement. The
+                interview questions would be:
+              </li>
+              <li>
+                Did you find the notification disruptive? Why
+              </li>
+              <li>
+                Did you find the notification informative? Why
+              </li>
+              <li>
+                What could be better about getting the notification?
+              </li>
+            </ul>
+          </li>
+        </ul>
+
+        <br />
+        <h5>
+          5. The setup or installation should be simple
+        </h5>
+        <ul>
+          <li>
+            Proposed measurement:
+            <ul>
+              <li>
+                <i
+                  >Record the total time that users need to finally start using
+                  the application, which includes downloading time, time of
+                  reading instructions and installation time.
+                </i>
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <ul>
+          <li>
+            Problems:
+            <ul>
+              <li>
+                This was not accounted for in the prototype
+              </li>
+              <li>
+                This was not tested
+              </li>
+              <li>
+                Time spent reading measurements is not a reliable metric to
+                assess easy set up or installation
+              </li>
+              <li>
+                No instructions/explanation of installation is provided in the
+                user docs
+              </li>
+            </ul>
+          </li>
+          <li>
+            Modification:
+            <ul>
+              <li>
+                Exclude this goal for now as it’s still a prototype
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <br />
+        <h5>
+          6. All audiences should be able to get such a visualization when a
+          channel is open
+        </h5>
+        <ul>
+          <li>
+            Proposed measurement:
+            <ul>
+              <li>
+                <i>None provided </i>
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <ul>
+          <li>
+            Problems:
+            <ul>
+              <li>
+                This was not implemented in the prototype
+              </li>
+              <li>
+                There is no measurement provided
+              </li>
+            </ul>
+          </li>
+          <li>
+            Modification:
+            <ul>
+              <li>
+                The usability goal should have been redefined. Instead of simply
+                checking whether an image is displayed on each participant’s
+                screen, they could have assessed whether displaying an image on
+                everyone’s screen is disruptive and gathered subject feedback
+                from participants. The current usability goal is not testing
+                usability but functionality.
+              </li>
+            </ul>
+          </li>
+        </ul>
       </div>
+      <div class="container">
+        <br />
+        <br />
+        <h2 class="text-center">4. Design Critique</h2>
+        <br />
+        <p>
+          A few improvements could be implemented in order to have a better
+          design.
+        </p>
+        <br />
+        <p>
+          First, there are the pop ups which inform the user that they are in
+          the queue and that they’re up next. However, these pop ups must be
+          clicked on in order for the application to proceed, which caused
+          considerable confusion in our tests. Subject 4 added themselves to the
+          queue and saw the feedback from the system, but didn’t click on the
+          check mark because they assumed that it was a notification. The
+          evaluator had to let the testing user know that they had to click on
+          the pop up to proceed. This additional interaction could be removed as
+          it is not necessary for the functionality of the system and it
+          confused the users. The pop up could simply be dismissed automatically
+          as a notification after a couple of seconds.
+        </p>
+        <br />
+        <p>
+          Another observation made by the users is the concept of a queue in
+          order to interact and move the model. Subject 3 stated that they
+          didn’t understand why they had to be waiting in line to be able to
+          zoom on the model. They commented that they would not actually use the
+          system if they had to wait in a queue in order to manipulate the
+          model. There was also a lot of confusion around what the model that
+          the user would be able to interact with was. The early proposed
+          solution was to zoom into the presenter’s webcam but there was also
+          mention of 2D/3D objects. Subject 3 also was unsure whether they were
+          zooming in on an image or a slide.
+        </p>
+        <br />
+        <p>
+          Allowing multiple users to interact with the model at once and
+          removing the queue could potentially improve the usability of your
+          product as you don’t need to have extra steps before the system allows
+          you to view the model. It was unclear to us whether the interactions
+          by the participants with the model were shared with the whole meeting
+          or each participant was interacting with it individually. Removing the
+          queue and the authorization from the host would especially make sense
+          if each participant is able to move around and zoom in and out in
+          their own interface. If the viewing of the model is shared with all
+          the participants on the video conferencing call, it might be
+          interesting to have two modes: one personal and one shared. This way,
+          people who do not have questions on the model can still interact with
+          it to get a better glimpse of the details without waiting for their
+          turn and affecting the other participants in the call.
+        </p>
+        <br />
+        <p>
+          While testing with Subjects 1 and 4, but also in the usability
+          evaluation, we observed that users were confused with the flow of your
+          system when it is their turn to interact with the model. Users did not
+          understand why they had to click on their names to activate their turn
+          and this action was also error prone. Subject 3 clicked on their name
+          instead of the ❌ symbol and they weren’t able to dequeue themselves.
+          Instead, their turn was activated. The system should automatically
+          notify the user when it is their turn, if this feature is necessary.
+          Instead of displaying a popup with “You’re up next” and wait for the
+          user to click on the checkmark, you can let them know instead with a
+          notification that the system is setting up the model for them to
+          interact with it to limit the number of clicks before the participant
+          can finally manipulate the object.
+        </p>
+        <br />
+        <p>
+          The pointer design caused confusion to all users as they were not able
+          to interact with it in the computer prototype. It was difficult to
+          understand what the black and the red pointing arrows meant, was it
+          used to move around the model or to point to a given area of the 3D
+          model in order to ask a question? A clearer interface would be
+          beneficial for users to understand what the features entail. In your
+          documentation you indicate that the users should have the flexibility
+          to zoom in on a specific area of the model, but that concept was not
+          incorporated into the prototype. Adding a way to specify where the
+          user wants to zoom in and out of would help them better interact with
+          the model as well as a way to navigate around the displayed area such
+          as panning for 2D objects but also rotating for 3D objects.
+        </p>
+      </div>
+      <br />
     </section>
   </body>
 </html>
