@@ -135,6 +135,19 @@ table tr#ROW3 {
   color: black;
 }
 
+table td#cell1 {
+  background-color: white;
+  color: #e16a66;
+}
+table td#cell2 {
+  background-color: white;
+  color: #eb8f1a;
+}
+table td#cell3 {
+  background-color: white;
+  color: #198812;
+}
+
 .usablity {
   border-top: 1px solid black;
   border-left: 1px solid black;
