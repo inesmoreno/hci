@@ -3,7 +3,7 @@ import "./App.css";
 import { useState } from "react";
 import Chat from "./components/Chat/Chat";
 import { UserInfo } from "./types";
-import LandingPage from "./LandingPage";
+import LandingPage from "./components/LandingPage/LandingPage";
 
 function App() {
   const [userInfo, setUserInfo] = useState<null | UserInfo>(null);

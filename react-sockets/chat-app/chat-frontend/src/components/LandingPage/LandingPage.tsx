@@ -1,61 +1,15 @@
 import React, { useReducer, useEffect } from "react";
-import {
-  createStyles,
-  makeStyles,
-  Theme,
-  createMuiTheme,
-  ThemeProvider,
-} from "@material-ui/core/styles";
+import {useStyles, darkTheme} from './../../style';
+import Box from '@material-ui/core/Box';
 import TextField from "@material-ui/core/TextField";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
-
+import {ThemeProvider} from "@material-ui/core/styles";
 import "./LandingPage.css";
-import { UserInfo } from "./types";
-
-const darkTheme = createMuiTheme({
-  palette: {
-    type: "dark",
-    primary: {
-      main: "#00FFE0",
-    },
-    secondary: {
-      main: "#FFF",
-    },
-  },
-});
-
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    palette: {
-      type: "dark",
-    },
-    container: {
-      display: "flex-center",
-      flexWrap: "wrap",
-      width: 400,
-      margin: `${theme.spacing(0)} auto`,
-      textColor: "#FFF",
-    },
-    joinBtn: {
-      marginTop: theme.spacing(2),
-      flexGrow: 1,
-    },
-    createBtn: {
-      marginTop: theme.spacing(2),
-      flexGrow: 1,
-    },
-    card: {
-      marginTop: theme.spacing(10),
-      background: "#212224",
-      color: "#FFF",
-    },
-  })
-);
+import { UserInfo } from "./../../types";
 
 //state type
-
 type State = {
   username: string;
   meetingId: string;
@@ -74,11 +28,12 @@ const initialState: State = {
 
 type Action =
   | { type: "setUsername"; payload: string }
-  | { type: "setMeetingId"; payload: string }
   | { type: "setIsButtonDisabled"; payload: boolean }
   | { type: "loginSuccess"; payload: string }
   | { type: "loginFailed"; payload: string }
-  | { type: "setIsError"; payload: boolean };
+  | { type: "setIsError"; payload: boolean }
+  | { type: "setMeetingId"; payload: string }
+  ;
 
 const reducer = (state: State, action: Action): State => {
   switch (action.type) {
@@ -127,6 +82,7 @@ function LandingPage({
 
   useEffect(() => {
     if (state.username.trim() && state.meetingId.trim()) {
+      //dispatch is how you send actions to store
       dispatch({
         type: "setIsButtonDisabled",
         payload: false,
@@ -219,29 +175,34 @@ function LandingPage({
                   onKeyPress={handleKeyPress}
                 />
 
-                <Button
-                  fullWidth
-                  variant="contained"
-                  size="large"
-                  color="primary"
-                  className={classes.joinBtn}
-                  onClick={handleJoin}
-                  disabled={state.isButtonDisabled}
-                >
-                  Join
+                <Box mt={1}>
+                  <Button
+                    fullWidth
+                    variant="contained"
+                    size="large"
+                    color="primary"
+                    className={classes.joinBtn}
+                    onClick={handleJoin}
+                    disabled={state.isButtonDisabled}
+                  >
+                    Join
                 </Button>
+                </Box>
 
-                <Button
-                  fullWidth
-                  variant="contained"
-                  size="large"
-                  color="secondary"
-                  className={classes.createBtn}
-                  onClick={handleCreate}
-                  disabled={state.isButtonDisabled}
-                >
-                  Create new meeting
+                <Box mt={1}>
+                  <Button
+                    fullWidth
+                    variant="contained"
+                    size="large"
+                    color="secondary"
+                    className={classes.createBtn}
+                    onClick={handleCreate}
+                    disabled={state.isButtonDisabled}
+                  >
+                    Create new meeting
                 </Button>
+                </Box>
+               
               </div>
             </CardContent>
           </Card>
