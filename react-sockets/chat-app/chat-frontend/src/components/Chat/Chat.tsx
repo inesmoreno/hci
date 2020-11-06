@@ -4,7 +4,7 @@ import {useEffect, useState} from 'react';
 import logo from './logo.svg';
 import ChatInput from './ChatInput';
 import ChatOutput from './ChatOutput';
-import { UserInfo, Message } from './types';
+import { UserInfo, Message } from '../../types';
 
 function Chat({userInfo:{username}}:{userInfo : UserInfo}) {
 

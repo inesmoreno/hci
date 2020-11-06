@@ -1,6 +1,6 @@
 import React from 'react';
 import ScrollToBottom from 'react-scroll-to-bottom';
-import {Message} from './types';
+import {Message} from '../../types';
 
 function ChatOutput ({messages, myUsername} : {messages : Message[], myUsername: string}) {
     const formatMessage = ({message, author}) => {
