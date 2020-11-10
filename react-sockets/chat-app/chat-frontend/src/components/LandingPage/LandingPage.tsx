@@ -1,11 +1,11 @@
 import React, { useReducer, useEffect } from "react";
-import {useStyles, darkTheme} from './../../style';
-import Box from '@material-ui/core/Box';
+import { useStyles, darkTheme } from "./../../style";
+import Box from "@material-ui/core/Box";
 import TextField from "@material-ui/core/TextField";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
-import {ThemeProvider} from "@material-ui/core/styles";
+import { ThemeProvider } from "@material-ui/core/styles";
 import "./LandingPage.css";
 import { UserInfo } from "./../../types";
 
@@ -23,7 +23,7 @@ const initialState: State = {
   meetingId: "",
   isButtonDisabled: true,
   helperText: "",
-  isError: false,
+  isError: false
 };
 
 type Action =
@@ -32,48 +32,47 @@ type Action =
   | { type: "loginSuccess"; payload: string }
   | { type: "loginFailed"; payload: string }
   | { type: "setIsError"; payload: boolean }
-  | { type: "setMeetingId"; payload: string }
-  ;
+  | { type: "setMeetingId"; payload: string };
 
 const reducer = (state: State, action: Action): State => {
   switch (action.type) {
     case "setUsername":
       return {
         ...state,
-        username: action.payload,
+        username: action.payload
       };
     case "setMeetingId":
       return {
         ...state,
-        meetingId: action.payload,
+        meetingId: action.payload
       };
     case "setIsButtonDisabled":
       return {
         ...state,
-        isButtonDisabled: action.payload,
+        isButtonDisabled: action.payload
       };
     case "loginSuccess":
       return {
         ...state,
         helperText: action.payload,
-        isError: false,
+        isError: false
       };
     case "loginFailed":
       return {
         ...state,
         helperText: action.payload,
-        isError: true,
+        isError: true
       };
     case "setIsError":
       return {
         ...state,
-        isError: action.payload,
+        isError: action.payload
       };
   }
 };
 
 function LandingPage({
-  setUserInfo,
+  setUserInfo
 }: {
   setUserInfo: (userInfo: UserInfo) => void;
 }) {
@@ -85,12 +84,12 @@ function LandingPage({
       //dispatch is how you send actions to store
       dispatch({
         type: "setIsButtonDisabled",
-        payload: false,
+        payload: false
       });
     } else {
       dispatch({
         type: "setIsButtonDisabled",
-        payload: true,
+        payload: true
       });
     }
   }, [state.username, state.meetingId]);
@@ -122,21 +121,17 @@ function LandingPage({
     }
   };
 
-  const handleUsernameChange: React.ChangeEventHandler<HTMLInputElement> = (
-    event
-  ) => {
+  const handleUsernameChange: React.ChangeEventHandler<HTMLInputElement> = event => {
     dispatch({
       type: "setUsername",
-      payload: event.target.value,
+      payload: event.target.value
     });
   };
 
-  const handleMeetingIdChange: React.ChangeEventHandler<HTMLInputElement> = (
-    event
-  ) => {
+  const handleMeetingIdChange: React.ChangeEventHandler<HTMLInputElement> = event => {
     dispatch({
       type: "setMeetingId",
-      payload: event.target.value,
+      payload: event.target.value
     });
   };
   return (
@@ -186,7 +181,7 @@ function LandingPage({
                     disabled={state.isButtonDisabled}
                   >
                     Join
-                </Button>
+                  </Button>
                 </Box>
 
                 <Box mt={1}>
@@ -200,9 +195,8 @@ function LandingPage({
                     disabled={state.isButtonDisabled}
                   >
                     Create new meeting
-                </Button>
+                  </Button>
                 </Box>
-               
               </div>
             </CardContent>
           </Card>
