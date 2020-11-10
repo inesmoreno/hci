@@ -1,13 +1,14 @@
 import React, { useReducer, useEffect } from "react";
-import {useStyles, darkTheme} from './../../style';
-import Box from '@material-ui/core/Box';
+
+import Box from "@material-ui/core/Box";
 import TextField from "@material-ui/core/TextField";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
-import {ThemeProvider} from "@material-ui/core/styles";
+
 import "./LandingPage.css";
 import { UserInfo } from "./../../types";
+import { useStyles } from "./../../style";
 
 //state type
 type State = {
@@ -32,8 +33,7 @@ type Action =
   | { type: "loginSuccess"; payload: string }
   | { type: "loginFailed"; payload: string }
   | { type: "setIsError"; payload: boolean }
-  | { type: "setMeetingId"; payload: string }
-  ;
+  | { type: "setMeetingId"; payload: string };
 
 const reducer = (state: State, action: Action): State => {
   switch (action.type) {
@@ -140,78 +140,72 @@ function LandingPage({
     });
   };
   return (
-    <ThemeProvider theme={darkTheme}>
-      <div>
-        <p className="header">
-          Welcome to
-          <h1>Relier</h1>
-        </p>
+    <div>
+      <p className="header">
+        Welcome to
+        <h1>Relier</h1>
+      </p>
 
-        <form className={classes.container} noValidate autoComplete="off">
-          <Card className={classes.card}>
-            {/* <CardHeader className={classes.header} title="Login App" /> */}
-            <CardContent>
-              <div>
-                <TextField
+      <form className={classes.container} noValidate autoComplete="off">
+        <Card className={classes.card}>
+          <CardContent>
+            <div>
+              <TextField
+                fullWidth
+                id="username"
+                //   type="name"
+                label="Name"
+                placeholder="Grace Hopper"
+                margin="normal"
+                onChange={handleUsernameChange}
+                onKeyPress={handleKeyPress}
+              />
+              <TextField
+                error={state.isError}
+                fullWidth
+                id="meetingId"
+                // type="password"
+                label="Meeting ID"
+                placeholder="123 456 789"
+                margin="normal"
+                helperText={state.helperText}
+                onChange={handleMeetingIdChange}
+                onKeyPress={handleKeyPress}
+              />
+
+              <Box mt={1}>
+                <Button
                   fullWidth
-                  id="username"
-                  //   type="name"
-                  label="Name"
-                  placeholder="Grace Hopper"
-                  margin="normal"
-                  onChange={handleUsernameChange}
-                  onKeyPress={handleKeyPress}
-                />
-                <TextField
-                  error={state.isError}
+                  variant="contained"
+                  size="large"
+                  color="primary"
+                  className={classes.joinBtn}
+                  onClick={handleJoin}
+                  disabled={state.isButtonDisabled}
+                >
+                  Join
+                </Button>
+              </Box>
+
+              <Box mt={1}>
+                <Button
                   fullWidth
-                  id="meetingId"
-                  // type="password"
-                  label="Meeting ID"
-                  placeholder="123 456 789"
-                  margin="normal"
-                  helperText={state.helperText}
-                  onChange={handleMeetingIdChange}
-                  onKeyPress={handleKeyPress}
-                />
-
-                <Box mt={1}>
-                  <Button
-                    fullWidth
-                    variant="contained"
-                    size="large"
-                    color="primary"
-                    className={classes.joinBtn}
-                    onClick={handleJoin}
-                    disabled={state.isButtonDisabled}
-                  >
-                    Join
+                  variant="contained"
+                  size="large"
+                  color="secondary"
+                  className={classes.createBtn}
+                  onClick={handleCreate}
+                  disabled={state.isButtonDisabled}
+                >
+                  Create new meeting
                 </Button>
-                </Box>
-
-                <Box mt={1}>
-                  <Button
-                    fullWidth
-                    variant="contained"
-                    size="large"
-                    color="secondary"
-                    className={classes.createBtn}
-                    onClick={handleCreate}
-                    disabled={state.isButtonDisabled}
-                  >
-                    Create new meeting
-                </Button>
-                </Box>
-               
-              </div>
-            </CardContent>
-          </Card>
-        </form>
-      </div>
-    </ThemeProvider>
+              </Box>
+            </div>
+          </CardContent>
+        </Card>
+      </form>
+    </div>
   );
 }
-
-// export default Login;
 
 export default LandingPage;

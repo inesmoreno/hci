@@ -1,24 +1,33 @@
 import React from "react";
 import "./App.css";
 import { useState } from "react";
-import Chat from "./components/Chat/Chat";
 import { UserInfo } from "./types";
+import { darkTheme } from "./style";
+import { ThemeProvider } from "@material-ui/core/styles";
+
+import Chat from "./components/Chat/Chat";
 import LandingPage from "./components/LandingPage/LandingPage";
+import EmojiSelector from "./components/EmojiSelector/EmojiSelector";
 
 function App() {
   const [userInfo, setUserInfo] = useState<null | UserInfo>(null);
 
   if (userInfo === null)
     return (
-      <div className="App">
-        <LandingPage setUserInfo={setUserInfo} />{" "}
-      </div>
+      <ThemeProvider theme={darkTheme}>
+        <div className="App">
+          <LandingPage setUserInfo={setUserInfo} />{" "}
+        </div>
+      </ThemeProvider>
     );
 
   return (
-    <div className="App">
-      <Chat userInfo={userInfo} />
-    </div>
+    <ThemeProvider theme={darkTheme}>
+      <div className="App">
+        <EmojiSelector />
+        <Chat userInfo={userInfo} />
+      </div>
+    </ThemeProvider>
   );
 }
 
