@@ -3,8 +3,8 @@ import {
   makeStyles,
   Theme,
   createMuiTheme,
-  ThemeProvider,
 } from "@material-ui/core/styles";
+
 export const darkTheme = createMuiTheme({
   palette: {
     type: "dark",
@@ -22,6 +22,9 @@ export const useStyles = makeStyles((theme: Theme) =>
     palette: {
       type: "dark",
     },
+    root: {
+      flexGrow: 1,
+    },
     container: {
       display: "flex-center",
       flexWrap: "wrap",
@@ -37,9 +40,15 @@ export const useStyles = makeStyles((theme: Theme) =>
       marginTop: theme.spacing(2),
       flexGrow: 1,
     },
+    gridItem: {
+      padding: "0px",
+      height: "20px",
+      marginBottom: "4px",
+      marginTop: "4px"
+    },
     card: {
       marginTop: theme.spacing(10),
-      background: "#212224",
+      background: "#202223",
       color: "#FFF",
     },
   })
