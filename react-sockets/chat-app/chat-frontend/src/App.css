@@ -8,14 +8,14 @@ body {
   margin: 0 auto;
 }
 
-.messages{
+.messages {
   background-color: lightblue;
   height: 25em;
   overflow: auto;
 }
 
 .chat-input {
-  display:flex;
+  display: flex;
   justify-content: center;
   background-color: pink;
 }
@@ -36,9 +36,10 @@ span.author {
 }
 
 .chat-input input {
-  width:100%;
+  width: 100%;
 }
-.chat-input>div {
+
+.chat-input > div {
   flex-grow: 1;
   padding: 0.2em;
 }

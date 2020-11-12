@@ -17,6 +17,8 @@ export const darkTheme = createMuiTheme({
   },
 });
 
+const buttonSize = "35px";
+
 export const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     palette: {
@@ -40,16 +42,21 @@ export const useStyles = makeStyles((theme: Theme) =>
       marginTop: theme.spacing(2),
       flexGrow: 1,
     },
-    gridItem: {
-      padding: "0px",
-      height: "20px",
-      marginBottom: "4px",
-      marginTop: "4px"
-    },
     card: {
       marginTop: theme.spacing(10),
-      background: "#202223",
       color: "#FFF",
+    },
+    cardContent: {
+      backgroundColor: "#202223",
+    },
+    reactionButton: {
+      height: buttonSize,
+      width: buttonSize,
+    },
+    imageButton: {
+      height: buttonSize,
+      width: buttonSize,
+      padding: "5px",
     },
   })
 );
