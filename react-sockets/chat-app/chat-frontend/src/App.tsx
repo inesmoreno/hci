@@ -5,10 +5,8 @@ import { UserInfo } from "./types";
 import { darkTheme } from "./style";
 import { ThemeProvider } from "@material-ui/core/styles";
 
-import Chat from "./components/Chat/Chat";
 import LandingPage from "./components/LandingPage/LandingPage";
-import EmojiSelector from "./components/EmojiSelector/EmojiSelector";
-import Graph from "./components/Graph/Graph";
+import MainPage from "./MainPage";
 
 function App() {
   const [userInfo, setUserInfo] = useState<null | UserInfo>(null);
@@ -23,11 +21,10 @@ function App() {
     );
 
   return (
+    //TO DO: package all this up in another component "MainPage"
     <ThemeProvider theme={darkTheme}>
       <div className="App">
-        <Graph />
-        <EmojiSelector />
-        <Chat userInfo={userInfo} />
+        <MainPage userInfo={userInfo} />
       </div>
     </ThemeProvider>
   );

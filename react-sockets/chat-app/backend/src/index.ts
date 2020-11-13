@@ -1,10 +1,10 @@
 import fasty from 'fastify';
 import websocket, { SocketStream } from 'fastify-websocket';
 
-//step one, init fastify 
+//step one, init fastify
 const app = fasty({logger: true});
 // registering adds a plugin to our framework
-// we want websocket! 
+// we want websocket!
 app.register(websocket);
 
 //mega monster global variable
@@ -12,7 +12,21 @@ app.register(websocket);
 
 const conns : SocketStream[] = [];
 
-const sendToAll = (message: string) => 
+var histogram : number[] = [0,0,0,0,0];
+
+//function updateHist ({newVote, prevVote}:{newVote : number, prevVote: number}) {
+function updateHist (newVote : number, prevVote: number) {
+  const tempHist = histogram;
+  if (prevVote !== -1)
+      tempHist.splice(prevVote - 1, 1, tempHist[prevVote - 1] - 1);
+  tempHist.splice(newVote - 1, 1, tempHist[newVote - 1] + 1);
+  histogram = tempHist;
+  return histogram;
+}
+
+
+
+const sendToAll = (message: string) =>
   conns.forEach((con: SocketStream) => con.socket.send(message));
 //registering routes
 //if you send a get req to the root of the app,
@@ -30,7 +44,9 @@ app.get('/start-socket', { websocket: true }, (connection, req) => {
   connection.socket.on('message', (message: string) => {
     // message === 'hi from client'
     console.log(message);
-    sendToAll(message);
+    const jsonMsg = JSON.parse(message);
+    if (jsonMsg.type === "chat") sendToAll(JSON.stringify(message));
+    if (jsonMsg.type === "graph") sendToAll(JSON.stringify({type: "graph", data: updateHist(jsonMsg.vote, jsonMsg.prevVote)}));
   })
 })
 // Run the server!

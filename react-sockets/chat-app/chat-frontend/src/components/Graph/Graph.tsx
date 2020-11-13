@@ -5,14 +5,15 @@ import "./Graph.css";
 let myLineChart;
 
 type State = {
-  data: object;
-  rate: any;
+  prevVote: number;
 };
 
-class Graph extends Component<{}, State> {
+class Graph extends Component<
+  { histogram: number[]; sendVote: (vote: number, prevVote: number) => void },
+  State
+> {
   state = {
-    data: [0, 0, 0, 0, 0, 0, 0, 0, 0],
-    rate: 0,
+    prevVote: -1,
   };
   //const [data, setData] = [0,0,0,0,0,0,0,0]
   //const [rate, setRate] = 0
@@ -20,12 +21,12 @@ class Graph extends Component<{}, State> {
   chartRef: any = React.createRef<HTMLDivElement>();
 
   handleChange = (event) => {
-    const value = event.target.value;
-    const tempData = ([] as any).concat(this.state.data);
-    tempData.splice(value - 1, 1, this.state.data[value - 1] + 1);
+    const newVote = event.target.value;
+    const prevVote = this.state.prevVote;
+
+    this.props.sendVote(newVote, prevVote);
     this.setState({
-      data: [].concat(tempData),
-      rate: value,
+      prevVote: newVote,
     });
   };
 
@@ -45,12 +46,12 @@ class Graph extends Component<{}, State> {
       data: {
         labels: ["😨", "😧", "🤔", "🙂", "😀"],
         datasets: [
-          {
-            type: "line",
-            data: this.state.data,
-            borderColor: "919191",
-            fill: "origin",
-          },
+          ///{
+          ///type: "line",
+          ///data: this.props.histogram,
+          ///borderColor: "919191",
+          ///fill: "origin",
+          ///},
           {
             type: "bar",
             label: "count",
@@ -62,7 +63,7 @@ class Graph extends Component<{}, State> {
               "#5dc03c",
             ],
             borderColor: "blue",
-            data: this.state.data,
+            data: this.props.histogram,
           },
         ],
       },
@@ -100,7 +101,7 @@ class Graph extends Component<{}, State> {
               },
               ticks: {
                 display: false,
-                //suggestedMax: Math.max(...this.state.data) + 2,
+                //suggestedMax: Math.max(...this.props.histogram) + 2,
                 suggestedMax: 5,
                 suggestedMin: 0,
               },
