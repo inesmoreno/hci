@@ -6,6 +6,7 @@ import Chat from "./components/Chat/Chat";
 import EmojiSelector from "./components/EmojiSelector/EmojiSelector";
 import Graph from "./components/Graph/Graph";
 import EmojiGraph from "./components/EmojiGraph/EmojiGraph";
+import HandQueue from "./components/HandQueue/HandQueue";
 
 function MainPage({ userInfo: { username } }: { userInfo: UserInfo }) {
   //web socket
@@ -76,6 +77,7 @@ function MainPage({ userInfo: { username } }: { userInfo: UserInfo }) {
   return (
     <>
       <Graph histogram={histogram} sendVote={sendVote} />
+      <HandQueue />
       <EmojiGraph histogram={emoji} sendEmoji={sendEmoji} />
       <Chat username={username} sendMessage={sendMessage} messages={chats} />
     </>
