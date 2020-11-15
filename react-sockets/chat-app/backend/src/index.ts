@@ -45,7 +45,7 @@ app.get("/start-socket", { websocket: true }, (connection, req) => {
     // message === 'hi from client'
     console.log(message);
     const jsonMsg = JSON.parse(message);
-    if (jsonMsg.type === "chat") sendToAll(JSON.stringify(message));
+    if (jsonMsg.type === "chat") sendToAll(message);
     if (jsonMsg.type === "graph")
       sendToAll(
         JSON.stringify({
