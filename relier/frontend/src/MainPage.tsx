@@ -19,7 +19,7 @@ function MainPage({ userInfo: { username } }: { userInfo: UserInfo }) {
 
   useEffect(() => {
     const body = async () => {
-      const ws = new WebSocket(`ws://${window.location.host}/api/start-socket`);
+      const ws = new WebSocket(`ws://localhost:3000/start-socket`);
       //"message" here is a message from the server, not a necessarily a chat msg
       ws.addEventListener("message", function (event) {
         //what to do when you get something from the server
