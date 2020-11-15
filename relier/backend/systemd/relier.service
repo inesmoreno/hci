@@ -1,0 +1,13 @@
+[Unit]
+Description=Relier backend
+After=network-online.target
+
+[Service]
+User=relier
+Group=users
+WorkingDirectory=/home/relier/repo/relier/backend
+ExecStart=/usr/bin/node build/index.js
+Environment=NODE_ENV=production
+
+[Install]
+WantedBy=multi-user.target
