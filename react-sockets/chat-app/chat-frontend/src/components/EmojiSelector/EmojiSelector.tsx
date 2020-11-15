@@ -16,7 +16,7 @@ type State = {
 };
 
 const initialState: State = {
-  isSelected: new Array<boolean>(numberOfEmojis).fill(false),
+  isSelected: new Array<boolean>(numberOfEmojis).fill(false)
 };
 
 type Action = { type: "setSelected"; payload: string };
@@ -24,51 +24,72 @@ type Action = { type: "setSelected"; payload: string };
 const reducer = (state: State, action: Action): State => {
   switch (action.type) {
     case "setSelected":
-      var id = action.payload;
-      var newSelected = state.isSelected;
+      let id = action.payload;
+      let newSelected = state.isSelected;
       newSelected[id] = !newSelected[id];
 
       return {
         ...state,
-        isSelected: newSelected,
+        isSelected: newSelected
       };
   }
 };
 
-export default function Index() {
+export default function Index({ handleChange }: any) {
   const classes = useStyles();
-  var elements: JSX.Element[] = [];
+  let elements: JSX.Element[] = [];
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  const setSelected = (event) => {
+  const setSelected = event => {
     dispatch({
       type: "setSelected",
-      payload: event.target.id,
+      payload: event.target.id
     });
   };
 
   // Populate emoji reaction buttons in grid
-  var id = 0;
+  // let id = 0;
 
-  reactions.forEach((reaction) => {
+  reactions.map((reaction, index) => {
     elements.push(
-      <Grid item key={id}>
+      <Grid item key={index}>
         <Button
           className={classes.reactionButton}
           value="check"
-          selected={state.isSelected[id]}
+          selected={state.isSelected[index]}
           onChange={setSelected}
+          onClick={() => handleChange(index)}
         >
           <img
             className={classes.imageButton}
-            id={id.toString()}
+            id={index.toString()}
             src={"./assets/" + reaction + ".png"}
           />
         </Button>
       </Grid>
     );
-    id++;
   });
+
+  // reactions.forEach(reaction => {
+  //   elements.push(
+  //     <Grid item key={id}>
+  //       <Button
+  //         className={classes.reactionButton}
+  //         value="check"
+  //         selected={state.isSelected[id]}
+  //         onChange={setSelected}
+  //         onClick={() => handleChange(id)}
+  //       >
+  //         <img
+  //           className={classes.imageButton}
+  //           id={id.toString()}
+  //           src={"./assets/" + reaction + ".png"}
+  //         />
+  //       </Button>
+  //     </Grid>
+  //   );
+  //   id++;
+  // });
 
   return (
     <div className={classes.root}>

@@ -5,6 +5,7 @@ import { UserInfo, Message } from "./types";
 import Chat from "./components/Chat/Chat";
 import EmojiSelector from "./components/EmojiSelector/EmojiSelector";
 import Graph from "./components/Graph/Graph";
+import EmojiGraph from "./components/EmojiGraph/EmojiGraph";
 
 function MainPage({ userInfo: { username } }: { userInfo: UserInfo }) {
   //web socket
@@ -13,12 +14,13 @@ function MainPage({ userInfo: { username } }: { userInfo: UserInfo }) {
   const [chats, setChats] = useState<Message[]>([]);
   //graph histogram [#, #, #, #, #]
   const [histogram, setHistogram] = useState<number[]>([0, 0, 0, 0, 0]);
+  const [emoji, setEmoji] = useState<object>({});
 
   useEffect(() => {
     const body = async () => {
       const ws = new WebSocket("ws://localhost:4000/start-socket");
       //"message" here is a message from the server, not a necessarily a chat msg
-      ws.addEventListener("message", function (event) {
+      ws.addEventListener("message", function(event) {
         //what to do when you get something from the server
 
         const serverMessage = JSON.parse(event.data);
@@ -26,16 +28,16 @@ function MainPage({ userInfo: { username } }: { userInfo: UserInfo }) {
         //if msg.type = "chat" do this
         //and what we do is update the chat state for display
         if (serverMessage.type === "chat")
-          setChats((ms) =>
+          setChats(ms =>
             ms.concat({
               message: serverMessage.data,
-              author: serverMessage.author,
+              author: serverMessage.author
             })
           );
 
         if (serverMessage.type === "graph") {
           console.log("printing the chart results form the backend");
-          console.log(serverMessage);
+          console.log(serverMessage.data);
           setHistogram(serverMessage.data);
         }
         //if msg.
@@ -52,11 +54,29 @@ function MainPage({ userInfo: { username } }: { userInfo: UserInfo }) {
     if (ws === null) return;
     ws.send(JSON.stringify({ type: "graph", vote: vote, prevVote: prevVote }));
   };
+  const minusCnt = (id: number, cnt: number) => {
+    setEmoji({
+      ...emoji,
+      [id]: cnt
+    });
+  };
+  const sendEmoji = (id: number) => {
+    console.log(id);
+    const cnt = emoji[id] || 0;
+    setEmoji({
+      ...emoji,
+      [id]: 1 + cnt
+    });
+    // if (ws === null) return;
+    // ws.send(JSON.stringify({ type: "graph", vote: vote, prevVote: prevVote }));
+  };
+
+  const temphis: object = {};
 
   return (
     <>
       <Graph histogram={histogram} sendVote={sendVote} />
-      <EmojiSelector />
+      <EmojiGraph histogram={emoji} sendEmoji={sendEmoji} />
       <Chat username={username} sendMessage={sendMessage} messages={chats} />
     </>
   );
