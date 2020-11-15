@@ -1,0 +1,6 @@
+#!/usr/bin/bash
+
+set -e
+
+npm run build
+rsync -P build/ relier@emayhew.com:/srv/http/relier/
