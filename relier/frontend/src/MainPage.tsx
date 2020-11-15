@@ -18,9 +18,9 @@ function MainPage({ userInfo: { username } }: { userInfo: UserInfo }) {
 
   useEffect(() => {
     const body = async () => {
-      const ws = new WebSocket("ws://localhost:4000/start-socket");
+      const ws = new WebSocket(`ws://${window.location.host}/api/start-socket`);
       //"message" here is a message from the server, not a necessarily a chat msg
-      ws.addEventListener("message", function(event) {
+      ws.addEventListener("message", function (event) {
         //what to do when you get something from the server
 
         const serverMessage = JSON.parse(event.data);
@@ -28,10 +28,10 @@ function MainPage({ userInfo: { username } }: { userInfo: UserInfo }) {
         //if msg.type = "chat" do this
         //and what we do is update the chat state for display
         if (serverMessage.type === "chat")
-          setChats(ms =>
+          setChats((ms) =>
             ms.concat({
               message: serverMessage.data,
-              author: serverMessage.author
+              author: serverMessage.author,
             })
           );
 
@@ -57,7 +57,7 @@ function MainPage({ userInfo: { username } }: { userInfo: UserInfo }) {
   const minusCnt = (id: number, cnt: number) => {
     setEmoji({
       ...emoji,
-      [id]: cnt
+      [id]: cnt,
     });
   };
   const sendEmoji = (id: number) => {
@@ -65,7 +65,7 @@ function MainPage({ userInfo: { username } }: { userInfo: UserInfo }) {
     const cnt = emoji[id] || 0;
     setEmoji({
       ...emoji,
-      [id]: 1 + cnt
+      [id]: 1 + cnt,
     });
     // if (ws === null) return;
     // ws.send(JSON.stringify({ type: "graph", vote: vote, prevVote: prevVote }));
