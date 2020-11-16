@@ -1,7 +1,5 @@
 import React from "react";
-import { Button, Checkbox, Form } from "semantic-ui-react";
-import { useEffect, useState } from "react";
-import logo from "./logo.svg";
+import "./Chat.css";
 import ChatInput from "./ChatInput";
 import ChatOutput from "./ChatOutput";
 import { UserInfo, Message } from "../../types";
@@ -18,8 +16,10 @@ function Chat({
   return (
     <>
       <p>Chat</p>
-      <ChatOutput messages={messages} myUsername={username} />
-      <ChatInput sendMessage={sendMessage} />
+      <div className="chat">
+        <ChatOutput messages={messages} myUsername={username} />
+        <ChatInput sendMessage={sendMessage} />
+      </div>
     </>
   );
 }

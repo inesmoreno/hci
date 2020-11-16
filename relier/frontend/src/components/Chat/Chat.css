@@ -1,0 +1,49 @@
+.chat {
+  background-color: grey;
+  border-radius: 1em;
+}
+.messages {
+  height: 25em;
+  overflow: auto;
+}
+
+.chat-input {
+  display: flex;
+  justify-content: center;
+}
+
+ul.message-list {
+  list-style-type: none;
+  padding: 1em;
+}
+
+li.message {
+  text-align: left;
+  background-color: lightgrey;
+  color: black;
+  font-size: 1.2em;
+  padding: 0.5em;
+  margin: 0.5em;
+  border-radius: 0.5em;
+}
+li.amAuthor {
+  text-align: right;
+  background-color: lightblue;
+  color: black;
+  font-size: 1.2em;
+  padding: 0.5em;
+  margin: 0.5em;
+  border-radius: 0.5em;
+}
+span.author {
+  font-weight: bold;
+}
+
+.chat-input input {
+  width: 100%;
+}
+
+.chat-input > div {
+  flex-grow: 1;
+  padding: 0.2em;
+}

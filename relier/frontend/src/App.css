@@ -8,42 +8,6 @@ body {
   margin: 0 auto;
 }
 
-.messages {
-  background-color: lightblue;
-  height: 25em;
-  overflow: auto;
-}
-
-.chat-input {
-  display: flex;
-  justify-content: center;
-  background-color: pink;
-}
-
-ul.message-list {
-  list-style-type: none;
-  padding: 1em;
-}
-
-li.message {
-  text-align: left;
-}
-li.amAuthor {
-  text-align: right;
-}
-span.author {
-  font-weight: bold;
-}
-
-.chat-input input {
-  width: 100%;
-}
-
-.chat-input > div {
-  flex-grow: 1;
-  padding: 0.2em;
-}
-
 * {
   box-sizing: border-box;
 }

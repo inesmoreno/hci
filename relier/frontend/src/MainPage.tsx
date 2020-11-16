@@ -28,13 +28,15 @@ function MainPage({ userInfo: { username } }: { userInfo: UserInfo }) {
         //msg = json.parse event data
         //if msg.type = "chat" do this
         //and what we do is update the chat state for display
-        if (serverMessage.type === "chat")
+        if (serverMessage.type === "chat") {
+          console.log("I got a message");
           setChats((ms) =>
             ms.concat({
               message: serverMessage.data,
               author: serverMessage.author,
             })
           );
+        }
 
         if (serverMessage.type === "graph") {
           console.log("printing the chart results form the backend");
