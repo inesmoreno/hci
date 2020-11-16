@@ -15,7 +15,7 @@ function Chat({
 }) {
   return (
     <>
-      <p>Chat</p>
+      <h3>Chat</h3>
       <div className="chat">
         <ChatOutput messages={messages} myUsername={username} />
         <ChatInput sendMessage={sendMessage} />

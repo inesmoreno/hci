@@ -19,6 +19,7 @@ export default function RaiseHandButton({ sendHand }: any){
 	return (
 		<div className={classes.root}>
 			<Card className={classes.card}>
+				<h3>Raised Hand Queue</h3>
 				<CardContent className={classes.cardContent}>
 					<Button 
 						onChange={handleChange}
