@@ -1,6 +1,6 @@
 /* Theme style overrides */
 
-.MuiToggleButton-selected {
+.MuiButton-selected {
 
   background-color: #00FFE035 !important;
   border-color: #00FFE0 !important;

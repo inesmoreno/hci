@@ -14,6 +14,8 @@ const conns: SocketStream[] = [];
 
 var histogram: number[] = [0, 0, 0, 0, 0];
 
+var hands: string[] = [];
+
 //function updateHist ({newVote, prevVote}:{newVote : number, prevVote: number}) {
 function updateHist(newVote: number, prevVote: number) {
   const tempHist = histogram;
@@ -22,6 +24,16 @@ function updateHist(newVote: number, prevVote: number) {
   tempHist.splice(newVote - 1, 1, tempHist[newVote - 1] + 1);
   histogram = tempHist;
   return histogram;
+}
+
+//function updateList
+function updateList(hand: string) {
+  if (hands.find(hand)){
+    var index = hands.indexOf(hand);
+    hands.splice(index);
+  } else {
+    hands.push(hand);
+  }
 }
 
 const sendToAll = (message: string) =>
@@ -38,11 +50,13 @@ app.get("/", (request, reply) => {
 app.get("/start-socket", { websocket: true }, (connection, req) => {
   //adds connection to the list of connections
   conns.push(connection);
+
+
   //handler to broadcast message to all
   //handlers register event types to functions
   // we are handlign a particular event type, the message event
   connection.socket.on("message", (message: string) => {
-    // message === 'hi from client'
+    //this is were we handle requests from the client
     console.log(message);
     const jsonMsg = JSON.parse(message);
     if (jsonMsg.type === "chat") sendToAll(message);
@@ -53,8 +67,16 @@ app.get("/start-socket", { websocket: true }, (connection, req) => {
           data: updateHist(jsonMsg.vote, jsonMsg.prevVote)
         })
       );
+    if (jsonMsg.type === "hand") 
+      sendToAll( 
+        JSON.stringify({
+          type: "hand",
+          data: updateList(jsonMsg.author)
+        })
+      ); 
   });
 });
+
 // Run the server!
 // this is the port the server is listening for requests
 app.listen(4000, function(err, address) {

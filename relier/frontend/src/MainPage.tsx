@@ -57,6 +57,12 @@ function MainPage({ userInfo: { username } }: { userInfo: UserInfo }) {
     if (ws === null) return;
     ws.send(JSON.stringify({ type: "graph", vote: vote, prevVote: prevVote }));
   };
+
+  const sendHand = () => {
+    if (ws === null) return;
+    ws.send(JSON.stringify({ type: "hand", hand: username}));
+  };
+  
   const minusCnt = (id: number, cnt: number) => {
     setEmoji({
       ...emoji,
@@ -79,7 +85,7 @@ function MainPage({ userInfo: { username } }: { userInfo: UserInfo }) {
   return (
     <>
       <Graph histogram={histogram} sendVote={sendVote} />
-      <HandQueue />
+      <HandQueue sendHand={sendHand}/>
       <EmojiGraph histogram={emoji} sendEmoji={sendEmoji} />
       <Chat username={username} sendMessage={sendMessage} messages={chats} />
     </>
