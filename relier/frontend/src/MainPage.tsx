@@ -88,15 +88,9 @@ function MainPage({ userInfo: { username, role } }: { userInfo: UserInfo }) {
   console.log(role);
   return (
     <>
-<<<<<<< HEAD
-      <Graph histogram={histogram} sendVote={sendVote} />
-      <HandQueue sendHand={sendHand}/>
-      <EmojiGraph histogram={emoji} sendEmoji={sendEmoji} />
-=======
       <Graph histogram={histogram} sendVote={sendVote} role={role} />
-      <HandQueue />
+      <HandQueue sendHand={sendHand}/>
       <EmojiGraph histogram={emoji} sendEmoji={sendEmoji} role={role} />
->>>>>>> 17437730c06d40441bb793332695dab5dd7ff21a
       <Chat username={username} sendMessage={sendMessage} messages={chats} />
     </>
   );
