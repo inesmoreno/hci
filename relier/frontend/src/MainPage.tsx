@@ -7,8 +7,10 @@ import EmojiSelector from "./components/EmojiSelector/EmojiSelector";
 import Graph from "./components/Graph/Graph";
 import EmojiGraph from "./components/EmojiGraph/EmojiGraph";
 import HandQueue from "./components/HandQueue/HandQueue";
+import LandingPage from "./components/LandingPage/LandingPage";
+import { userInfo } from "os";
 
-function MainPage({ userInfo: { username } }: { userInfo: UserInfo }) {
+function MainPage({ userInfo: { username, role } }: { userInfo: UserInfo }) {
   //web socket
   const [ws, setWs] = useState<WebSocket | null>(null);
   //chat messages in the chat section
@@ -76,11 +78,13 @@ function MainPage({ userInfo: { username } }: { userInfo: UserInfo }) {
 
   const temphis: object = {};
 
+  console.log(username);
+  console.log(role);
   return (
     <>
-      <Graph histogram={histogram} sendVote={sendVote} />
+      <Graph histogram={histogram} sendVote={sendVote} role={role} />
       <HandQueue />
-      <EmojiGraph histogram={emoji} sendEmoji={sendEmoji} />
+      <EmojiGraph histogram={emoji} sendEmoji={sendEmoji} role={role} />
       <Chat username={username} sendMessage={sendMessage} messages={chats} />
     </>
   );

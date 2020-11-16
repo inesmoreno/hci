@@ -12,7 +12,7 @@ type State = {
 };
 
 class EmojiGraph extends Component<
-  { histogram: object; sendEmoji: (id: number) => void },
+  { histogram: object; sendEmoji: (id: number) => void; role: string },
   State
 > {
   state = {
@@ -135,12 +135,17 @@ class EmojiGraph extends Component<
   render() {
     console.log(this.props.histogram);
     console.log(this.state.labels);
+    const { role } = this.props;
     return (
-      <div>
+      <div className="emoji">
         <div className="Emojigraph">
           <canvas id="myChart" ref={this.chartRef} />
         </div>
-        <EmojiSelector handleChange={this.handleChange} />
+        {role === "presenter" ? (
+          ""
+        ) : (
+          <EmojiSelector handleChange={this.handleChange} />
+        )}
       </div>
     );
   }
