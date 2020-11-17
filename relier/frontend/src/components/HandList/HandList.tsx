@@ -13,6 +13,7 @@ export default function RaiseHandButton({ hands }: any) {
   return (
     <div className={classes.root}>
       <Card className={classes.card}>
+        <h3> Hand Raise Queue </h3>
         <CardContent className={classes.cardContent}>
           {hands.map(hand => (
             <p>{hand}</p>
