@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>High-fidelity Prototype</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header>
+      <div class="logo"><a href="index.html">👩‍💻</a></div>
+      <nav>
+        <ul class="nav__links">
+          <li><a href="observation.html">Observation and Proposal</a></li>
+          <li>
+              <a href="lowfi.html">Low-Fi Prototype</a>
+          </li>
+          <li>
+              <a href="hifi.html">High-fi Prototype</a>
+          </li>
+          <li>
+            <a href="formative.html">Formative Feedback</a>
+        </li>
+        <li>
+          <a href="alpha.html">Alpha Prototype</a>
+      </li>
+          <!-- <li><a href="#">low-fidelity Prototypes</a></li> -->
+          <!-- <li><a href="#">##</a></li> -->
+        </ul>
+      </nav>
+    </header>
+    <body>   
+      <div class="container">
+        <h1 class="text-center">
+          High-fidelity Prototype
+        </h1>
+        <br>
+        <h2 class="text-center">1. Design Evolution
+        </h2>
+        <br>
+        Based on the formative feedback we have received, we made several main modifications to our computer prototype: 
+        <br>
+        <Br>
+        <h5>1. Clearer emojis </h5>
+        <br>
+
+A few users were confused by what the 🙈, 🙉,🙊 emojis in the reaction panel. Users were not able to recognize that those emoticons were for signalling audio/visual errors. Hence, we have decided to use custom icons rather than emoticons to remediate to this situation. We replaced the ambiguous monkey emoji with clearer icons:
+<br>
+<img src="images/icons.png">
+<br>
+Similarly, our design team noticed that some of the emojis that were available in the reaction panel were redundant. For example, it might be difficult for the presenter to interpret if some participants use ❌ and others use 👎 for a same given question (or ✅ and 👍). We hence decided to just keep the thumbs-up/thumbs-down emojis to avoid ambiguities in the participants’ reactions. 
+<br>
+<br>
+<h5>2. Graph labels </h5>
+<p>Users had a hard time understanding what graphs meant. One way we address this is by including more labeling for our graphs, such as titles and axis labels.  </p>
+<br>
+<h5>3. Bigger font
+</h5>
+<p>The evaluating team observed that certain users were squinting when interacting with the computer prototype. In the alpha system, the font size has been increased to a minimum of 16px to ensure that all text is visible and readable for all types of users.</p>
+<br>
+<h5>4. Feature labeling
+</h5>
+<p>Another concern raised by the testing is the “Question Queue” wording. Users didn’t automatically associate asking a question to raising their hand as some prefer to ask their questions in the chat. We decided to rename the “Question Queue” to the “Raised Hand Queue” to not cause any confusion. </p>
+<h5>5. Simplify graphs</h5> 
+<p>Finally, we decided to simplify the ‘level of understanding’ graph to make it easier to code up. Initially, we were planning to have participants rate their level of understanding in a continuum and the graph will show the aggregate distribution of all participants' reactions. We decided to switch this to a histogram, where each participant can move the cursor to a discrete value. </p>
+<br>
+<br>
+<h4>Missing functionality</h4>
+<p>In order to properly assess our prototype, one should keep in mind we have yet to implement the following features:</p>
+<br>
+<h5>Error handling and Undo</h5>
+<p>We hope to have more “undo” options, and confirmations on certain </p>
+
+<h5>Collapsible UI
+</h5>
+<p>In order to reduce cognitive load, we hope to hide all our main features (level of understanding, reactions, etc) in collapse sections. This way users aren’t so overwhelmed when they first open the app.
+</p>
+
+<h5>Meeting room functionality
+</h5>
+<p>Meeting IDs are not hooked up, it only supports one global meeting room. This will need to be changed.</p>
+<h5>Removing participants from queue (individual and clear)
+</h5>
+<p>From the presenters point of view, the ability to remove people from the queue or clear the queue are not implemented. </p>
+<h5>Emoji reaction not connected to the back end</h5>
+<p>Emojis are under developed and not connected to the backend </p>
+<h5>Deselecting emojis should remove a data point in reactions graph</h5>
+<p>Currently, the user is only able to deselect in the reaction panel. The graph is updating with respect to clicks rather than the selection.</p>
+<h5>Reactions expiry </h5>
+<p>Reactions do not expire after a certain interval of time but will in the final product. This also applies to the level of understanding responses which should expire after 10 seconds.</p>
+<h5>A/V problem error message</h5>
+<p>Program displays a small error message when enough participants emote with the can’t hear or can’t see icon to notify the presenter of A/V problems.</p>
+<h5>Who online’s tab </h5>
+<p>A list of online users will be displayed in a separate tab, next to the chat’s UI.</p>
+<h5>Click on bar graph </h5>
+<p>The ability to “vote” on an emote of level of understanding bar by click on the bar in the graph</p>
+<h5>Styling</h5>
+<p>We will improve the consistency and the level of contrast of the different UI elements to ensure all text is readable and accessible to all target users.</p>
+
+
+<h2 class="text-center">2. Prototype Revisions
+        </h2>
+        Please navigate <a href="http://www.relier.emayhew.com">Here!</a>
+        <br>
+        <br>
+        <h2 class="text-center">3. Refinement of user manual
+        </h2>
+        <br>
+        <a
+        href="https://docs.google.com/document/d/1BBzMN54PfcU10ulmpikxWbzpS2Iqn-oV7FZHdO0MDlQ/edit?usp=sharing"
+        >Presenter User Manual</a
+      >
+      <br />
+      <a
+        href="https://docs.google.com/document/d/1yAgSmommlnxjgaGinhJywhY-LXz2yWPPTbPCkSWj448/edit?usp=sharing"
+        >Participant User Manual</a
+      >
+      <br>
+      <br>
+      <br>
+      <br>
+      </div>
+  </body>
+</html>
