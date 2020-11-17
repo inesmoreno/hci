@@ -99,9 +99,9 @@ function MainPage({ userInfo: { username, role } }: { userInfo: UserInfo }) {
       {/* <HandQueue sendHand={sendHand} hands={hands} />
       <HandList hands={hands} /> */}
       {role === "presenter" ? (
-        <HandQueue sendHand={sendHand} hands={hands} />
+        <HandList sendHand={sendHand} hands={hands} />
       ) : (
-        <HandList hands={hands} />
+        <HandQueue hands={hands} />
       )}
       <EmojiGraph histogram={emoji} sendEmoji={sendEmoji} role={role} />
       <Chat username={username} sendMessage={sendMessage} messages={chats} />
