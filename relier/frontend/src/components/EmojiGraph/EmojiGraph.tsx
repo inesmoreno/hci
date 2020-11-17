@@ -86,7 +86,7 @@ class EmojiGraph extends Component<
       options: {
         title: {
           display: true,
-          text: "Emojis",
+          text: "Reaction panel",
           fontSize: 20
         },
         legend: {
