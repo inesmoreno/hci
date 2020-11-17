@@ -68,6 +68,7 @@ function MainPage({ userInfo: { username, role } }: { userInfo: UserInfo }) {
   };
 
   const sendHand = () => {
+    console.log(11);
     if (ws === null) return;
     ws.send(JSON.stringify({ type: "hand", author: username }));
   };
@@ -101,7 +102,7 @@ function MainPage({ userInfo: { username, role } }: { userInfo: UserInfo }) {
       {role === "presenter" ? (
         <HandList sendHand={sendHand} hands={hands} />
       ) : (
-        <HandQueue hands={hands} />
+        <HandQueue sendHand={sendHand} hands={hands} />
       )}
       <EmojiGraph histogram={emoji} sendEmoji={sendEmoji} role={role} />
       <Chat username={username} sendMessage={sendMessage} messages={chats} />
