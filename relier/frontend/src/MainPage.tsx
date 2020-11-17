@@ -7,6 +7,7 @@ import EmojiSelector from "./components/EmojiSelector/EmojiSelector";
 import Graph from "./components/Graph/Graph";
 import EmojiGraph from "./components/EmojiGraph/EmojiGraph";
 import HandQueue from "./components/HandQueue/HandQueue";
+import HandList from "./components/HandList/HandList";
 import LandingPage from "./components/LandingPage/LandingPage";
 import { userInfo } from "os";
 
@@ -18,6 +19,7 @@ function MainPage({ userInfo: { username, role } }: { userInfo: UserInfo }) {
   //graph histogram [#, #, #, #, #]
   const [histogram, setHistogram] = useState<number[]>([0, 0, 0, 0, 0]);
   const [emoji, setEmoji] = useState<object>({});
+  const [hands, setHands] = useState<string[]>([]);
 
   useEffect(() => {
     const body = async () => {
@@ -45,6 +47,11 @@ function MainPage({ userInfo: { username, role } }: { userInfo: UserInfo }) {
           console.log(serverMessage.data);
           setHistogram(serverMessage.data);
         }
+        if (serverMessage.type === "hand") {
+          console.log("HAND!!");
+          console.log(serverMessage.data);
+          setHands(serverMessage.data);
+        }
         //if msg.
       });
       setWs(ws);
@@ -62,7 +69,7 @@ function MainPage({ userInfo: { username, role } }: { userInfo: UserInfo }) {
 
   const sendHand = () => {
     if (ws === null) return;
-    ws.send(JSON.stringify({ type: "hand", hand: username }));
+    ws.send(JSON.stringify({ type: "hand", author: username }));
   };
 
   const minusCnt = (id: number, cnt: number) => {
@@ -89,7 +96,13 @@ function MainPage({ userInfo: { username, role } }: { userInfo: UserInfo }) {
   return (
     <>
       <Graph histogram={histogram} sendVote={sendVote} role={role} />
-      <HandQueue sendHand={sendHand} role={role} />
+      {/* <HandQueue sendHand={sendHand} hands={hands} />
+      <HandList hands={hands} /> */}
+      {role === "presenter" ? (
+        <HandQueue sendHand={sendHand} hands={hands} />
+      ) : (
+        <HandList hands={hands} />
+      )}
       <EmojiGraph histogram={emoji} sendEmoji={sendEmoji} role={role} />
       <Chat username={username} sendMessage={sendMessage} messages={chats} />
     </>

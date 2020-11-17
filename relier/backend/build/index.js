@@ -14,6 +14,7 @@ app.register(fastify_websocket_1.default);
 //of ALL that clients!! o/
 var conns = [];
 var histogram = [0, 0, 0, 0, 0];
+var hands = [];
 //function updateHist ({newVote, prevVote}:{newVote : number, prevVote: number}) {
 function updateHist(newVote, prevVote) {
     var tempHist = histogram;
@@ -22,6 +23,17 @@ function updateHist(newVote, prevVote) {
     tempHist.splice(newVote - 1, 1, tempHist[newVote - 1] + 1);
     histogram = tempHist;
     return histogram;
+}
+//function updateList
+function updateList(hand) {
+    var index = hands.indexOf(hand);
+    if (index === -1)
+        hands.push(hand);
+    else
+        hands.splice(index);
+    console.log(hand);
+    console.log(hands);
+    return hands;
 }
 var sendToAll = function (message) {
     return conns.forEach(function (con) { return con.socket.send(message); });
@@ -41,15 +53,21 @@ app.get("/start-socket", { websocket: true }, function (connection, req) {
     //handlers register event types to functions
     // we are handlign a particular event type, the message event
     connection.socket.on("message", function (message) {
-        // message === 'hi from client'
+        //this is were we handle requests from the client
         console.log(message);
         var jsonMsg = JSON.parse(message);
+        console.log(jsonMsg.type);
         if (jsonMsg.type === "chat")
             sendToAll(message);
         if (jsonMsg.type === "graph")
             sendToAll(JSON.stringify({
                 type: "graph",
                 data: updateHist(jsonMsg.vote, jsonMsg.prevVote)
+            }));
+        if (jsonMsg.type === "hand")
+            sendToAll(JSON.stringify({
+                type: "hand",
+                data: updateList(jsonMsg.author)
             }));
     });
 });

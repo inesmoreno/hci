@@ -28,12 +28,10 @@ function updateHist(newVote: number, prevVote: number) {
 
 //function updateList
 function updateList(hand: string) {
-  if (hands.find(hand)){
-    var index = hands.indexOf(hand);
-    hands.splice(index);
-  } else {
-    hands.push(hand);
-  }
+  var index = hands.indexOf(hand);
+  if (index === -1) hands.push(hand);
+  else hands.splice(index);
+  return hands;
 }
 
 const sendToAll = (message: string) =>
@@ -51,7 +49,6 @@ app.get("/start-socket", { websocket: true }, (connection, req) => {
   //adds connection to the list of connections
   conns.push(connection);
 
-
   //handler to broadcast message to all
   //handlers register event types to functions
   // we are handlign a particular event type, the message event
@@ -59,6 +56,7 @@ app.get("/start-socket", { websocket: true }, (connection, req) => {
     //this is were we handle requests from the client
     console.log(message);
     const jsonMsg = JSON.parse(message);
+    console.log(jsonMsg.type);
     if (jsonMsg.type === "chat") sendToAll(message);
     if (jsonMsg.type === "graph")
       sendToAll(
@@ -67,13 +65,13 @@ app.get("/start-socket", { websocket: true }, (connection, req) => {
           data: updateHist(jsonMsg.vote, jsonMsg.prevVote)
         })
       );
-    if (jsonMsg.type === "hand") 
-      sendToAll( 
+    if (jsonMsg.type === "hand")
+      sendToAll(
         JSON.stringify({
           type: "hand",
           data: updateList(jsonMsg.author)
         })
-      ); 
+      );
   });
 });
 
