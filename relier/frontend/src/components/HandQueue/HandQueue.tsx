@@ -20,6 +20,7 @@ export default function RaiseHandButton({ sendHand, role, hands }: any) {
     <div className={classes.root}>
       {console.log(sendHand)}
       <Card className={classes.card}>
+		<h3> Hand Raise Queue </h3>
         <CardContent className={classes.cardContent}>
           <Button onChange={handleChange} selected={raised}>
             <PanToolIcon />
