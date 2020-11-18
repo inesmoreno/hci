@@ -14,7 +14,6 @@ app.register(fastify_websocket_1.default);
 //of ALL that clients!! o/
 var conns = [];
 var histogram = [0, 0, 0, 0, 0];
-var hands = [];
 //function updateHist ({newVote, prevVote}:{newVote : number, prevVote: number}) {
 function updateHist(newVote, prevVote) {
     var tempHist = histogram;
@@ -24,6 +23,7 @@ function updateHist(newVote, prevVote) {
     histogram = tempHist;
     return histogram;
 }
+var hands = [];
 //function updateList
 function updateList(hand) {
     var index = hands.indexOf(hand);
@@ -31,10 +31,14 @@ function updateList(hand) {
         hands.push(hand);
     else
         hands.splice(index);
-    console.log(hand);
-    console.log(hands);
     return hands;
 }
+var globalEmotes = new Map();
+var topFiveEmotes = function () { return Array.from(globalEmotes.entries()).sort(function (_a, _b) {
+    var _1 = _a[0], x = _a[1];
+    var _2 = _b[0], y = _b[1];
+    return x - y;
+}).slice(0, 5); };
 var sendToAll = function (message) {
     return conns.forEach(function (con) { return con.socket.send(message); });
 };
@@ -49,6 +53,9 @@ app.get("/", function (request, reply) {
 app.get("/start-socket", { websocket: true }, function (connection, req) {
     //adds connection to the list of connections
     conns.push(connection);
+    //anything defined here will be associated with the connection
+    //this way we store some state info per user!
+    var emojiVotes = new Set();
     //handler to broadcast message to all
     //handlers register event types to functions
     // we are handlign a particular event type, the message event
@@ -69,6 +76,20 @@ app.get("/start-socket", { websocket: true }, function (connection, req) {
                 type: "hand",
                 data: updateList(jsonMsg.author)
             }));
+        if (jsonMsg.type === "emote") {
+            if (jsonMsg.direction === "up") {
+                emojiVotes.add(jsonMsg.data);
+                globalEmotes.set(jsonMsg.data, ((globalEmotes.get(jsonMsg.data) || 0) + 1));
+            }
+            else {
+                emojiVotes.delete(jsonMsg.data);
+                globalEmotes.set(jsonMsg.data, ((globalEmotes.get(jsonMsg.data) || 0) - 1));
+            }
+            sendToAll(JSON.stringify({
+                type: "emotes",
+                data: topFiveEmotes(),
+            }));
+        }
     });
 });
 // Run the server!

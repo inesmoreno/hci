@@ -1,4 +1,5 @@
 import fasty from "fastify";
+import { Emote } from "./types"; 
 import websocket, { SocketStream } from "fastify-websocket";
 
 //step one, init fastify
@@ -11,10 +12,7 @@ app.register(websocket);
 //of ALL that clients!! o/
 
 const conns: SocketStream[] = [];
-
 var histogram: number[] = [0, 0, 0, 0, 0];
-
-var hands: string[] = [];
 
 //function updateHist ({newVote, prevVote}:{newVote : number, prevVote: number}) {
 function updateHist(newVote: number, prevVote: number) {
@@ -26,6 +24,7 @@ function updateHist(newVote: number, prevVote: number) {
   return histogram;
 }
 
+var hands: string[] = [];
 //function updateList
 function updateList(hand: string) {
   var index = hands.indexOf(hand);
@@ -33,6 +32,9 @@ function updateList(hand: string) {
   else hands.splice(index);
   return hands;
 }
+
+const globalEmotes = new Map<string, number>();
+const topFiveEmotes = () => Array.from(globalEmotes.entries()).sort(([_1, x], [_2, y]) => x - y).slice(0, 5);
 
 const sendToAll = (message: string) =>
   conns.forEach((con: SocketStream) => con.socket.send(message));
@@ -48,12 +50,17 @@ app.get("/", (request, reply) => {
 app.get("/start-socket", { websocket: true }, (connection, req) => {
   //adds connection to the list of connections
   conns.push(connection);
+  //anything defined here will be associated with the connection
+  //this way we store some state info per user!
+  const emojiVotes = new Set<string>();
+
 
   //handler to broadcast message to all
   //handlers register event types to functions
   // we are handlign a particular event type, the message event
   connection.socket.on("message", (message: string) => {
     //this is were we handle requests from the client
+    
     console.log(message);
     const jsonMsg = JSON.parse(message);
     console.log(jsonMsg.type);
@@ -65,6 +72,7 @@ app.get("/start-socket", { websocket: true }, (connection, req) => {
           data: updateHist(jsonMsg.vote, jsonMsg.prevVote)
         })
       );
+
     if (jsonMsg.type === "hand")
       sendToAll(
         JSON.stringify({
@@ -72,7 +80,24 @@ app.get("/start-socket", { websocket: true }, (connection, req) => {
           data: updateList(jsonMsg.author)
         })
       );
+    
+    if(jsonMsg.type === "emote"){
+      if(jsonMsg.direction === "up"){
+        emojiVotes.add(jsonMsg.data);
+        globalEmotes.set(jsonMsg.data, ((globalEmotes.get(jsonMsg.data) ||0) +1));
+      }
+      else{
+        emojiVotes.delete(jsonMsg.data);
+
+        globalEmotes.set(jsonMsg.data, ((globalEmotes.get(jsonMsg.data) ||0) -1));
+      }
+      sendToAll(JSON.stringify({
+        type: "emotes",
+        data: topFiveEmotes(),
+      }));
+      }
   });
+
 });
 
 // Run the server!
