@@ -1,6 +1,7 @@
 import fasty from "fastify";
 import { Emote } from "./types"; 
 import websocket, { SocketStream } from "fastify-websocket";
+import { setUncaughtExceptionCaptureCallback } from "process";
 
 //step one, init fastify
 const app = fasty({ logger: true });
@@ -29,7 +30,7 @@ var hands: string[] = [];
 function updateList(hand: string) {
   var index = hands.indexOf(hand);
   if (index === -1) hands.push(hand);
-  else hands.splice(index);
+  else hands.splice(index, 1);
   return hands;
 }
 
@@ -96,6 +97,17 @@ app.get("/start-socket", { websocket: true }, (connection, req) => {
         data: topFiveEmotes(),
       }));
       }
+    if(jsonMsg.type === "clear"){
+      if(jsonMsg.data === "hands"){
+        hands.splice(0, hands.length)
+        sendToAll(JSON.stringify(
+          {
+            type: "hand",
+            data: hands,
+          }
+        ))
+      }
+    }
   });
 
 });

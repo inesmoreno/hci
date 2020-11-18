@@ -30,7 +30,7 @@ function updateList(hand) {
     if (index === -1)
         hands.push(hand);
     else
-        hands.splice(index);
+        hands.splice(index, 1);
     return hands;
 }
 var globalEmotes = new Map();
@@ -89,6 +89,15 @@ app.get("/start-socket", { websocket: true }, function (connection, req) {
                 type: "emotes",
                 data: topFiveEmotes(),
             }));
+        }
+        if (jsonMsg.type === "clear") {
+            if (jsonMsg.data === "hands") {
+                hands.splice(0, hands.length);
+                sendToAll(JSON.stringify({
+                    type: "hand",
+                    data: hands,
+                }));
+            }
         }
     });
 });

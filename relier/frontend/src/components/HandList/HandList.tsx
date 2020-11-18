@@ -6,8 +6,8 @@ import CardContent from "@material-ui/core/CardContent";
 
 import { useStyles } from "../../style";
 import "./HandList.css";
-
-export default function RaiseHandButton({ hands }: any) {
+//FOR THE PRESENTER
+export default function RaiseHandButton({ hands, removeHand, clearHand }: any) {
   const classes = useStyles();
 
   return (
@@ -15,8 +15,12 @@ export default function RaiseHandButton({ hands }: any) {
       <Card className={classes.card}>
         <h3> Hand Raise Queue </h3>
         <CardContent className={classes.cardContent}>
-          {hands.map(hand => (
-            <p>{hand}</p>
+          {<Button onClick={() => clearHand()}>Clear queue</Button>}
+          {hands.map((hand) => (
+            <>
+              <p>{hand}</p>
+              <Button onClick={() => removeHand(hand)}>X</Button>
+            </>
           ))}
         </CardContent>
       </Card>

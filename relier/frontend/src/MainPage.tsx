@@ -44,13 +44,9 @@ function MainPage({ userInfo: { username, role } }: { userInfo: UserInfo }) {
         }
 
         if (serverMessage.type === "graph") {
-          console.log("printing the chart results form the backend");
-          console.log(serverMessage.data);
           setHistogram(serverMessage.data);
         }
         if (serverMessage.type === "hand") {
-          console.log("HAND!!");
-          console.log(serverMessage.data);
           setHands(serverMessage.data);
         }
         //if msg.
@@ -68,8 +64,7 @@ function MainPage({ userInfo: { username, role } }: { userInfo: UserInfo }) {
     ws.send(JSON.stringify({ type: "graph", vote: vote, prevVote: prevVote }));
   };
 
-  const sendHand = () => {
-    console.log(11);
+  const sendHand = (username: string) => {
     if (ws === null) return;
     ws.send(JSON.stringify({ type: "hand", author: username }));
   };
@@ -90,20 +85,22 @@ function MainPage({ userInfo: { username, role } }: { userInfo: UserInfo }) {
     // if (ws === null) return;
     // ws.send(JSON.stringify({ type: "graph", vote: vote, prevVote: prevVote }));
   };
+  const clearHand = () => {
+    if (ws === null) return;
+    ws.send(JSON.stringify({ type: "clear", data: "hands" }));
+  };
 
   const temphis: object = {};
 
-  console.log(username);
-  console.log(role);
   return (
     <>
       <Graph histogram={histogram} sendVote={sendVote} role={role} />
       {/* <HandQueue sendHand={sendHand} hands={hands} />
       <HandList hands={hands} /> */}
       {role === "presenter" ? (
-        <HandList sendHand={sendHand} hands={hands} />
+        <HandList removeHand={sendHand} hands={hands} clearHand={clearHand} />
       ) : (
-        <HandQueue sendHand={sendHand} hands={hands} />
+        <HandQueue sendHand={sendHand} hands={hands} username={username} />
       )}
       <EmojiGraph histogram={emoji} sendEmoji={sendEmoji} role={role} />
       <Chat username={username} sendMessage={sendMessage} messages={chats} />
