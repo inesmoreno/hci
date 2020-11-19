@@ -1,11 +1,44 @@
 /* Theme style overrides */
 
 .MuiButton-selected {
-
-  background-color: #00FFE035 !important;
-  border-color: #00FFE0 !important;
+  background-color: #00ffe035 !important;
+  border-color: #00ffe0 !important;
 }
 
-.MuiCardContent-root:last-child{
+.MuiCardContent-root:last-child {
   padding-bottom: 16px !important;
+}
+
+.clearAll {
+  height: 10px;
+  text-align: right !important;
+  color: black !important;
+  font-weight: bold !important;
+  background-color: #00ffe0 !important;
+}
+
+.clearAll:hover {
+  background-color: #18796b !important;
+  color: black;
+}
+
+.clearEach {
+  height: 10px;
+  width: 10px;
+  margin-left: 1em;
+}
+
+.personInqueue {
+  text-align: left;
+  margin: 0 1em;
+}
+
+.subheading {
+  margin: 0.5em 1em;
+  display: flex;
+  justify-content: space-between;
+}
+
+.title {
+  font-size: 1.1em;
 }

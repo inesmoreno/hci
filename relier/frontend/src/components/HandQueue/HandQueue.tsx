@@ -26,7 +26,7 @@ export default function RaiseHandButton({ sendHand, hands, username }: any) {
     <div className={classes.root}>
       {console.log(sendHand)}
       <Card className={classes.card}>
-        <h3> Hand Raise Queue </h3>
+        <div className="title">Hand Raise Queue </div>
         <CardContent className={classes.cardContent}>
           <Button
             onChange={handleChange}
@@ -36,7 +36,7 @@ export default function RaiseHandButton({ sendHand, hands, username }: any) {
           </Button>
           <h4>
             {position >= 0
-              ? `You are in position ${position}`
+              ? `You are in position ${position + 1}`
               : "Raise your hand if you have a question"}{" "}
           </h4>
         </CardContent>

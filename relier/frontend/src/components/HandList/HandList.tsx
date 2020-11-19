@@ -13,15 +13,31 @@ export default function RaiseHandButton({ hands, removeHand, clearHand }: any) {
   return (
     <div className={classes.root}>
       <Card className={classes.card}>
-        <h3> Hand Raise Queue </h3>
+        <div className="subheading">
+          <div className="title">Hand Raise Queue </div>
+          <Button className="clearAll" onClick={() => clearHand()}>
+            Clear queue
+          </Button>
+        </div>
         <CardContent className={classes.cardContent}>
-          {<Button onClick={() => clearHand()}>Clear queue</Button>}
-          {hands.map((hand) => (
-            <>
-              <p>{hand}</p>
-              <Button onClick={() => removeHand(hand)}>X</Button>
-            </>
-          ))}
+          <div className="personInqueue">
+            {hands == !null ? (
+              hands.map(hand => (
+                <>
+                  {hand}
+                  <Button
+                    className="clearEach"
+                    onClick={() => removeHand(hand)}
+                  >
+                    X
+                  </Button>
+                  <br></br>
+                </>
+              ))
+            ) : (
+              <div style={{ textAlign: "center" }}> No one in the queue </div>
+            )}{" "}
+          </div>
         </CardContent>
       </Card>
     </div>

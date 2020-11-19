@@ -1,11 +1,15 @@
 /* Theme style overrides */
 
 .MuiButton-selected {
-
-  background-color: #00FFE035 !important;
-  border-color: #00FFE0 !important;
+  background-color: #00ffe035 !important;
+  border-color: #00ffe0 !important;
 }
 
-.MuiCardContent-root:last-child{
+.MuiCardContent-root:last-child {
   padding-bottom: 16px !important;
+}
+.subheading {
+  margin: 0.5em 1em;
+  display: flex;
+  justify-content: space-between;
 }
