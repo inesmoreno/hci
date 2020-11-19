@@ -22,3 +22,24 @@ body {
   margin: 1em auto 0.5em;
   font-weight: bold;
 }
+/* 
+.MuiAccordionDetails-root .graph {
+  margin: -1em 2em;
+}
+.MuiAccordionDetails-root2 .queueMain {
+  margin: auto;
+} */
+.MuiAccordionSummary-root.Mui-expanded {
+  height: 20px !important;
+}
+.MuiAccordionDetails-root {
+  display: flex;
+  padding: 0 2px !important;
+}
+.makeStyles-card-6 {
+  color: #fff;
+  margin-top: 0px !important;
+}
+.MuiCardContent-root {
+  padding: 20px 10px 2px !important;
+}

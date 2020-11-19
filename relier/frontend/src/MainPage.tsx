@@ -123,11 +123,10 @@ function MainPage({ userInfo: { username, role } }: { userInfo: UserInfo }) {
             </Typography>
           </AccordionSummary>
           <AccordionDetails>
-            <Typography>
-              <Graph histogram={histogram} sendVote={sendVote} role={role} />
-            </Typography>
+            <Graph histogram={histogram} sendVote={sendVote} role={role} />
           </AccordionDetails>
         </Accordion>
+
         <Accordion>
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
@@ -136,22 +135,20 @@ function MainPage({ userInfo: { username, role } }: { userInfo: UserInfo }) {
           >
             <Typography className={classes.heading}>Hand Queue</Typography>
           </AccordionSummary>
-          <AccordionDetails>
-            <Typography>
-              {role === "presenter" ? (
-                <HandList
-                  removeHand={sendHand}
-                  hands={hands}
-                  clearHand={clearHand}
-                />
-              ) : (
-                <HandQueue
-                  sendHand={sendHand}
-                  hands={hands}
-                  username={username}
-                />
-              )}
-            </Typography>
+          <AccordionDetails className="queueMain">
+            {role === "presenter" ? (
+              <HandList
+                removeHand={sendHand}
+                hands={hands}
+                clearHand={clearHand}
+              />
+            ) : (
+              <HandQueue
+                sendHand={sendHand}
+                hands={hands}
+                username={username}
+              />
+            )}
           </AccordionDetails>
         </Accordion>
         <Accordion>
@@ -163,9 +160,7 @@ function MainPage({ userInfo: { username, role } }: { userInfo: UserInfo }) {
             <Typography className={classes.heading}>Reaction Panel</Typography>
           </AccordionSummary>
           <AccordionDetails>
-            <Typography>
-              <EmojiGraph histogram={emoji} sendEmoji={sendEmoji} role={role} />
-            </Typography>
+            <EmojiGraph histogram={emoji} sendEmoji={sendEmoji} role={role} />
           </AccordionDetails>
         </Accordion>
         <Accordion>
@@ -177,13 +172,11 @@ function MainPage({ userInfo: { username, role } }: { userInfo: UserInfo }) {
             <Typography className={classes.heading}>Chat</Typography>
           </AccordionSummary>
           <AccordionDetails>
-            <Typography>
-              <Chat
-                username={username}
-                sendMessage={sendMessage}
-                messages={chats}
-              />
-            </Typography>
+            <Chat
+              username={username}
+              sendMessage={sendMessage}
+              messages={chats}
+            />
           </AccordionDetails>
         </Accordion>
       </div>

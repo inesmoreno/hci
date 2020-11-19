@@ -7,20 +7,20 @@ import { UserInfo, Message } from "../../types";
 function Chat({
   username,
   sendMessage,
-  messages,
+  messages
 }: {
   username: string;
   sendMessage: (message: string) => void;
   messages: Message[];
 }) {
   return (
-    <>
-      <p>Chat</p>
+    <div className="chat-main">
+      {/* <span>Chat</span> */}
       <div className="chat">
         <ChatOutput messages={messages} myUsername={username} />
         <ChatInput sendMessage={sendMessage} />
       </div>
-    </>
+    </div>
   );
 }
 

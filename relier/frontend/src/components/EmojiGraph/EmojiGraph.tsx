@@ -18,14 +18,14 @@ class EmojiGraph extends Component<
   state = {
     // prevVote: -1,
     // labels: ["\u{1F923}", "\u{1F603}"],
-    labels: Object.keys(this.props.histogram) || [],
+    labels: Object.keys(this.props.histogram) || []
   };
   //const [data, setData] = [0,0,0,0,0,0,0,0]
   //const [rate, setRate] = 0
 
   chartRef: any = React.createRef<HTMLDivElement>();
 
-  handleChange = (id) => {
+  handleChange = id => {
     this.props.sendEmoji(id);
     // const newVote = event.target.value;
     // const prevVote = this.state.prevVote;
@@ -51,7 +51,7 @@ class EmojiGraph extends Component<
       type: "line",
       plugins: [
         {
-          afterDraw: (chart) => {
+          afterDraw: chart => {
             var ctx = chart.chart.ctx;
             var xAxis = chart.scales["x-axis-0"];
             var yAxis = chart.scales["y-axis-0"];
@@ -62,11 +62,11 @@ class EmojiGraph extends Component<
               image.src = "./assets/" + reactions[value] + ".png";
               ctx.drawImage(image, x - 12, yAxis.bottom + 10, 20, 20);
             });
-          },
-        },
+          }
+        }
       ],
       data: {
-        labels: labels.map((v) => reactions[v]),
+        labels: labels.map(v => reactions[v]),
         datasets: [
           {
             type: "bar",
@@ -76,24 +76,24 @@ class EmojiGraph extends Component<
               "#f1aa3e",
               "#ffef5e",
               "#cbe441",
-              "#5dc03c",
+              "#5dc03c"
             ],
             borderColor: "blue",
-            data: Object.values(this.props.histogram),
-          },
-        ],
+            data: Object.values(this.props.histogram)
+          }
+        ]
       },
       options: {
         title: {
           display: true,
           text: "Reaction panel",
-          fontSize: 20,
+          fontSize: 20
         },
         legend: {
           display: false,
           labels: {
-            fontColor: "rgb(255, 99, 132)",
-          },
+            fontColor: "rgb(255, 99, 132)"
+          }
         },
         scales: {
           xAxes: [
@@ -104,31 +104,31 @@ class EmojiGraph extends Component<
               fontSize: 20,
               ticks: {
                 fontSize: 25,
-                fontColor: "#353637",
-              },
-            },
+                fontColor: "#353637"
+              }
+            }
           ],
           yAxes: [
             {
-              display: true,
+              display: false,
               scaleLabel: {
                 display: false,
                 labelString: "Reactions",
-                fontSize: 20,
+                fontSize: 20
               },
               ticks: {
                 display: false,
                 //suggestedMax: Math.max(...this.props.histogram) + 2,
                 suggestedMax: 5,
-                suggestedMin: 0,
-              },
-            },
-          ],
+                suggestedMin: 0
+              }
+            }
+          ]
         },
         animation: {
-          duration: 500,
-        },
-      },
+          duration: 500
+        }
+      }
     });
   };
 

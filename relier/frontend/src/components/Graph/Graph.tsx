@@ -123,7 +123,7 @@ class Graph extends Component<
     const { role } = this.props;
 
     return (
-      <div>
+      <div style={{ width: "100%" }}>
         <div className="graph">
           <canvas id="myChart" ref={this.chartRef} />
         </div>
