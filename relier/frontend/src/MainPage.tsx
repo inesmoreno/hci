@@ -10,6 +10,12 @@ import HandQueue from "./components/HandQueue/HandQueue";
 import HandList from "./components/HandList/HandList";
 import LandingPage from "./components/LandingPage/LandingPage";
 import { userInfo } from "os";
+import { makeStyles } from "@material-ui/core/styles";
+import Accordion from "@material-ui/core/Accordion";
+import AccordionSummary from "@material-ui/core/AccordionSummary";
+import AccordionDetails from "@material-ui/core/AccordionDetails";
+import Typography from "@material-ui/core/Typography";
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 
 function MainPage({ userInfo: { username, role } }: { userInfo: UserInfo }) {
   //web socket
@@ -21,12 +27,22 @@ function MainPage({ userInfo: { username, role } }: { userInfo: UserInfo }) {
   const [emoji, setEmoji] = useState<object>({});
   const [hands, setHands] = useState<string[]>([]);
 
+  const useStyles = makeStyles(theme => ({
+    root: {
+      width: "100%"
+    },
+    heading: {
+      fontSize: theme.typography.pxToRem(15),
+      fontWeight: theme.typography.fontWeightRegular
+    }
+  }));
+
   useEffect(() => {
     const body = async () => {
       const ws = new WebSocket(`ws://localhost:4000/start-socket`);
       //const ws = new WebSocket(`ws://${window.location.host}/api/start-socket`);
       //"message" here is a message from the server, not a necessarily a chat msg
-      ws.addEventListener("message", function (event) {
+      ws.addEventListener("message", function(event) {
         //what to do when you get something from the server
 
         const serverMessage = JSON.parse(event.data);
@@ -35,10 +51,10 @@ function MainPage({ userInfo: { username, role } }: { userInfo: UserInfo }) {
         //and what we do is update the chat state for display
         if (serverMessage.type === "chat") {
           console.log("I got a message");
-          setChats((ms) =>
+          setChats(ms =>
             ms.concat({
               message: serverMessage.data,
-              author: serverMessage.author,
+              author: serverMessage.author
             })
           );
         }
@@ -72,7 +88,7 @@ function MainPage({ userInfo: { username, role } }: { userInfo: UserInfo }) {
   const minusCnt = (id: number, cnt: number) => {
     setEmoji({
       ...emoji,
-      [id]: cnt,
+      [id]: cnt
     });
   };
   const sendEmoji = (id: number) => {
@@ -80,7 +96,7 @@ function MainPage({ userInfo: { username, role } }: { userInfo: UserInfo }) {
     const cnt = emoji[id] || 0;
     setEmoji({
       ...emoji,
-      [id]: 1 + cnt,
+      [id]: 1 + cnt
     });
     // if (ws === null) return;
     // ws.send(JSON.stringify({ type: "graph", vote: vote, prevVote: prevVote }));
@@ -91,19 +107,86 @@ function MainPage({ userInfo: { username, role } }: { userInfo: UserInfo }) {
   };
 
   const temphis: object = {};
-
+  const classes = useStyles();
   return (
     <>
-      <Graph histogram={histogram} sendVote={sendVote} role={role} />
-      {/* <HandQueue sendHand={sendHand} hands={hands} />
-      <HandList hands={hands} /> */}
-      {role === "presenter" ? (
-        <HandList removeHand={sendHand} hands={hands} clearHand={clearHand} />
-      ) : (
-        <HandQueue sendHand={sendHand} hands={hands} username={username} />
-      )}
-      <EmojiGraph histogram={emoji} sendEmoji={sendEmoji} role={role} />
-      <Chat username={username} sendMessage={sendMessage} messages={chats} />
+      <div className="main">
+        <div className="relier"> R e l i e r </div>
+        <Accordion>
+          <AccordionSummary
+            expandIcon={<ExpandMoreIcon />}
+            aria-controls="panel1a-content"
+            id="panel1a-header"
+          >
+            <Typography className={classes.heading}>
+              Level of Understanding
+            </Typography>
+          </AccordionSummary>
+          <AccordionDetails>
+            <Typography>
+              <Graph histogram={histogram} sendVote={sendVote} role={role} />
+            </Typography>
+          </AccordionDetails>
+        </Accordion>
+        <Accordion>
+          <AccordionSummary
+            expandIcon={<ExpandMoreIcon />}
+            aria-controls="panel1a-content"
+            id="panel1a-header"
+          >
+            <Typography className={classes.heading}>Hand Queue</Typography>
+          </AccordionSummary>
+          <AccordionDetails>
+            <Typography>
+              {role === "presenter" ? (
+                <HandList
+                  removeHand={sendHand}
+                  hands={hands}
+                  clearHand={clearHand}
+                />
+              ) : (
+                <HandQueue
+                  sendHand={sendHand}
+                  hands={hands}
+                  username={username}
+                />
+              )}
+            </Typography>
+          </AccordionDetails>
+        </Accordion>
+        <Accordion>
+          <AccordionSummary
+            expandIcon={<ExpandMoreIcon />}
+            aria-controls="panel1a-content"
+            id="panel1a-header"
+          >
+            <Typography className={classes.heading}>Reaction Panel</Typography>
+          </AccordionSummary>
+          <AccordionDetails>
+            <Typography>
+              <EmojiGraph histogram={emoji} sendEmoji={sendEmoji} role={role} />
+            </Typography>
+          </AccordionDetails>
+        </Accordion>
+        <Accordion>
+          <AccordionSummary
+            expandIcon={<ExpandMoreIcon />}
+            aria-controls="panel1a-content"
+            id="panel1a-header"
+          >
+            <Typography className={classes.heading}>Chat</Typography>
+          </AccordionSummary>
+          <AccordionDetails>
+            <Typography>
+              <Chat
+                username={username}
+                sendMessage={sendMessage}
+                messages={chats}
+              />
+            </Typography>
+          </AccordionDetails>
+        </Accordion>
+      </div>
     </>
   );
 }
