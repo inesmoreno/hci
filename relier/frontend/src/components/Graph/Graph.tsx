@@ -75,7 +75,8 @@ class Graph extends Component<
         title: {
           display: true,
           text: "How people are understanding",
-          fontSize: 20
+          fontSize: 16,
+          fontColor: "#FFFFFF90"
         },
         legend: {
           display: false,
@@ -88,7 +89,7 @@ class Graph extends Component<
             {
               offset: true,
               categoryPercentage: 1.0,
-              barPercentage: 1.0,
+              barPercentage: .9,
               fontSize: 20,
               ticks: {
                 fontSize: 25
@@ -99,7 +100,7 @@ class Graph extends Component<
             {
               display: true,
               scaleLabel: {
-                display: true,
+                display: false,
                 labelString: "Reactions",
                 fontSize: 20
               },
@@ -113,7 +114,8 @@ class Graph extends Component<
           ]
         },
         animation: {
-          duration: 500
+          // set to 0 so that it stops sliding around
+          duration: 0 
         }
       }
     });

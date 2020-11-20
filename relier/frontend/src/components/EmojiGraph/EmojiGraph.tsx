@@ -71,14 +71,7 @@ class EmojiGraph extends Component<
           {
             type: "bar",
             label: "count",
-            backgroundColor: [
-              "#ef3c3c",
-              "#f1aa3e",
-              "#ffef5e",
-              "#cbe441",
-              "#5dc03c"
-            ],
-            borderColor: "blue",
+            backgroundColor: "#454647",
             data: Object.values(this.props.histogram)
           }
         ]
@@ -86,8 +79,8 @@ class EmojiGraph extends Component<
       options: {
         title: {
           display: true,
-          text: "Reaction panel",
-          fontSize: 20
+          text: " ",
+          fontSize: 16
         },
         legend: {
           display: false,
@@ -100,11 +93,11 @@ class EmojiGraph extends Component<
             {
               offset: true,
               categoryPercentage: 1.0,
-              barPercentage: 1.0,
+              barPercentage: .9,
               fontSize: 20,
               ticks: {
-                fontSize: 25,
-                fontColor: "#353637"
+                fontSize: 15,
+                fontColor: "transparent",
               }
             }
           ],
@@ -126,7 +119,8 @@ class EmojiGraph extends Component<
           ]
         },
         animation: {
-          duration: 500
+          //none
+          duration: 0
         }
       }
     });

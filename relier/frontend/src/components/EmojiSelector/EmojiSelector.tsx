@@ -70,27 +70,6 @@ export default function Index({ handleChange }: any) {
     );
   });
 
-  // reactions.forEach(reaction => {
-  //   elements.push(
-  //     <Grid item key={id}>
-  //       <Button
-  //         className={classes.reactionButton}
-  //         value="check"
-  //         selected={state.isSelected[id]}
-  //         onChange={setSelected}
-  //         onClick={() => handleChange(id)}
-  //       >
-  //         <img
-  //           className={classes.imageButton}
-  //           id={id.toString()}
-  //           src={"./assets/" + reaction + ".png"}
-  //         />
-  //       </Button>
-  //     </Grid>
-  //   );
-  //   id++;
-  // });
-
   return (
     <div className={classes.root}>
       <Card className={classes.card}>

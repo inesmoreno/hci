@@ -26,7 +26,7 @@ export default function RaiseHandButton({ sendHand, hands, username }: any) {
     <div className={classes.root}>
       {console.log(sendHand)}
       <Card className={classes.card}>
-        <div className="title">Hand Raise Queue </div>
+        {/* <div className="title">Hand Raise Queue </div> */}
         <CardContent className={classes.cardContent}>
           <Button
             onChange={handleChange}

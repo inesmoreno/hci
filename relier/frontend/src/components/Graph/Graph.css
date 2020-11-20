@@ -1,8 +1,8 @@
 .graph {
   width: auto;
-  margin: 1em auto;
-  background-color: #353637;
-  border-radius: 2em;
+  margin: 0.5em;
+  background-color: #45464750;
+  border-radius: 1em;
 }
 
 .level {

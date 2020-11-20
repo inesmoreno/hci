@@ -15,6 +15,7 @@ body {
 .main {
   max-width: 400px;
   margin: 0 auto;
+  background-color: #454647;
 }
 
 .relier {
@@ -32,9 +33,22 @@ body {
 .MuiAccordionSummary-root.Mui-expanded {
   height: 20px !important;
 }
+
+.MuiButtonBase-root.MuiAccordionSummary-root {
+  background-color: #202223 !important;
+}
+
+.MuiButtonBase-root.MuiAccordionSummary-root.Mui-expanded {
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
 .MuiAccordionDetails-root {
   display: flex;
   padding: 0 2px !important;
+  background-color: #202223 !important;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
 }
 .makeStyles-card-6 {
   color: #fff;
@@ -42,4 +56,12 @@ body {
 }
 .MuiCardContent-root {
   padding: 20px 10px 2px !important;
+}
+
+.MuiPaper-root.MuiAccordion-root::before {
+  display: none;
+}
+
+.MuiPaper-root.MuiAccordion-root.Mui-expanded {
+  border-radius: 5px;
 }

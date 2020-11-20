@@ -4,8 +4,9 @@
 }
 
 .Emojigraph {
-  width: 100%;
-  margin: 0em auto -0.5em;
-  background-color: #353637;
-  border-radius: 2em;
+  width: auto;
+  margin: 0.5em;
+  background-color: #45464750;
+  padding: 0.5em;
+  border-radius: 1em;
 }
