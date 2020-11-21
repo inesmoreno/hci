@@ -6,6 +6,7 @@ After=network-online.target
 WorkingDirectory=/home/relier/repo/relier/backend
 ExecStart=/usr/bin/node build/index.js
 Environment=NODE_ENV=production
+Restart=on-failure
 
 [Install]
 WantedBy=multi-user.target
