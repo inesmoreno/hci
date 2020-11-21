@@ -45,6 +45,7 @@ body {
 
 .MuiAccordionDetails-root {
   display: flex;
+  flex-flow: column nowrap;
   padding: 0 2px !important;
   background-color: #202223 !important;
   border-bottom-left-radius: 5px;

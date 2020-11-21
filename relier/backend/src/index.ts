@@ -1,7 +1,8 @@
 import fasty from "fastify";
-import { Emote } from "./types"; 
+import { Emote } from "./types";
 import websocket, { SocketStream } from "fastify-websocket";
 import { setUncaughtExceptionCaptureCallback } from "process";
+import { Socket } from "dgram";
 
 //step one, init fastify
 const app = fasty({ logger: true });
@@ -11,7 +12,6 @@ app.register(websocket);
 
 //mega monster global variable
 //of ALL that clients!! o/
-
 const conns: SocketStream[] = [];
 var histogram: number[] = [0, 0, 0, 0, 0];
 
@@ -19,8 +19,16 @@ var histogram: number[] = [0, 0, 0, 0, 0];
 function updateHist(newVote: number, prevVote: number) {
   const tempHist = histogram;
   if (prevVote !== -1)
-    tempHist.splice(prevVote - 1, 1, tempHist[prevVote - 1] - 1);
-  tempHist.splice(newVote - 1, 1, tempHist[newVote - 1] + 1);
+    tempHist.splice(
+      prevVote - 1,
+      1,
+      tempHist[prevVote - 1] - 1
+    );
+  tempHist.splice(
+    newVote - 1,
+    1,
+    tempHist[newVote - 1] + 1
+  );
   histogram = tempHist;
   return histogram;
 }
@@ -34,11 +42,17 @@ function updateList(hand: string) {
   return hands;
 }
 
-const globalEmotes = new Map<string, number>();
-const topFiveEmotes = () => Array.from(globalEmotes.entries()).sort(([_1, x], [_2, y]) => x - y).slice(0, 5);
+const globalEmotes: Emote[] = [];
+const topFiveEmotes = () =>
+  globalEmotes
+    .sort((x, y) => y.count - x.count)
+    .slice(0, 5)
+    .filter(({ count }) => count > 0);
 
 const sendToAll = (message: string) =>
-  conns.forEach((con: SocketStream) => con.socket.send(message));
+  conns.forEach((con: SocketStream) =>
+    con.socket.send(message)
+  );
 //registering routes
 //if you send a get req to the root of the app,
 //here is how we'll deal with it
@@ -48,73 +62,97 @@ app.get("/", (request, reply) => {
     .send("<!doctype html><html></html>");
 });
 
-app.get("/start-socket", { websocket: true }, (connection, req) => {
-  //adds connection to the list of connections
-  conns.push(connection);
-  //anything defined here will be associated with the connection
-  //this way we store some state info per user!
-  const emojiVotes = new Set<string>();
+app.get(
+  "/start-socket",
+  { websocket: true },
+  (connection, req) => {
+    //adds connection to the list of connections
+    conns.push(connection);
+    //anything defined here will be associated with the connection
+    //this way we store some state info per user!
 
+    //handler to broadcast message to all
+    //handlers register event types to functions
+    // we are handlign a particular event type, the message event
+    [
+      { type: "hand", data: hands },
+      { type: "graph", data: histogram },
+      { type: "emotes", data: topFiveEmotes() },
+    ].map((x) => connection.socket.send(JSON.stringify(x)));
+    connection.socket.on("message", (message: string) => {
+      //this is were we handle requests from the client
 
-  //handler to broadcast message to all
-  //handlers register event types to functions
-  // we are handlign a particular event type, the message event
-  connection.socket.on("message", (message: string) => {
-    //this is were we handle requests from the client
-    
-    console.log(message);
-    const jsonMsg = JSON.parse(message);
-    console.log(jsonMsg.type);
-    if (jsonMsg.type === "chat") sendToAll(message);
-    if (jsonMsg.type === "graph")
-      sendToAll(
-        JSON.stringify({
-          type: "graph",
-          data: updateHist(jsonMsg.vote, jsonMsg.prevVote)
-        })
-      );
+      //console.log(message);
+      const jsonMsg = JSON.parse(message);
+      console.log(JSON.stringify(jsonMsg, null, 2));
+      if (jsonMsg.type === "chat") sendToAll(message);
+      if (jsonMsg.type === "graph")
+        sendToAll(
+          JSON.stringify({
+            type: "graph",
+            data: updateHist(
+              jsonMsg.vote,
+              jsonMsg.prevVote
+            ),
+          })
+        );
 
-    if (jsonMsg.type === "hand")
-      sendToAll(
-        JSON.stringify({
-          type: "hand",
-          data: updateList(jsonMsg.author)
-        })
-      );
-    
-    if(jsonMsg.type === "emote"){
-      if(jsonMsg.direction === "up"){
-        emojiVotes.add(jsonMsg.data);
-        globalEmotes.set(jsonMsg.data, ((globalEmotes.get(jsonMsg.data) ||0) +1));
-      }
-      else{
-        emojiVotes.delete(jsonMsg.data);
-
-        globalEmotes.set(jsonMsg.data, ((globalEmotes.get(jsonMsg.data) ||0) -1));
-      }
-      sendToAll(JSON.stringify({
-        type: "emotes",
-        data: topFiveEmotes(),
-      }));
-      }
-    if(jsonMsg.type === "clear"){
-      if(jsonMsg.data === "hands"){
-        hands.splice(0, hands.length)
-        sendToAll(JSON.stringify(
-          {
+      if (jsonMsg.type === "hand")
+        sendToAll(
+          JSON.stringify({
             type: "hand",
-            data: hands,
-          }
-        ))
-      }
-    }
-  });
+            data: updateList(jsonMsg.author),
+          })
+        );
 
-});
+      if (jsonMsg.type === "emote") {
+        const changeIndex = globalEmotes.findIndex(
+          (item) => item.name === jsonMsg.name
+        );
+
+        if (changeIndex === -1)
+          globalEmotes.push({
+            name: jsonMsg.name,
+            count: 1,
+          });
+        else if (jsonMsg.direction === "up") {
+          globalEmotes[changeIndex] = {
+            name: globalEmotes[changeIndex].name,
+            count: globalEmotes[changeIndex].count + 1,
+          };
+        } else {
+          globalEmotes[changeIndex] = {
+            name: globalEmotes[changeIndex].name,
+            count: globalEmotes[changeIndex].count - 1,
+          };
+        }
+        console.log("all emotes", globalEmotes);
+        console.log("top 5 emoji ", topFiveEmotes());
+        sendToAll(
+          JSON.stringify({
+            type: "emotes",
+            data: topFiveEmotes(),
+          })
+        );
+      }
+      if (jsonMsg.type === "clear") {
+        if (jsonMsg.data === "hands") {
+          hands.splice(0, hands.length);
+          sendToAll(
+            JSON.stringify({
+              type: "hand",
+              data: hands,
+            })
+          );
+        }
+      }
+    });
+  }
+);
 
 // Run the server!
 // this is the port the server is listening for requests
-app.listen(4000, function(err, address) {
+app.listen(4000, function (err, address) {
   if (err) {
     app.log.error(err.message);
     process.exit(1);

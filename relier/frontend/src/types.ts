@@ -8,3 +8,8 @@ export interface Message {
     message: string,
     author: string
 }
+
+export interface Emoji {
+    name: string,
+    count: number,
+}

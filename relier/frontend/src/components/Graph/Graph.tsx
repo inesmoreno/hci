@@ -17,20 +17,20 @@ class Graph extends Component<
   State
 > {
   state = {
-    prevVote: -1
+    prevVote: -1,
   };
   //const [data, setData] = [0,0,0,0,0,0,0,0]
   //const [rate, setRate] = 0
 
   chartRef: any = React.createRef<HTMLDivElement>();
 
-  handleChange = event => {
+  handleChange = (event) => {
     const newVote = event.target.value;
     const prevVote = this.state.prevVote;
 
     this.props.sendVote(newVote, prevVote);
     this.setState({
-      prevVote: newVote
+      prevVote: newVote,
     });
   };
 
@@ -44,11 +44,12 @@ class Graph extends Component<
 
   buildChart = () => {
     const ctx = this.chartRef.current.getContext("2d");
-    if (typeof myLineChart !== "undefined") myLineChart.destroy();
+    if (typeof myLineChart !== "undefined")
+      myLineChart.destroy();
     myLineChart = new Chart(ctx, {
       type: "line",
       data: {
-        labels: ["😨", "😧", "🤔", "🙂", "😀"],
+        labels: ["\u{1F630}", "😧", "🤔", "🙂", "😀"],
         datasets: [
           ///{
           ///type: "line",
@@ -64,37 +65,40 @@ class Graph extends Component<
               "#f1aa3e",
               "#ffef5e",
               "#cbe441",
-              "#5dc03c"
+              "#5dc03c",
             ],
             borderColor: "blue",
-            data: this.props.histogram
-          }
-        ]
+            data: this.props.histogram,
+          },
+        ],
       },
       options: {
         title: {
           display: true,
           text: "How people are understanding",
           fontSize: 16,
-          fontColor: "#FFFFFF90"
+          fontColor: "#FFFFFF90",
         },
         legend: {
           display: false,
           labels: {
-            fontColor: "rgb(255, 99, 132)"
-          }
+            fontColor: "rgb(255, 99, 132)",
+          },
         },
         scales: {
+          gridLines: {
+            display: false,
+          },
           xAxes: [
             {
               offset: true,
               categoryPercentage: 1.0,
-              barPercentage: .9,
+              barPercentage: 0.9,
               fontSize: 20,
               ticks: {
-                fontSize: 25
-              }
-            }
+                fontSize: 25,
+              },
+            },
           ],
           yAxes: [
             {
@@ -102,22 +106,22 @@ class Graph extends Component<
               scaleLabel: {
                 display: false,
                 labelString: "Reactions",
-                fontSize: 20
+                fontSize: 20,
               },
               ticks: {
                 display: false,
                 //suggestedMax: Math.max(...this.props.histogram) + 2,
                 suggestedMax: 5,
-                suggestedMin: 0
-              }
-            }
-          ]
+                suggestedMin: 0,
+              },
+            },
+          ],
         },
         animation: {
           // set to 0 so that it stops sliding around
-          duration: 0 
-        }
-      }
+          duration: 0,
+        },
+      },
     });
   };
 
@@ -143,7 +147,7 @@ class Graph extends Component<
                 onClick={this.handleChange}
               />
               <datalist id="num">
-                <option value="1" label="😨" />
+                <option value="1" label={"\u{1F630}"} />
                 <option value="2" label="😧" />
                 <option value="3" label="🤔" />
                 <option value="4" label="🙂" />

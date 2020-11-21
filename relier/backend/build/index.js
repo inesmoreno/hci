@@ -33,12 +33,8 @@ function updateList(hand) {
         hands.splice(index, 1);
     return hands;
 }
-var globalEmotes = new Map();
-var topFiveEmotes = function () { return Array.from(globalEmotes.entries()).sort(function (_a, _b) {
-    var _1 = _a[0], x = _a[1];
-    var _2 = _b[0], y = _b[1];
-    return x - y;
-}).slice(0, 5); };
+var globalEmotes = [];
+var topFiveEmotes = function () { return globalEmotes.sort(function (x, y) { return x.count - y.count; }).slice(0, 5); };
 var sendToAll = function (message) {
     return conns.forEach(function (con) { return con.socket.send(message); });
 };
@@ -55,13 +51,14 @@ app.get("/start-socket", { websocket: true }, function (connection, req) {
     conns.push(connection);
     //anything defined here will be associated with the connection
     //this way we store some state info per user!
-    var emojiVotes = new Set();
+    var emojiVotes = [];
     //handler to broadcast message to all
     //handlers register event types to functions
     // we are handlign a particular event type, the message event
     connection.socket.on("message", function (message) {
         //this is were we handle requests from the client
-        console.log(message);
+        //console.log(message);
+        console.log(topFiveEmotes());
         var jsonMsg = JSON.parse(message);
         console.log(jsonMsg.type);
         if (jsonMsg.type === "chat")
@@ -77,13 +74,14 @@ app.get("/start-socket", { websocket: true }, function (connection, req) {
                 data: updateList(jsonMsg.author)
             }));
         if (jsonMsg.type === "emote") {
-            if (jsonMsg.direction === "up") {
-                emojiVotes.add(jsonMsg.data);
-                globalEmotes.set(jsonMsg.data, ((globalEmotes.get(jsonMsg.data) || 0) + 1));
+            var changeIndex = globalEmotes.findIndex(function (item) { return item.name === jsonMsg.data; });
+            if (changeIndex === -1)
+                globalEmotes.push({ name: jsonMsg, count: 1 });
+            else if (jsonMsg.direction === "up") {
+                globalEmotes[changeIndex] = { name: globalEmotes[changeIndex].name, count: globalEmotes[changeIndex].count++ };
             }
             else {
-                emojiVotes.delete(jsonMsg.data);
-                globalEmotes.set(jsonMsg.data, ((globalEmotes.get(jsonMsg.data) || 0) - 1));
+                globalEmotes[changeIndex] = { name: globalEmotes[changeIndex].name, count: globalEmotes[changeIndex].count-- };
             }
             sendToAll(JSON.stringify({
                 type: "emotes",
