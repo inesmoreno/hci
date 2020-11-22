@@ -40,10 +40,11 @@ function MainPage({ userInfo: { username, role } }: { userInfo: UserInfo }) {
 
   useEffect(() => {
     const body = async () => {
-      const wsAddy = window.location.hostname !== "localhost" ? "/api" : "";
-      const ws = new WebSocket(
-        `ws://${window.location.host}${wsAddy}/start-socket`
-      );
+      // const wsAddy = window.location.hostname !== "localhost" ? "/api" : "";
+      // const ws = new WebSocket(
+      //   `ws://${window.location.host}${wsAddy}/start-socket`
+      // );
+      const ws = new WebSocket(`ws://localhost:4000/start-socket`);
       setTimeout(
         () =>
           ws.send(
@@ -52,7 +53,7 @@ function MainPage({ userInfo: { username, role } }: { userInfo: UserInfo }) {
               author: username
             })
           ),
-        1000
+        2000
       );
 
       //const ws = new WebSocket(`ws://${window.location.host}/api/start-socket`);
