@@ -16,9 +16,7 @@ var conns = [];
 var histogram = [0, 0, 0, 0, 0];
 var whoIsIn = {};
 function updatewhoIsIn(name) {
-    console.log(name);
     whoIsIn[name] = "good";
-    console.log(whoIsIn);
     return whoIsIn;
 }
 //function updateHist ({newVote, prevVote}:{newVote : number, prevVote: number}) {
@@ -87,13 +85,11 @@ app.get("/start-socket", { websocket: true }, function (connection, req) {
                 type: "graph",
                 data: updateHist(jsonMsg.vote, jsonMsg.prevVote)
             }));
-        if (jsonMsg.type === "name") {
-            console.log("Name io");
+        if (jsonMsg.type === "name")
             sendToAll(JSON.stringify({
                 type: "name",
                 data: updatewhoIsIn(jsonMsg.author)
             }));
-        }
         if (jsonMsg.type === "hand")
             sendToAll(JSON.stringify({
                 type: "hand",
