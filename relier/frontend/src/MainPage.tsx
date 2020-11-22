@@ -40,7 +40,10 @@ function MainPage({ userInfo: { username, role } }: { userInfo: UserInfo }) {
 
   useEffect(() => {
     const body = async () => {
-      const ws = new WebSocket(`ws://localhost:4000/start-socket`);
+      const wsAddy = window.location.hostname !== "localhost" ? "/api" : "";
+      const ws = new WebSocket(
+        `ws://${window.location.host}${wsAddy}/start-socket`
+      );
       setTimeout(
         () =>
           ws.send(
@@ -50,13 +53,8 @@ function MainPage({ userInfo: { username, role } }: { userInfo: UserInfo }) {
             })
           ),
         1000
-      const wsAddy =
-        window.location.hostname !== "localhost"
-          ? "/api"
-          : "";
-      const ws = new WebSocket(
-        `ws://${window.location.host}${wsAddy}/start-socket`
       );
+
       //const ws = new WebSocket(`ws://${window.location.host}/api/start-socket`);
       //"message" here is a message from the server, not a necessarily a chat msg
       ws.addEventListener("message", function(event) {
