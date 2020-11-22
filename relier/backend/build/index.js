@@ -14,6 +14,13 @@ app.register(fastify_websocket_1.default);
 //of ALL that clients!! o/
 var conns = [];
 var histogram = [0, 0, 0, 0, 0];
+var whoIsIn = {};
+function updatewhoIsIn(name) {
+    console.log(name);
+    whoIsIn[name] = "good";
+    console.log(whoIsIn);
+    return whoIsIn;
+}
 //function updateHist ({newVote, prevVote}:{newVote : number, prevVote: number}) {
 function updateHist(newVote, prevVote) {
     var tempHist = histogram;
@@ -34,7 +41,15 @@ function updateList(hand) {
     return hands;
 }
 var globalEmotes = [];
-var topFiveEmotes = function () { return globalEmotes.sort(function (x, y) { return x.count - y.count; }).slice(0, 5); };
+var topFiveEmotes = function () {
+    return globalEmotes
+        .sort(function (x, y) { return y.count - x.count; })
+        .slice(0, 5)
+        .filter(function (_a) {
+        var count = _a.count;
+        return count > 0;
+    });
+};
 var sendToAll = function (message) {
     return conns.forEach(function (con) { return con.socket.send(message); });
 };
@@ -51,16 +66,20 @@ app.get("/start-socket", { websocket: true }, function (connection, req) {
     conns.push(connection);
     //anything defined here will be associated with the connection
     //this way we store some state info per user!
-    var emojiVotes = [];
     //handler to broadcast message to all
     //handlers register event types to functions
     // we are handlign a particular event type, the message event
+    [
+        { type: "hand", data: hands },
+        { type: "graph", data: histogram },
+        { type: "emotes", data: topFiveEmotes() },
+        { type: "name", data: whoIsIn }
+    ].map(function (x) { return connection.socket.send(JSON.stringify(x)); });
     connection.socket.on("message", function (message) {
         //this is were we handle requests from the client
         //console.log(message);
-        console.log(topFiveEmotes());
         var jsonMsg = JSON.parse(message);
-        console.log(jsonMsg.type);
+        console.log(JSON.stringify(jsonMsg, null, 2));
         if (jsonMsg.type === "chat")
             sendToAll(message);
         if (jsonMsg.type === "graph")
@@ -68,24 +87,42 @@ app.get("/start-socket", { websocket: true }, function (connection, req) {
                 type: "graph",
                 data: updateHist(jsonMsg.vote, jsonMsg.prevVote)
             }));
+        if (jsonMsg.type === "name") {
+            console.log("Name io");
+            sendToAll(JSON.stringify({
+                type: "name",
+                data: updatewhoIsIn(jsonMsg.author)
+            }));
+        }
         if (jsonMsg.type === "hand")
             sendToAll(JSON.stringify({
                 type: "hand",
                 data: updateList(jsonMsg.author)
             }));
         if (jsonMsg.type === "emote") {
-            var changeIndex = globalEmotes.findIndex(function (item) { return item.name === jsonMsg.data; });
+            var changeIndex = globalEmotes.findIndex(function (item) { return item.name === jsonMsg.name; });
             if (changeIndex === -1)
-                globalEmotes.push({ name: jsonMsg, count: 1 });
+                globalEmotes.push({
+                    name: jsonMsg.name,
+                    count: 1
+                });
             else if (jsonMsg.direction === "up") {
-                globalEmotes[changeIndex] = { name: globalEmotes[changeIndex].name, count: globalEmotes[changeIndex].count++ };
+                globalEmotes[changeIndex] = {
+                    name: globalEmotes[changeIndex].name,
+                    count: globalEmotes[changeIndex].count + 1
+                };
             }
             else {
-                globalEmotes[changeIndex] = { name: globalEmotes[changeIndex].name, count: globalEmotes[changeIndex].count-- };
+                globalEmotes[changeIndex] = {
+                    name: globalEmotes[changeIndex].name,
+                    count: globalEmotes[changeIndex].count - 1
+                };
             }
+            console.log("all emotes", globalEmotes);
+            console.log("top 5 emoji ", topFiveEmotes());
             sendToAll(JSON.stringify({
                 type: "emotes",
-                data: topFiveEmotes(),
+                data: topFiveEmotes()
             }));
         }
         if (jsonMsg.type === "clear") {
@@ -93,7 +130,7 @@ app.get("/start-socket", { websocket: true }, function (connection, req) {
                 hands.splice(0, hands.length);
                 sendToAll(JSON.stringify({
                     type: "hand",
-                    data: hands,
+                    data: hands
                 }));
             }
         }

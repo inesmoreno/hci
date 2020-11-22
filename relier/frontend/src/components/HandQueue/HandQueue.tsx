@@ -18,13 +18,13 @@ export default function RaiseHandButton({ sendHand, hands, username }: any) {
     sendHand(username);
   };
   useEffect(() => {
-    console.log(hands);
+    // console.log(hands);
     setPosition(hands.indexOf(username));
   }, [hands, username]);
 
   return (
     <div className={classes.root}>
-      {console.log(sendHand)}
+      {/* {console.log(sendHand)} */}
       <Card className={classes.card}>
         {/* <div className="title">Hand Raise Queue </div> */}
         <CardContent className={classes.cardContent}>

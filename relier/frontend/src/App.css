@@ -66,3 +66,7 @@ body {
 .MuiPaper-root.MuiAccordion-root.Mui-expanded {
   border-radius: 5px;
 }
+
+.chat-button {
+  width: 50%;
+}

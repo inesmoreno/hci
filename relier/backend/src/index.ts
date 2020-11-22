@@ -14,21 +14,18 @@ app.register(websocket);
 //of ALL that clients!! o/
 const conns: SocketStream[] = [];
 var histogram: number[] = [0, 0, 0, 0, 0];
+let whoIsIn: { [key: string]: string } = {};
+function updatewhoIsIn(name: string) {
+  whoIsIn[name] = "good";
+  return whoIsIn;
+}
 
 //function updateHist ({newVote, prevVote}:{newVote : number, prevVote: number}) {
 function updateHist(newVote: number, prevVote: number) {
   const tempHist = histogram;
   if (prevVote !== -1)
-    tempHist.splice(
-      prevVote - 1,
-      1,
-      tempHist[prevVote - 1] - 1
-    );
-  tempHist.splice(
-    newVote - 1,
-    1,
-    tempHist[newVote - 1] + 1
-  );
+    tempHist.splice(prevVote - 1, 1, tempHist[prevVote - 1] - 1);
+  tempHist.splice(newVote - 1, 1, tempHist[newVote - 1] + 1);
   histogram = tempHist;
   return histogram;
 }
@@ -50,9 +47,7 @@ const topFiveEmotes = () =>
     .filter(({ count }) => count > 0);
 
 const sendToAll = (message: string) =>
-  conns.forEach((con: SocketStream) =>
-    con.socket.send(message)
-  );
+  conns.forEach((con: SocketStream) => con.socket.send(message));
 //registering routes
 //if you send a get req to the root of the app,
 //here is how we'll deal with it
@@ -62,97 +57,99 @@ app.get("/", (request, reply) => {
     .send("<!doctype html><html></html>");
 });
 
-app.get(
-  "/start-socket",
-  { websocket: true },
-  (connection, req) => {
-    //adds connection to the list of connections
-    conns.push(connection);
-    //anything defined here will be associated with the connection
-    //this way we store some state info per user!
+app.get("/start-socket", { websocket: true }, (connection, req) => {
+  //adds connection to the list of connections
+  conns.push(connection);
+  //anything defined here will be associated with the connection
+  //this way we store some state info per user!
 
-    //handler to broadcast message to all
-    //handlers register event types to functions
-    // we are handlign a particular event type, the message event
-    [
-      { type: "hand", data: hands },
-      { type: "graph", data: histogram },
-      { type: "emotes", data: topFiveEmotes() },
-    ].map((x) => connection.socket.send(JSON.stringify(x)));
-    connection.socket.on("message", (message: string) => {
-      //this is were we handle requests from the client
+  //handler to broadcast message to all
+  //handlers register event types to functions
+  // we are handlign a particular event type, the message event
+  [
+    { type: "hand", data: hands },
+    { type: "graph", data: histogram },
+    { type: "emotes", data: topFiveEmotes() },
+    { type: "name", data: whoIsIn }
+  ].map(x => connection.socket.send(JSON.stringify(x)));
+  connection.socket.on("message", (message: string) => {
+    //this is were we handle requests from the client
 
-      //console.log(message);
-      const jsonMsg = JSON.parse(message);
-      console.log(JSON.stringify(jsonMsg, null, 2));
-      if (jsonMsg.type === "chat") sendToAll(message);
-      if (jsonMsg.type === "graph")
-        sendToAll(
-          JSON.stringify({
-            type: "graph",
-            data: updateHist(
-              jsonMsg.vote,
-              jsonMsg.prevVote
-            ),
-          })
-        );
+    //console.log(message);
+    const jsonMsg = JSON.parse(message);
+    console.log(JSON.stringify(jsonMsg, null, 2));
+    if (jsonMsg.type === "chat") sendToAll(message);
+    if (jsonMsg.type === "graph")
+      sendToAll(
+        JSON.stringify({
+          type: "graph",
+          data: updateHist(jsonMsg.vote, jsonMsg.prevVote)
+        })
+      );
 
-      if (jsonMsg.type === "hand")
+    if (jsonMsg.type === "name")
+      sendToAll(
+        JSON.stringify({
+          type: "name",
+          data: updatewhoIsIn(jsonMsg.author)
+        })
+      );
+
+    if (jsonMsg.type === "hand")
+      sendToAll(
+        JSON.stringify({
+          type: "hand",
+          data: updateList(jsonMsg.author)
+        })
+      );
+
+    if (jsonMsg.type === "emote") {
+      const changeIndex = globalEmotes.findIndex(
+        item => item.name === jsonMsg.name
+      );
+
+      if (changeIndex === -1)
+        globalEmotes.push({
+          name: jsonMsg.name,
+          count: 1
+        });
+      else if (jsonMsg.direction === "up") {
+        globalEmotes[changeIndex] = {
+          name: globalEmotes[changeIndex].name,
+          count: globalEmotes[changeIndex].count + 1
+        };
+      } else {
+        globalEmotes[changeIndex] = {
+          name: globalEmotes[changeIndex].name,
+          count: globalEmotes[changeIndex].count - 1
+        };
+      }
+      console.log("all emotes", globalEmotes);
+      console.log("top 5 emoji ", topFiveEmotes());
+      sendToAll(
+        JSON.stringify({
+          type: "emotes",
+          data: topFiveEmotes()
+        })
+      );
+    }
+    if (jsonMsg.type === "clear") {
+      if (jsonMsg.data === "hands") {
+        hands.splice(0, hands.length);
         sendToAll(
           JSON.stringify({
             type: "hand",
-            data: updateList(jsonMsg.author),
-          })
-        );
-
-      if (jsonMsg.type === "emote") {
-        const changeIndex = globalEmotes.findIndex(
-          (item) => item.name === jsonMsg.name
-        );
-
-        if (changeIndex === -1)
-          globalEmotes.push({
-            name: jsonMsg.name,
-            count: 1,
-          });
-        else if (jsonMsg.direction === "up") {
-          globalEmotes[changeIndex] = {
-            name: globalEmotes[changeIndex].name,
-            count: globalEmotes[changeIndex].count + 1,
-          };
-        } else {
-          globalEmotes[changeIndex] = {
-            name: globalEmotes[changeIndex].name,
-            count: globalEmotes[changeIndex].count - 1,
-          };
-        }
-        console.log("all emotes", globalEmotes);
-        console.log("top 5 emoji ", topFiveEmotes());
-        sendToAll(
-          JSON.stringify({
-            type: "emotes",
-            data: topFiveEmotes(),
+            data: hands
           })
         );
       }
-      if (jsonMsg.type === "clear") {
-        if (jsonMsg.data === "hands") {
-          hands.splice(0, hands.length);
-          sendToAll(
-            JSON.stringify({
-              type: "hand",
-              data: hands,
-            })
-          );
-        }
-      }
-    });
-  }
-);
+    }
+  });
+});
 
 // Run the server!
 // this is the port the server is listening for requests
-app.listen(4000, function (err, address) {
+app.listen(4000, function(err, address) {
   if (err) {
     app.log.error(err.message);
     process.exit(1);
