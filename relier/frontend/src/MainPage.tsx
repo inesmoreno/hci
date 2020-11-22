@@ -44,6 +44,7 @@ function MainPage({ userInfo: { username, role } }: { userInfo: UserInfo }) {
       // const ws = new WebSocket(
       //   `ws://${window.location.host}${wsAddy}/start-socket`
       // );
+
       const ws = new WebSocket(`ws://localhost:4000/start-socket`);
       setTimeout(
         () =>
