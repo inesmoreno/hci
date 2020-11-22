@@ -40,12 +40,12 @@ function MainPage({ userInfo: { username, role } }: { userInfo: UserInfo }) {
 
   useEffect(() => {
     const body = async () => {
-      // const wsAddy = window.location.hostname !== "localhost" ? "/api" : "";
-      // const ws = new WebSocket(
-      //   `ws://${window.location.host}${wsAddy}/start-socket`
-      // );
+      const wsUrl =
+        window.location.hostname === "localhost"
+          ? "ws://localhost:4000/start-socket"
+          : `ws://${window.location.host}/api/start-socket`;
+      const ws = new WebSocket(wsUrl);
 
-      const ws = new WebSocket(`ws://localhost:4000/start-socket`);
       setTimeout(
         () =>
           ws.send(
