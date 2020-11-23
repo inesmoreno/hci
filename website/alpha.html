@@ -35,7 +35,7 @@
         </ul>
       </nav>
     </header>
-    <body>   
+    <body>
       <div class="container">
         <h1 class="text-center">
           Alpha Prototype
@@ -44,7 +44,7 @@
         <h2 class="text-center">1. Design Evolution
         </h2>
         <br>
-        Based on the formative feedback we have received, we made several main modifications to our computer prototype: 
+        Based on the formative feedback we have received, we made several main modifications to our computer prototype:
         <br>
         <Br>
         <h5>1. Clearer emojis </h5>
@@ -54,7 +54,7 @@ A few users were confused by what the 🙈, 🙉,🙊 emojis in the reaction pan
 <br>
 <img src="images/icons.png">
 <br>
-Similarly, our design team noticed that some of the emojis that were available in the reaction panel were redundant. For example, it might be difficult for the presenter to interpret if some participants use ❌ and others use 👎 for a same given question (or ✅ and 👍). We hence decided to just keep the thumbs-up/thumbs-down emojis to avoid ambiguities in the participants’ reactions. 
+Similarly, our design team noticed that some of the emojis that were available in the reaction panel were redundant. For example, it might be difficult for the presenter to interpret if some participants use ❌ and others use 👎 for a same given question (or ✅ and 👍). We hence decided to just keep the thumbs-up/thumbs-down emojis to avoid ambiguities in the participants’ reactions.
 <br>
 <br>
 <h5>2. Graph labels </h5>
@@ -67,7 +67,7 @@ Similarly, our design team noticed that some of the emojis that were available i
 <h5>4. Feature labeling
 </h5>
 <p>Another concern raised by the testing is the “Question Queue” wording. Users didn’t automatically associate asking a question to raising their hand as some prefer to ask their questions in the chat. We decided to rename the “Question Queue” to the “Raised Hand Queue” to not cause any confusion. </p>
-<h5>5. Simplify graphs</h5> 
+<h5>5. Simplify graphs</h5>
 <p>Finally, we decided to simplify the ‘level of understanding’ graph to make it easier to code up. Initially, we were planning to have participants rate their level of understanding in a continuum and the graph will show the aggregate distribution of all participants' reactions. We decided to switch this to a histogram, where each participant can move the cursor to a discrete value. </p>
 <br>
 <br>
@@ -77,7 +77,7 @@ Similarly, our design team noticed that some of the emojis that were available i
 <h5>Error handling and Undo</h5>
 <p>We hope to have more “undo” options, and confirmations on certain </p>
 
-<h5>Collapsible UI
+<h5 style="text-decoration: line-through">Collapsible UI
 </h5>
 <p>In order to reduce cognitive load, we hope to hide all our main features (level of understanding, reactions, etc) in collapse sections. This way users aren’t so overwhelmed when they first open the app.
 </p>
@@ -85,16 +85,26 @@ Similarly, our design team noticed that some of the emojis that were available i
 <h5>Meeting room functionality
 </h5>
 <p>Meeting IDs are not hooked up, it only supports one global meeting room. This will need to be changed.</p>
-<h5>Removing participants from queue (individual and clear)
+<h5 style="text-decoration: line-through">
+Removing participants from queue (individual and clear)
 </h5>
 <p>From the presenters point of view, the ability to remove people from the queue or clear the queue are not implemented. </p>
-<h5>Emoji reaction not connected to the back end</h5>
+
+
+<h5 style="text-decoration: line-through">
+Emoji reaction not connected to the back end</h5>
 <p>Emojis are under developed and not connected to the backend </p>
-<h5>Deselecting emojis should remove a data point in reactions graph</h5>
+
+<h5 style="text-decoration: line-through">
+Deselecting emojis should remove a data point in reactions graph</h5>
 <p>Currently, the user is only able to deselect in the reaction panel. The graph is updating with respect to clicks rather than the selection.</p>
-<h5>Reactions expiry </h5>
+
+<h5 style="text-decoration: line-through">
+Reactions expiry Emoji </h5>
+<h5>Reactions expiry Graph </h5>
 <p>Reactions do not expire after a certain interval of time but will in the final product. This also applies to the level of understanding responses which should expire after 10 seconds.</p>
-<h5>A/V problem error message</h5>
+<h5>
+A/V problem error message</h5>
 <p>Program displays a small error message when enough participants emote with the can’t hear or can’t see icon to notify the presenter of A/V problems.</p>
 <h5>Who online’s tab </h5>
 <p>A list of online users will be displayed in a separate tab, next to the chat’s UI.</p>
