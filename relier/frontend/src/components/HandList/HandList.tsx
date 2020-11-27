@@ -21,7 +21,7 @@ export default function RaiseHandButton({ hands, removeHand, clearHand }: any) {
         </div>
         <CardContent className={classes.cardContent}>
           <div className="personInqueue">
-            {hands == !null ? (
+            {hands.length ? (
               hands.map(hand => (
                 <>
                   {hand}
