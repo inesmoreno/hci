@@ -14,9 +14,12 @@ app.register(fastify_websocket_1.default);
 //of ALL that clients!! o/
 var conns = [];
 var histogram = [0, 0, 0, 0, 0];
-var whoIsIn = {};
+var whoIsIn = new Set();
 function updatewhoIsIn(name) {
-    whoIsIn[name] = "good";
+    if (whoIsIn.has(name))
+        whoIsIn.delete(name);
+    else
+        whoIsIn.add(name);
     return whoIsIn;
 }
 //function updateHist ({newVote, prevVote}:{newVote : number, prevVote: number}) {
@@ -24,7 +27,9 @@ function updateHist(newVote, prevVote) {
     var tempHist = histogram;
     if (prevVote !== -1)
         tempHist.splice(prevVote - 1, 1, tempHist[prevVote - 1] - 1);
-    tempHist.splice(newVote - 1, 1, tempHist[newVote - 1] + 1);
+    if (newVote >= 0) {
+        tempHist.splice(newVote - 1, 1, tempHist[newVote - 1] + 1);
+    }
     histogram = tempHist;
     return histogram;
 }
@@ -49,7 +54,9 @@ var topFiveEmotes = function () {
     });
 };
 var sendToAll = function (message) {
-    return conns.forEach(function (con) { return con.socket.send(message); });
+    return conns.forEach(function (con) {
+        return con.socket.send(message);
+    });
 };
 //registering routes
 //if you send a get req to the root of the app,
@@ -67,11 +74,15 @@ app.get("/start-socket", { websocket: true }, function (connection, req) {
     //handler to broadcast message to all
     //handlers register event types to functions
     // we are handlign a particular event type, the message event
+    var louVote;
+    var handRaised;
+    var clientEmotes = new Set();
+    var author;
     [
         { type: "hand", data: hands },
         { type: "graph", data: histogram },
         { type: "emotes", data: topFiveEmotes() },
-        { type: "name", data: whoIsIn }
+        { type: "name", data: whoIsIn },
     ].map(function (x) { return connection.socket.send(JSON.stringify(x)); });
     connection.socket.on("message", function (message) {
         //this is were we handle requests from the client
@@ -80,45 +91,62 @@ app.get("/start-socket", { websocket: true }, function (connection, req) {
         console.log(JSON.stringify(jsonMsg, null, 2));
         if (jsonMsg.type === "chat")
             sendToAll(message);
-        if (jsonMsg.type === "graph")
+        if (jsonMsg.type === "graph") {
             sendToAll(JSON.stringify({
                 type: "graph",
-                data: updateHist(jsonMsg.vote, jsonMsg.prevVote)
+                data: updateHist(jsonMsg.vote, jsonMsg.prevVote),
             }));
-        if (jsonMsg.type === "name")
+            louVote = jsonMsg.vote;
+        }
+        if (jsonMsg.type === "name") {
+            author = jsonMsg.author;
             sendToAll(JSON.stringify({
                 type: "name",
-                data: updatewhoIsIn(jsonMsg.author)
+                data: updatewhoIsIn(jsonMsg.author),
             }));
-        if (jsonMsg.type === "hand")
+        }
+        if (jsonMsg.type === "hand") {
+            var data = updateList(jsonMsg.author);
             sendToAll(JSON.stringify({
                 type: "hand",
-                data: updateList(jsonMsg.author)
+                data: data,
             }));
+            handRaised = data.some(function (nameInList) { return nameInList === jsonMsg.author; });
+        }
         if (jsonMsg.type === "emote") {
+            //the index of the emoji count we are going to be updating
             var changeIndex = globalEmotes.findIndex(function (item) { return item.name === jsonMsg.name; });
-            if (changeIndex === -1)
+            //if the emote we are updating is not in the list of server known emotes,
+            //add it! and you're done!
+            if (changeIndex === -1) {
                 globalEmotes.push({
                     name: jsonMsg.name,
-                    count: 1
+                    count: 1,
                 });
+                clientEmotes.add(jsonMsg.name);
+            }
+            //if the emote to add is in the list,
+            //check if it's and upvote or downvote
+            //and apply that change
             else if (jsonMsg.direction === "up") {
                 globalEmotes[changeIndex] = {
                     name: globalEmotes[changeIndex].name,
-                    count: globalEmotes[changeIndex].count + 1
+                    count: globalEmotes[changeIndex].count + 1,
                 };
+                clientEmotes.add(jsonMsg.name);
             }
             else {
                 globalEmotes[changeIndex] = {
                     name: globalEmotes[changeIndex].name,
-                    count: globalEmotes[changeIndex].count - 1
+                    count: globalEmotes[changeIndex].count - 1,
                 };
+                clientEmotes.delete(jsonMsg.name);
             }
             console.log("all emotes", globalEmotes);
             console.log("top 5 emoji ", topFiveEmotes());
             sendToAll(JSON.stringify({
                 type: "emotes",
-                data: topFiveEmotes()
+                data: topFiveEmotes(),
             }));
         }
         if (jsonMsg.type === "clear") {
@@ -126,10 +154,28 @@ app.get("/start-socket", { websocket: true }, function (connection, req) {
                 hands.splice(0, hands.length);
                 sendToAll(JSON.stringify({
                     type: "hand",
-                    data: hands
+                    data: hands,
                 }));
             }
+            handRaised = false;
         }
+    });
+    connection.socket.on("disconnect", function () {
+        //what to do when a user disconnects
+        if (handRaised)
+            updateList(author);
+        var _loop_1 = function (emotes) {
+            var changeIndex = globalEmotes.findIndex(function (item) { return item.name === emotes; });
+            globalEmotes[changeIndex] = {
+                name: globalEmotes[changeIndex].name,
+                count: globalEmotes[changeIndex].count - 1,
+            };
+        };
+        for (var emotes in clientEmotes.keys()) {
+            _loop_1(emotes);
+        }
+        updatewhoIsIn(author);
+        updateHist(-1, louVote);
     });
 });
 // Run the server!
