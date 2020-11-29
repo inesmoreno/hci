@@ -192,7 +192,7 @@ function MainPage({ userInfo: { username, role } }: { userInfo: UserInfo }) {
               chat
             </button>
             <button className="chat-button" onClick={() => setTab(2)}>
-              who
+              who's online
             </button>
             {tab === 1 ? (
               <Chat
