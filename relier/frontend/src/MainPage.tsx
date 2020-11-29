@@ -129,8 +129,10 @@ function MainPage({ userInfo: { username, role } }: { userInfo: UserInfo }) {
     );
   };
   const clearHand = () => {
-    if (ws === null) return;
-    ws.send(JSON.stringify({ type: "clear", data: "hands" }));
+    if (window.confirm("Are you sure you want to clear all?")) {
+      if (ws === null) return;
+      ws.send(JSON.stringify({ type: "clear", data: "hands" }));
+    }
   };
   const sendName = async (username: string) => {
     if (ws === null) return;
@@ -172,14 +174,16 @@ function MainPage({ userInfo: { username, role } }: { userInfo: UserInfo }) {
         )}
         {generateAccordion(
           "Reaction Panel",
-          <>
-            <EmojiGraph histogram={emoji} />
+          <div>
             {role === "presenter" ? (
-              ""
+              <EmojiGraph histogram={emoji} role="presenter" />
             ) : (
-              <EmojiSelector sendEmoji={sendEmoji} />
+              <>
+                <EmojiGraph histogram={emoji} role="student" />
+                <EmojiSelector sendEmoji={sendEmoji} />
+              </>
             )}
-          </>
+          </div>
         )}
         {generateAccordion(
           "Chat",
