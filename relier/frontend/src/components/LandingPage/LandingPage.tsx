@@ -22,7 +22,7 @@ const initialState: State = {
   meetingId: "",
   isButtonDisabled: true,
   helperText: "",
-  isError: false
+  isError: false,
 };
 
 type Action =
@@ -38,40 +38,40 @@ const reducer = (state: State, action: Action): State => {
     case "setUsername":
       return {
         ...state,
-        username: action.payload
+        username: action.payload,
       };
     case "setMeetingId":
       return {
         ...state,
-        meetingId: action.payload
+        meetingId: action.payload,
       };
     case "setIsButtonDisabled":
       return {
         ...state,
-        isButtonDisabled: action.payload
+        isButtonDisabled: action.payload,
       };
     case "loginSuccess":
       return {
         ...state,
         helperText: action.payload,
-        isError: false
+        isError: false,
       };
     case "loginFailed":
       return {
         ...state,
         helperText: action.payload,
-        isError: true
+        isError: true,
       };
     case "setIsError":
       return {
         ...state,
-        isError: action.payload
+        isError: action.payload,
       };
   }
 };
 
 function LandingPage({
-  setUserInfo
+  setUserInfo,
 }: {
   setUserInfo: (userInfo: UserInfo) => void;
 }) {
@@ -83,36 +83,30 @@ function LandingPage({
       //dispatch is how you send actions to store
       dispatch({
         type: "setIsButtonDisabled",
-        payload: false
+        payload: false,
       });
     } else {
       dispatch({
         type: "setIsButtonDisabled",
-        payload: true
+        payload: true,
       });
     }
   }, [state.username, state.meetingId]);
 
   const handleJoin = () => {
-    // TODO: Validation
-    // if (state.username === "user" && state.meetingId === "123") {
-    //   dispatch({
-    //     type: "loginSuccess",
-    //     payload: "Login Successfully",
-    //   });
-    // } else {
-    //   dispatch({
-    //     type: "loginFailed",
-    //     payload: "Incorrect meeting ID",
-    //   });
-    // }
-
-    setUserInfo({ username: state.username, role: "participant" });
+    if (state.meetingId.toUpperCase() != "HCI") {
+      dispatch({
+        type: "loginFailed",
+        payload: "Incorrect meeting ID",
+      });
+    } else if (state.meetingId.toUpperCase() != "ADMIN") {
+      setUserInfo({ username: state.username, role: "presenter" });
+    } else {
+      setUserInfo({ username: state.username, role: "participant" });
+    }
   };
 
-  const handleCreate = () => {
-    setUserInfo({ username: state.username, role: "presenter" });
-  };
+  const handleCreate = () => {};
 
   const handleKeyPress = (event: React.KeyboardEvent) => {
     if (event.keyCode === 13 || event.which === 13) {
@@ -120,17 +114,21 @@ function LandingPage({
     }
   };
 
-  const handleUsernameChange: React.ChangeEventHandler<HTMLInputElement> = event => {
+  const handleUsernameChange: React.ChangeEventHandler<HTMLInputElement> = (
+    event
+  ) => {
     dispatch({
       type: "setUsername",
-      payload: event.target.value
+      payload: event.target.value,
     });
   };
 
-  const handleMeetingIdChange: React.ChangeEventHandler<HTMLInputElement> = event => {
+  const handleMeetingIdChange: React.ChangeEventHandler<HTMLInputElement> = (
+    event
+  ) => {
     dispatch({
       type: "setMeetingId",
-      payload: event.target.value
+      payload: event.target.value,
     });
   };
 
@@ -181,6 +179,7 @@ function LandingPage({
                   Join
                 </Button>
               </Box>
+              {/* Enable only when there is meetingID creation
               <Box mt={1}>
                 <Button
                   fullWidth
@@ -193,7 +192,7 @@ function LandingPage({
                 >
                   Create new meeting
                 </Button>
-              </Box>
+              </Box> */}
             </div>
           </CardContent>
         </Card>
