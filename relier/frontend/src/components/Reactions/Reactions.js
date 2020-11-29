@@ -1,33 +1,33 @@
 const reactions = [
   // hand gestures
-  "thumbs-up",
-  "thumbs-down",
-  "perfect",
-  "clap",
+  { id: "yes", alt: "thumbs up" },
+  { id: "no", alt: "thumbs down" },
+  { id: "perfect", alt: "perfect" },
+  { id: "clap", alt: "clap" },
 
   // emotions
-  "happy",
-  "sad",
-  "joy",
-  "angry",
+  { id: "happy", alt: "happy" },
+  { id: "sad", alt: "sad" },
+  { id: "joy", alt: "joy" },
+  { id: "angry", alt: "angry" },
 
   //
-  "heart",
-  "celebrate",
-  "100",
+  { id: "heart", alt: "love" },
+  { id: "celebrate", alt: "celebrate" },
+  { id: "100", alt: "100" },
   // ?: Break reaction
 
   // Errors
-  "bad-connection",
-  "mute",
-  "not-recording",
-  "no-time",
+  { id: "wifi", alt: "bad connection" },
+  { id: "mute", alt: "speaker muted" },
+  { id: "not-recording", alt: "meeting not recorded" },
+  { id: "no-time", alt: "meeting overtime" },
 
   // Poll
-  "a",
-  "b",
-  "c",
-  "d",
+  { id: "a", alt: "A" },
+  { id: "b", alt: "B" },
+  { id: "c", alt: "C" },
+  { id: "d", alt: "D" },
 ];
 
 export default reactions;
