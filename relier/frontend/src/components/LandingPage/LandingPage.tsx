@@ -99,7 +99,7 @@ function LandingPage({
         type: "loginFailed",
         payload: "Incorrect meeting ID",
       });
-    } else if (state.meetingId.toUpperCase() != "ADMIN") {
+    } else if (state.meetingId.toUpperCase() == "ADMIN") {
       setUserInfo({ username: state.username, role: "presenter" });
     } else {
       setUserInfo({ username: state.username, role: "participant" });
