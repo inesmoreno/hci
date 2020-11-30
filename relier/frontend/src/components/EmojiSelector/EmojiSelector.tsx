@@ -1,4 +1,4 @@
-import React, { useReducer, useRef, useState } from "react";
+import React, { useEffect, useReducer, useRef, useState } from "react";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Grid from "@material-ui/core/Grid";
@@ -8,6 +8,8 @@ import { useStyles } from "./../../style";
 import reactions from "./../Reactions/Reactions";
 import "./EmojiSelector.css";
 import { EmojiFlagsTwoTone } from "@material-ui/icons";
+import { Emoji } from "../../types";
+import { AnyARecord } from "dns";
 
 const TIMEOUT = 60000;
 // TODO: Update
@@ -41,9 +43,11 @@ const TIMEOUT = 60000;
 //};
 
 export default function EmojiSelector({
-  sendEmoji,
+  sendEmoji, setSelectedEmoji, selectedEmojis
 }: {
   sendEmoji: (emoji: string, diection: string) => void;
+  setSelectedEmoji: any ;
+  selectedEmojis: any;
 }) {
   const classes = useStyles();
   let elements: JSX.Element[] = [];
@@ -52,13 +56,6 @@ export default function EmojiSelector({
   // { name: emoji name, timeOutID: unique identified of the timeOut we schedule to remove thsi emoji}
   //
   // TO DO: when you UNCLICK, you cancel the timeout BEFORE removing it from the list!!
-
-  const [selectedEmojis, setSelectedEmoji] = useState<
-    {
-      emoji: string;
-      timeoutId: ReturnType<typeof setTimeout>;
-    }[]
-  >([]);
 
   const selectedEmojiRef = useRef(selectedEmojis);
   selectedEmojiRef.current = selectedEmojis;
@@ -74,6 +71,12 @@ export default function EmojiSelector({
     sendEmoji(reaction, "down");
     setSelectedEmoji(newEmojiList);
   };
+
+  const clearMyReactions = (reactions: string[]) => {
+    
+  }
+
+
   const handleReactionClick = (reaction: string) => {
     const indexOfNewEmoji = selectedEmojis.findIndex(
       ({ emoji }) => emoji === reaction
@@ -94,25 +97,27 @@ export default function EmojiSelector({
   };
 
   // Populate emoji reaction buttons in grid
-  reactions.forEach((reaction) => {
-    elements.push(
-      <Grid key={reaction.id}>
-        <Button
-          className={classes.reactionButton}
-          value="check"
-          selected={selectedEmojis.some(({ emoji }) => emoji === reaction.id)}
-          onClick={() => handleReactionClick(reaction.id)}
-        >
-          <img
-            className={classes.imageButton}
-            src={"./assets/" + reaction.id + ".png"}
-            alt={reaction.alt}
-            title={reaction.alt}
-          />
-        </Button>
-      </Grid>
-    );
-  });
+
+    reactions.forEach((reaction) => {
+      elements.push(
+        <Grid key={reaction.id}>
+          <Button
+            className={classes.reactionButton}
+            value="check"
+            selected={selectedEmojis.current.some(({ emoji }) => (emoji === reaction.id ) )}
+            onChange={() => handleReactionClick(reaction.id)}
+          >
+            <img
+              className={classes.imageButton}
+              src={"./assets/" + reaction.id + ".png"}
+              alt={reaction.alt}
+              title={reaction.alt}
+            />
+          </Button>
+        </Grid>
+      );
+    });
+  
 
   return (
     <div className={classes.root}>
