@@ -72,18 +72,12 @@ export default function EmojiSelector({
     setSelectedEmoji(newEmojiList);
     console.log(selectedEmojiRef.current);
   };
-
-<<<<<<< HEAD
+  
   //const clearMyReactions = () => {
    // selectedEmojis.map(({emoji, timeoutId }) => {
     //  undoReaction(emoji);
     //});
  // };
-=======
-  const clearMyReactions = (reactions: string[]) => {
-    
-  }
->>>>>>> ines
 
 
   const handleReactionClick = (reaction: string) => {
