@@ -189,6 +189,7 @@ app.get(
             })
           );
           handRaised = false;
+          console.log(hands);
         }
         if (jsonMsg.data === "understanding"){
           histogram.fill(0);
@@ -198,6 +199,7 @@ app.get(
               data: histogram,
             })
           );
+          console.log(histogram);
         }
         if (jsonMsg.data === "reactions"){
           globalEmotes.splice(0, globalEmotes.length);
