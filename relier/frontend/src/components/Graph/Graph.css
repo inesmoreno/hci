@@ -67,7 +67,7 @@ body {
   appearance: none;
   width: 25px;
   height: 25px;
-  background: blue;
+  background: #00ffe0;
   cursor: pointer;
 }
 
