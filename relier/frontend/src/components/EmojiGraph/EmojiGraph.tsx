@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Chart from "chart.js";
 import "./EmojiGraph.css";
+import Button from "@material-ui/lab/ToggleButton";
 import EmojiSelector from "../EmojiSelector/EmojiSelector";
 import reactions from "./../Reactions/Reactions";
 import { Emoji } from "../../types";
@@ -9,6 +10,7 @@ let myLineChart;
 
 class EmojiGraph extends Component<{
   histogram: Emoji[];
+  clearReactions: () => void;
   role: string;
 }> {
   chartRef: any = React.createRef<HTMLDivElement>();
@@ -99,34 +101,7 @@ class EmojiGraph extends Component<{
             }
           ]
         },
-
-        ////categoryPercentage: 1.0,
-        ////barPercentage: 0.9,
-        //fontSize: 20,
-        //ticks: {
-        //fontSize: 15,
-        //fontColor: "transparent",
-        //},
-        //},
-        //],
-        //yAxes: [
-        //{
-        //display: false,
-        //scaleLabel: {
-        //display: false,
-        //labelString: "Reactions",
-        ////fontSize: 20,
-        //},
-        //ticks: {
-        //display: false,
-        ////suggestedMax: Math.max(...this.props.histogram) + 2,
-        //suggestedMax: 5,
-        //suggestedMin: 0,
-        //},
-        //},
-        //],
         animation: {
-          //none
           duration: 0
         }
       }
@@ -134,14 +109,18 @@ class EmojiGraph extends Component<{
   };
 
   render() {
-    //console.log(this.props.histogram);
-    //console.log(this.state.labels);
+    const { role } = this.props;
 
     return (
       <div className="emoji">
         <div className="Emojigraph">
           <canvas id="myChart" ref={this.chartRef} />
         </div>
+        {role === "presenter" ? (
+          <Button className="clearAll" onClick={() => this.props.clearReactions()}>
+          Clear all
+         </Button>
+        ) : ( "" )}
       </div>
     );
   }

@@ -188,8 +188,27 @@ app.get(
               data: hands,
             })
           );
+          handRaised = false;
         }
-        handRaised = false;
+        if (jsonMsg.data === "understanding"){
+          histogram.fill(0);
+          sendToAll(
+            JSON.stringify({
+              type: "histogram",
+              data: histogram,
+            })
+          );
+        }
+        if (jsonMsg.data === "reactions"){
+          globalEmotes.splice(0, globalEmotes.length);
+          clientEmotes.clear();
+          sendToAll(
+            JSON.stringify({
+              type: "emotes",
+              data: globalEmotes,
+            })
+          );
+        }
       }
     });
     connection.socket.on("close", () => {

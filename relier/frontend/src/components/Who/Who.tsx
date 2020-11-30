@@ -2,21 +2,19 @@ import React from "react";
 import "./Who.css";
 
 export default function Who({
-  name,
+  names,
   sendName,
   username,
 }: {
-  name: string[];
+  names: string[];
   sendName: any;
   username: string;
 }) {
   return (
-    <div className="who">
-      <div onClick={() => sendName(username)}>
-        {name.map((name) => (
-          <div key={name}>{name}</div>
+    <div className="who" onClick={() => sendName(username)}>
+        {names.map( name => (
+          <div key={name}> {name} </div>
         ))}
-      </div>
     </div>
   );
 }

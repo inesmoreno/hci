@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Button from "@material-ui/lab/ToggleButton";
+import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 
@@ -13,7 +14,7 @@ export default function RaiseHandButton({ hands, removeHand, clearHand }: any) {
     <div className={classes.root}>
       <Card className={classes.card}>
         <div className="subheading">
-          <div className="title">  </div>
+          <div className="title">Hand Raise Queue </div>
           <Button className="clearAll" onClick={() => clearHand()}>
             Clear queue
           </Button>
@@ -28,7 +29,7 @@ export default function RaiseHandButton({ hands, removeHand, clearHand }: any) {
                     className="clearEach"
                     onClick={() => removeHand(hand)}
                   >
-                    X
+                   <HighlightOffIcon/>
                   </Button>
                   <br></br>
                 </>

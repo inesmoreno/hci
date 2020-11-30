@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Button from "@material-ui/lab/ToggleButton";
 import Chart from "chart.js";
 import "./Graph.css";
 
@@ -12,6 +13,7 @@ class Graph extends Component<
   {
     histogram: number[];
     sendVote: (vote: number, prevVote: number) => void;
+    clearHistogram: () => void;
     role: string;
   },
   State
@@ -19,8 +21,6 @@ class Graph extends Component<
   state = {
     prevVote: -1,
   };
-  //const [data, setData] = [0,0,0,0,0,0,0,0]
-  //const [rate, setRate] = 0
 
   chartRef: any = React.createRef<HTMLDivElement>();
 
@@ -51,12 +51,6 @@ class Graph extends Component<
       data: {
         labels: ["\u{1F630}", "😧", "🤔", "🙂", "😀"],
         datasets: [
-          ///{
-          ///type: "line",
-          ///data: this.props.histogram,
-          ///borderColor: "919191",
-          ///fill: "origin",
-          ///},
           {
             type: "bar",
             label: "count",
@@ -110,7 +104,6 @@ class Graph extends Component<
               },
               ticks: {
                 display: false,
-                //suggestedMax: Math.max(...this.props.histogram) + 2,
                 suggestedMax: 5,
                 suggestedMin: 0,
               },
@@ -118,7 +111,6 @@ class Graph extends Component<
           ],
         },
         animation: {
-          // set to 0 so that it stops sliding around
           duration: 0,
         },
       },
@@ -134,7 +126,9 @@ class Graph extends Component<
           <canvas id="myChart" ref={this.chartRef} />
         </div>
         {role === "presenter" ? (
-          ""
+          <Button className="clearAll" onClick={() => this.props.clearHistogram()}>
+          Clear all
+         </Button>
         ) : (
           <div className="bar">
             <div className="level">

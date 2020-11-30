@@ -25,7 +25,7 @@ function MainPage({ userInfo: { username, role } }: { userInfo: UserInfo }) {
   const [histogram, setHistogram] = useState<number[]>([0, 0, 0, 0, 0]);
   const [emoji, setEmoji] = useState<Emoji[]>([]);
   const [hands, setHands] = useState<string[]>([]);
-  const [name, setName] = useState<string[]>([]);
+  const [names, setName] = useState<string[]>([]);
   const [tab, setTab] = useState(1);
 
   const useStyles = makeStyles(theme => ({
@@ -132,6 +132,21 @@ function MainPage({ userInfo: { username, role } }: { userInfo: UserInfo }) {
       ws.send(JSON.stringify({ type: "clear", data: "hands" }));
     }
   };
+
+  const clearHistogram = () => {
+    if (window.confirm("Are you sure you want to clear all?")) {
+      if (ws === null) return;
+      ws.send(JSON.stringify({ type: "clear", data: "understanding" }));
+    }
+  };
+
+  const clearReactions = () => {
+    if (window.confirm("Are you sure you want to clear all?")) {
+      if (ws === null) return;
+      ws.send(JSON.stringify({ type: "clear", data: "reactions" }));
+    }
+  };
+
   const sendName = async (username: string) => {
     if (ws === null) return;
     ws.send(JSON.stringify({ type: "name", author: username }));
@@ -155,7 +170,7 @@ function MainPage({ userInfo: { username, role } }: { userInfo: UserInfo }) {
         <div className="relier"> R e l i e r </div>
         {generateAccordion(
           "Level of Understanding",
-          <Graph histogram={histogram} sendVote={sendVote} role={role} />
+          <Graph histogram={histogram} sendVote={sendVote} clearHistogram={clearHistogram} role={role} />
         )}
 
         {generateAccordion(
@@ -174,10 +189,10 @@ function MainPage({ userInfo: { username, role } }: { userInfo: UserInfo }) {
           "Reaction Panel",
           <div>
             {role === "presenter" ? (
-              <EmojiGraph histogram={emoji} role="presenter" />
+              <EmojiGraph histogram={emoji} clearReactions={clearReactions} role="presenter" />
             ) : (
               <>
-                <EmojiGraph histogram={emoji} role="student" />
+                <EmojiGraph histogram={emoji} clearReactions={clearReactions} role="student" />
                 <EmojiSelector sendEmoji={sendEmoji} />
               </>
             )}
@@ -187,10 +202,10 @@ function MainPage({ userInfo: { username, role } }: { userInfo: UserInfo }) {
           "Chat",
           <div>
             <button className="chat-button" onClick={() => setTab(1)}>
-              chat
+              Chat
             </button>
             <button className="chat-button" onClick={() => setTab(2)}>
-              who's online
+              Who is online
             </button>
             {tab === 1 ? (
               <Chat
@@ -199,7 +214,7 @@ function MainPage({ userInfo: { username, role } }: { userInfo: UserInfo }) {
                 messages={chats}
               />
             ) : (
-              <Who name={name} sendName={sendName} username={username} />
+              <Who names={names} sendName={sendName} username={username} />
             )}
           </div>
         )}
