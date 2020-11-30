@@ -94,19 +94,19 @@ function LandingPage({
   }, [state.username, state.meetingId]);
 
   const handleJoin = () => {
-    if (state.meetingId.toUpperCase() != "HCI") {
+    if (state.meetingId.toUpperCase() !== "HCI") {
       dispatch({
         type: "loginFailed",
         payload: "Incorrect meeting ID",
       });
-    } else if (state.meetingId.toUpperCase() == "ADMIN") {
+    } else if (state.username.toUpperCase() === "ADMIN") {
       setUserInfo({ username: state.username, role: "presenter" });
     } else {
       setUserInfo({ username: state.username, role: "participant" });
     }
   };
 
-  const handleCreate = () => {};
+  // const handleCreate = () => {};
 
   const handleKeyPress = (event: React.KeyboardEvent) => {
     if (event.keyCode === 13 || event.which === 13) {
