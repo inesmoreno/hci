@@ -16,26 +16,36 @@ import AccordionDetails from "@material-ui/core/AccordionDetails";
 import Typography from "@material-ui/core/Typography";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 
-function MainPage({ userInfo: { username, role } }: { userInfo: UserInfo }) {
+function MainPage({
+  userInfo: { username, role },
+}: {
+  userInfo: UserInfo;
+}) {
   //web socket
   const [ws, setWs] = useState<WebSocket | null>(null);
   //chat messages in the chat section
   const [chats, setChats] = useState<Message[]>([]);
   //graph histogram [#, #, #, #, #]
-  const [histogram, setHistogram] = useState<number[]>([0, 0, 0, 0, 0]);
+  const [histogram, setHistogram] = useState<number[]>([
+    0,
+    0,
+    0,
+    0,
+    0,
+  ]);
   const [emoji, setEmoji] = useState<Emoji[]>([]);
   const [hands, setHands] = useState<string[]>([]);
   const [name, setName] = useState<string[]>([]);
   const [tab, setTab] = useState(1);
 
-  const useStyles = makeStyles(theme => ({
+  const useStyles = makeStyles((theme) => ({
     root: {
-      width: "100%"
+      width: "100%",
     },
     heading: {
       fontSize: theme.typography.pxToRem(15),
-      fontWeight: theme.typography.fontWeightRegular
-    }
+      fontWeight: theme.typography.fontWeightRegular,
+    },
   }));
 
   useEffect(() => {
@@ -46,20 +56,18 @@ function MainPage({ userInfo: { username, role } }: { userInfo: UserInfo }) {
           : `ws://${window.location.host}/api/start-socket`;
       const ws = new WebSocket(wsUrl);
 
-      setTimeout(
-        () =>
-          ws.send(
-            JSON.stringify({
-              type: "name",
-              author: username
-            })
-          ),
-        2000
+      ws.addEventListener("open", () =>
+        ws.send(
+          JSON.stringify({
+            type: "name",
+            author: username,
+          })
+        )
       );
 
       //const ws = new WebSocket(`ws://${window.location.host}/api/start-socket`);
       //"message" here is a message from the server, not a necessarily a chat msg
-      ws.addEventListener("message", function(event) {
+      ws.addEventListener("message", function (event) {
         //what to do when you get something from the server
 
         const serverMessage = JSON.parse(event.data);
@@ -68,10 +76,10 @@ function MainPage({ userInfo: { username, role } }: { userInfo: UserInfo }) {
         //and what we do is update the chat state for display
         if (serverMessage.type === "chat") {
           console.log("I got a message");
-          setChats(ms =>
+          setChats((ms) =>
             ms.concat({
               message: serverMessage.data,
-              author: serverMessage.author
+              author: serverMessage.author,
             })
           );
         }
@@ -85,7 +93,7 @@ function MainPage({ userInfo: { username, role } }: { userInfo: UserInfo }) {
           setEmoji(serverMessage.data);
         }
         if (serverMessage.type === "name") {
-          setName(Object.keys(serverMessage.data));
+          setName(serverMessage.data);
         }
         //if msg.
       });
@@ -99,7 +107,7 @@ function MainPage({ userInfo: { username, role } }: { userInfo: UserInfo }) {
       JSON.stringify({
         type: "chat",
         data: message,
-        author: username
+        author: username,
       })
     );
   };
@@ -109,34 +117,48 @@ function MainPage({ userInfo: { username, role } }: { userInfo: UserInfo }) {
       JSON.stringify({
         type: "graph",
         vote: vote,
-        prevVote: prevVote
+        prevVote: prevVote,
       })
     );
   };
 
   const sendHand = (username: string) => {
     if (ws === null) return;
-    ws.send(JSON.stringify({ type: "hand", author: username }));
+    ws.send(
+      JSON.stringify({ type: "hand", author: username })
+    );
   };
-  const sendEmoji = (emojiName: string, direction: string) => {
+  const sendEmoji = (
+    emojiName: string,
+    direction: string
+  ) => {
     if (ws === null) return;
     ws.send(
       JSON.stringify({
         type: "emote",
         direction: direction,
-        name: emojiName
+        name: emojiName,
       })
     );
   };
   const clearHand = () => {
+<<<<<<< HEAD
     if (window.confirm("Are you sure you want to clear all?")) {
       if (ws === null) return;
       ws.send(JSON.stringify({ type: "clear", data: "hands" }));
     }
+=======
+    if (ws === null) return;
+    ws.send(
+      JSON.stringify({ type: "clear", data: "hands" })
+    );
+>>>>>>> 64e8bc85c188080b5708432a0c545abad5b94d95
   };
   const sendName = async (username: string) => {
     if (ws === null) return;
-    ws.send(JSON.stringify({ type: "name", author: username }));
+    ws.send(
+      JSON.stringify({ type: "name", author: username })
+    );
   };
 
   const classes = useStyles();
@@ -144,9 +166,13 @@ function MainPage({ userInfo: { username, role } }: { userInfo: UserInfo }) {
     return (
       <Accordion>
         <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-          <Typography className={classes.heading}>{header}</Typography>
+          <Typography className={classes.heading}>
+            {header}
+          </Typography>
         </AccordionSummary>
-        <AccordionDetails className="accordion">{body}</AccordionDetails>
+        <AccordionDetails className="accordion">
+          {body}
+        </AccordionDetails>
       </Accordion>
     );
   };
@@ -157,7 +183,11 @@ function MainPage({ userInfo: { username, role } }: { userInfo: UserInfo }) {
         <div className="relier"> R e l i e r </div>
         {generateAccordion(
           "Level of Understanding",
-          <Graph histogram={histogram} sendVote={sendVote} role={role} />
+          <Graph
+            histogram={histogram}
+            sendVote={sendVote}
+            role={role}
+          />
         )}
 
         {generateAccordion(
@@ -169,7 +199,11 @@ function MainPage({ userInfo: { username, role } }: { userInfo: UserInfo }) {
               clearHand={clearHand}
             />
           ) : (
-            <HandQueue sendHand={sendHand} hands={hands} username={username} />
+            <HandQueue
+              sendHand={sendHand}
+              hands={hands}
+              username={username}
+            />
           )
         )}
         {generateAccordion(
@@ -188,11 +222,22 @@ function MainPage({ userInfo: { username, role } }: { userInfo: UserInfo }) {
         {generateAccordion(
           "Chat",
           <div>
-            <button className="chat-button" onClick={() => setTab(1)}>
+            <button
+              className="chat-button"
+              onClick={() => setTab(1)}
+            >
               chat
             </button>
+<<<<<<< HEAD
             <button className="chat-button" onClick={() => setTab(2)}>
               who's online
+=======
+            <button
+              className="chat-button"
+              onClick={() => setTab(2)}
+            >
+              who
+>>>>>>> 64e8bc85c188080b5708432a0c545abad5b94d95
             </button>
             {tab === 1 ? (
               <Chat
@@ -201,7 +246,11 @@ function MainPage({ userInfo: { username, role } }: { userInfo: UserInfo }) {
                 messages={chats}
               />
             ) : (
-              <Who name={name} sendName={sendName} username={username} />
+              <Who
+                name={name}
+                sendName={sendName}
+                username={username}
+              />
             )}
           </div>
         )}

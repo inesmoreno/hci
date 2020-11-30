@@ -9,7 +9,7 @@ import reactions from "./../Reactions/Reactions";
 import "./EmojiSelector.css";
 import { EmojiFlagsTwoTone } from "@material-ui/icons";
 
-const TIMEOUT = 3000;
+const TIMEOUT = 60000;
 // TODO: Update
 //const numberOfEmojis = 19;
 
@@ -64,20 +64,12 @@ export default function EmojiSelector({
   selectedEmojiRef.current = selectedEmojis;
 
   const undoReaction = (reaction: string) => {
-    console.log(
-      "Reaction to undo: ",
-      reaction,
-      "Emoji list: ",
-      selectedEmojis
-    );
+    console.log("Reaction to undo: ", reaction, "Emoji list: ", selectedEmojis);
     const newEmojiList = [...selectedEmojiRef.current];
     const indexOfNewEmoji = newEmojiList.findIndex(
       ({ emoji }) => emoji === reaction
     );
-    const [{ timeoutId }] = newEmojiList.splice(
-      indexOfNewEmoji,
-      1
-    );
+    const [{ timeoutId }] = newEmojiList.splice(indexOfNewEmoji, 1);
     clearTimeout(timeoutId);
     sendEmoji(reaction, "down");
     setSelectedEmoji(newEmojiList);
@@ -92,10 +84,7 @@ export default function EmojiSelector({
       }
       const newEmoji = {
         emoji: reaction,
-        timeoutId: setTimeout(
-          () => undoReaction(reaction),
-          TIMEOUT
-        ),
+        timeoutId: setTimeout(() => undoReaction(reaction), TIMEOUT),
       };
       sendEmoji(reaction, "up");
       setSelectedEmoji((currentEmojiList) =>
@@ -105,21 +94,20 @@ export default function EmojiSelector({
   };
 
   // Populate emoji reaction buttons in grid
-  // let id = 0;
   reactions.forEach((reaction) => {
     elements.push(
-      <Grid key={reaction}>
+      <Grid key={reaction.id}>
         <Button
           className={classes.reactionButton}
           value="check"
-          selected={selectedEmojis.some(
-            ({ emoji }) => emoji === reaction
-          )}
-          onClick={() => handleReactionClick(reaction)}
+          selected={selectedEmojis.some(({ emoji }) => emoji === reaction.id)}
+          onClick={() => handleReactionClick(reaction.id)}
         >
           <img
             className={classes.imageButton}
-            src={"./assets/" + reaction + ".png"}
+            src={"./assets/" + reaction.id + ".png"}
+            alt={reaction.alt}
+            title={reaction.alt}
           />
         </Button>
       </Grid>
@@ -130,12 +118,7 @@ export default function EmojiSelector({
     <div className={classes.root}>
       <Card className={classes.card}>
         <CardContent className={classes.cardContent}>
-          <Grid
-            container
-            direction="row"
-            justify="flex-start"
-            spacing={1}
-          >
+          <Grid container direction="row" justify="flex-start" spacing={1}>
             {elements}
           </Grid>
         </CardContent>
