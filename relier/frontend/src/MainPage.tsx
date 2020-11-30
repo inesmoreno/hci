@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./App.css";
 import { UserInfo, Message, Emoji } from "./types";
 
@@ -24,6 +24,13 @@ function MainPage({ userInfo: { username, role } }: { userInfo: UserInfo }) {
   //graph histogram [#, #, #, #, #]
   const [histogram, setHistogram] = useState<number[]>([0, 0, 0, 0, 0]);
   const [emoji, setEmoji] = useState<Emoji[]>([]);
+  const [selectedEmojis, setSelectedEmoji] = useState<
+    {
+      emoji: string;
+      timeoutId: ReturnType<typeof setTimeout>;
+    }[]
+  >([]);
+  
   const [hands, setHands] = useState<string[]>([]);
   const [names, setName] = useState<string[]>([]);
   const [tab, setTab] = useState(1);
@@ -81,6 +88,9 @@ function MainPage({ userInfo: { username, role } }: { userInfo: UserInfo }) {
         }
         if (serverMessage.type === "emotes") {
           setEmoji(serverMessage.data);
+          if(serverMessage.data === []){
+            setSelectedEmoji(serverMessage.data);
+          }
         }
         if (serverMessage.type === "name") {
           setName(serverMessage.data);
@@ -127,7 +137,7 @@ function MainPage({ userInfo: { username, role } }: { userInfo: UserInfo }) {
     );
   };
   const clearHand = () => {
-    if (window.confirm("Are you sure you want to clear all?")) {
+    if (window.confirm("Are you sure you want to clear the queue?")) {
       if (ws === null) return;
       ws.send(JSON.stringify({ type: "clear", data: "hands" }));
     }
@@ -141,7 +151,7 @@ function MainPage({ userInfo: { username, role } }: { userInfo: UserInfo }) {
   };
 
   const clearReactions = () => {
-    if (window.confirm("Are you sure you want to clear all?")) {
+    if (window.confirm("Are you sure you want to clear all reactions?")) {
       if (ws === null) return;
       ws.send(JSON.stringify({ type: "clear", data: "reactions" }));
     }
@@ -193,7 +203,7 @@ function MainPage({ userInfo: { username, role } }: { userInfo: UserInfo }) {
             ) : (
               <>
                 <EmojiGraph histogram={emoji} clearReactions={clearReactions} role="student" />
-                <EmojiSelector sendEmoji={sendEmoji} />
+                <EmojiSelector sendEmoji={sendEmoji} setSelectedEmoji={setSelectedEmoji} selectedEmojis={selectedEmojis} />
               </>
             )}
           </div>

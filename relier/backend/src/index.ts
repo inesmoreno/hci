@@ -203,14 +203,13 @@ app.get(
         }
         if (jsonMsg.data === "reactions"){
           globalEmotes.splice(0, globalEmotes.length);
-          clientEmotes.clear();
           sendToAll(
             JSON.stringify({
               type: "emotes",
               data: globalEmotes,
             })
           );
-          console.log(globalEmotes);
+          clientEmotes.clear();
         }
       }
     });
@@ -229,10 +228,11 @@ app.get(
           (item) => item.name === emote
         );
         console.log("value of change index", changeIndex);
-        globalEmotes[changeIndex] = {
+        if(changeIndex !== -1){
+          globalEmotes[changeIndex] = {
           name: globalEmotes[changeIndex].name,
           count: globalEmotes[changeIndex].count - 1,
-        };
+        };}
       }
 
       updatewhoIsIn(author);
