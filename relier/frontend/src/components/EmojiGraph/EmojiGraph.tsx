@@ -62,25 +62,14 @@ class EmojiGraph extends Component<{
           {
             data: this.props.histogram.map(({ count }) => count),
             backgroundColor: [
-<<<<<<< HEAD
-              "#ef3c3c",
-              "#f1aa3e",
-              "#ffef5e",
-              "#cbe441",
-              "#5dc03c"
-            ]
-          }
-        ]
-=======
               "#00ffe0",
               "#00CCB3",
               "#009986",
               "#00665A",
-              "#004D43",
-            ],
-          },
-        ],
->>>>>>> 64e8bc85c188080b5708432a0c545abad5b94d95
+              "#004D43"
+            ]
+          }
+        ]
       },
 
       options: {
@@ -96,15 +85,9 @@ class EmojiGraph extends Component<{
                 display: true,
                 fontSize: 20
               },
-<<<<<<< HEAD
-              categoryPercentage: 1,
+              categoryPercentage: 0.9,
               barPercentage: 1
             }
-=======
-              categoryPercentage: 0.9,
-              barPercentage: 1,
-            },
->>>>>>> 64e8bc85c188080b5708432a0c545abad5b94d95
           ],
           yAxes: [
             {
