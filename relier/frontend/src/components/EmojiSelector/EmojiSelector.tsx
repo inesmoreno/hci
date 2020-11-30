@@ -73,7 +73,16 @@ export default function EmojiSelector({
     clearTimeout(timeoutId);
     sendEmoji(reaction, "down");
     setSelectedEmoji(newEmojiList);
+    console.log(selectedEmojiRef.current);
   };
+
+  //const clearMyReactions = () => {
+   // selectedEmojis.map(({emoji, timeoutId }) => {
+    //  undoReaction(emoji);
+    //});
+ // };
+
+
   const handleReactionClick = (reaction: string) => {
     const indexOfNewEmoji = selectedEmojis.findIndex(
       ({ emoji }) => emoji === reaction
