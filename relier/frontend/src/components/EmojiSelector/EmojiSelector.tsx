@@ -12,9 +12,6 @@ import Button from "@material-ui/lab/ToggleButton";
 import { useStyles } from "./../../style";
 import reactions from "./../Reactions/Reactions";
 import "./EmojiSelector.css";
-import { EmojiFlagsTwoTone } from "@material-ui/icons";
-import { Emoji } from "../../types";
-import { AnyARecord } from "dns";
 
 const TIMEOUT = 60000;
 // TODO: Update
@@ -141,7 +138,7 @@ export default function EmojiSelector({
   });
 
   return (
-    <div className={classes.root}>
+    <div>
       <Card className={classes.card}>
         <CardContent className={classes.cardContent}>
           <Grid

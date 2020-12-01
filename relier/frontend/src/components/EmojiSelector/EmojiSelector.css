@@ -12,3 +12,7 @@
 .MuiGrid-root.MuiGrid-container.MuiGrid-spacing-xs-1{
   padding-left: 16px;
 }
+
+.MuiPaper-root.MuiCard-root.jss6.MuiPaper-elevation1.MuiPaper-rounded{
+  margin-top: 0 !important;
+}
