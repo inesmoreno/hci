@@ -19,6 +19,11 @@
   width: 100%;
 }
 
+.presenter-ticks {
+  font-size: 2em;
+  line-height: 1em;
+  padding: 0 0.5em;
+}
 .understanding .MuiToggleButton-root {
   font-size: 2em;
   line-height: 1em;
