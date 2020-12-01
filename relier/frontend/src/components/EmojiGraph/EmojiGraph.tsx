@@ -116,11 +116,6 @@ class EmojiGraph extends Component<{
         <div className="Emojigraph">
           <canvas id="myChart" ref={this.chartRef} />
         </div>
-        {role === "presenter" ? (
-          <Button className="clearAll" onClick={() => this.props.clearReactions()}>
-          Clear all
-         </Button>
-        ) : ( "" )}
       </div>
     );
   }

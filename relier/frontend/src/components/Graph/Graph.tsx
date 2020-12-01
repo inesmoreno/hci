@@ -145,12 +145,7 @@ class Graph extends Component<
           <canvas id="myChart" ref={this.chartRef} />
         </div>
         {role === "presenter" ? (
-          <Button
-            className="clearAll"
-            onClick={() => this.props.clearHistogram()}
-          >
-            Clear all
-          </Button>
+          ""
         ) : (
           <div className="understanding">
             {levels.map((emote, index) => (
