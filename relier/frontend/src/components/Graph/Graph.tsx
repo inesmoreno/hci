@@ -28,7 +28,7 @@ class Graph extends Component<
   chartRef: any = React.createRef<HTMLDivElement>();
 
   handleChange = (index) => {
-    const TIMEOUT = 10000;
+    const TIMEOUT = 30000;
     const newVote = index;
     const prevVote = this.state.prevVote;
     const timeoutId = this.state.timeoutId;
@@ -153,12 +153,6 @@ class Graph extends Component<
                 </div>
               ))}
             </div>
-            <Button
-              className="clearAll"
-              onClick={() => this.props.clearHistogram()}
-            >
-              Clear all
-            </Button>
           </>
         ) : (
           <div className="understanding">
