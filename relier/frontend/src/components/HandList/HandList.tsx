@@ -14,7 +14,7 @@ export default function RaiseHandButton({ hands, removeHand, clearHand }: any) {
     <div className={classes.root}>
       <Card className={classes.card}>
         <div className="subheading">
-          <div className="title">Hand Raise Queue </div>
+          <div className="title"></div>
           <Button className="clearAll" onClick={() => clearHand()}>
             Clear queue
           </Button>

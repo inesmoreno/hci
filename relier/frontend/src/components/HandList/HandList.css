@@ -44,3 +44,7 @@
 .title {
   font-size: 1.1em;
 }
+
+.MuiButtonBase-root.MuiToggleButton-root {
+  margin-left: 10px;
+}

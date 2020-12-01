@@ -98,3 +98,7 @@ body {
   background: #4caf50;
   cursor: pointer;
 }
+
+.levels-wrapper {
+  padding-bottom: 10px !important;
+}
