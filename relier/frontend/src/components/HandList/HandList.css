@@ -45,6 +45,6 @@
   font-size: 1.1em;
 }
 
-.MuiButtonBase-root.MuiToggleButton-root {
-  margin-left: 10px;
+.MuiButtonBase-root.MuiToggleButton-root.clearEach{
+  margin-left: 10px !important;
 }
