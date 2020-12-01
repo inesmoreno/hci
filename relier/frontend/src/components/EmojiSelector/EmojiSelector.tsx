@@ -11,7 +11,7 @@ import { EmojiFlagsTwoTone } from "@material-ui/icons";
 import { Emoji } from "../../types";
 import { AnyARecord } from "dns";
 
-const TIMEOUT = 60000;
+const TIMEOUT = 5000;
 // TODO: Update
 //const numberOfEmojis = 19;
 

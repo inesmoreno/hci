@@ -90,8 +90,10 @@ function MainPage({ userInfo: { username, role } }: { userInfo: UserInfo }) {
           setEmoji(serverMessage.data);
           if(serverMessage.data.length === 0){
             selectedEmojis.forEach((emoji) => {
-              clearTimeout(emoji.timeoutId);
-              sendEmoji(emoji.emoji, "down");
+              if (emoji !== undefined) {
+                clearTimeout(emoji.timeoutId);
+                sendEmoji(emoji.emoji, "down");
+              }
             });
             setSelectedEmoji(serverMessage.data);
           }
