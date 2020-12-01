@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Beta Prototype</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header>
+      <div class="logo"><a href="index.html">👩‍💻</a></div>
+      <nav>
+        <ul class="nav__links">
+          <li><a href="observation.html">Observation and Proposal</a></li>
+          <li>
+              <a href="lowfi.html">Low-Fi Prototype</a>
+          </li>
+          <li>
+              <a href="hifi.html">High-fi Prototype</a>
+          </li>
+          <li>
+            <a href="formative.html">Formative Feedback</a>
+        </li>
+        <li>
+          <a href="alpha.html">Alpha</a>
+      </li>
+      <li>
+        <a href="alpha.html">Beta </a>
+    </li>
+          <!-- <li><a href="#">low-fidelity Prototypes</a></li> -->
+          <!-- <li><a href="#">##</a></li> -->
+        </ul>
+      </nav>
+    </header>
+    <body>
+      <div class="container">
+        <h1 class="text-center">
+          Beta Prototype
+        </h1>
+        <br>
+        <h2 class="text-center">1. Design Evolution
+        </h2>
+        <br>
+        Based on the feedback we received, we made several main modifications to our alpha system:
+        <br>
+        <Br>
+        <h5>1. Add alt text and tooltips for the reaction emojis
+        </h5>
+        <br>
+
+        From the peer evaluation, one reviewer was still a bit confused with what each icon represented. We therefore decided that it would be more accessible and insightful for the users if we added signifiers in the form of alt text and tooltips for each of the reactions. This way, we support screen readers and participants are able to react with the icons which convey their message. This modification guarantees Nielsen’s heuristics “Recognition rather than recall” and “Help and documentation”.
+    <br>
+<img src ="images/tooltip.png" width="50%">
+<br>
+<br>
+<h5>2. Minimizing panels 
+</h5>
+<br>Another issue raised by our reviewers is the cognitive load of our application as there are two graphs that fluctuate as participants add their reactions and level of understanding. In order to remediate to this problem, we chose to make each section collapsible by clicking the toggle at the top right. This way, users only need to open the panels that interest them. If a user feels overwhelmed by the information displayed or feels distracted, they can minimize the given sections. This modification ensures we meet our efficiency usability goal as well as Nielsen’s heuristics “User control and freedom” and “Aesthetic and minimalist design”.
+<br>
+<br>
+<U>Alpha</U> <br>
+<img src="images/collapsed-alpha.png" width="30%"> <br>
+<u>Beta</u><br>
+<img src="images/collapsed-beta1.png" width="30%">
+<img src="images/collapsed-beta2.png" width="30%">
+<br>
+<br>
+<h5>3. Confirmation flows</h5>
+<br>
+During the usability evaluation, the evaluating team raised that some features could be problematic if they were used by accident, such as the clear raised hand queue. If the presenter pressed the button by accident, it is impossible to recover the queue. In order to prevent accidental behavior, we implemented confirmation flows such that if the user clears the queue, they have to confirm their action by acknowledging that it is irreversible. With this modification, our system now meets Nielsen’s heuristics “User control and freedom” and “Error prevention”.
+<br>
+<br>
+<h5>4. Reaction expiry</h5>
+<br>
+Another change we have implemented is expiring user reactions and level of understanding after a minute. This avoids users having to constantly clear their inputs as it is a tedious task and sometimes it is forgotten. This way, the graph will not display data that is no longer relevant. This modification was important to fulfill Nielsen’s heuristic “Match between system and the real world”.
+<br>
+<br>
+<h5>5. Error messages</h5>
+<br>To improve error visibility, we opted to display audio visual problems highlighted by the participants through the reactions panel in a more prominent way. With these changes, presenters can effectively fix problems that occur during their meetings and ensure that their meeting goes smoothly. This feature was implemented to fulfill Niesen’s heuristic “Error Evention”
+<br>
+<h5>6. Removed graph animations
+</h5>
+<br>
+Another design change we made was to remove the graph animation for both the level of understanding and the reaction graph as the movement was distracting for the users. This also helps to reduce the cognitive overload issue raised during testing. This modification was made to follow Nielsen’s heuristic “Aesthetic and minimalist design”
+
+<br>
+<br>
+<h2 class="text-center">2. Prototype Revisions
+        </h2>
+        Please navigate <a href="http://www.relier.emayhew.com">Here!</a>
+        <br>
+        <br>
+        <h2 class="text-center">3. Refinement of user manual
+        </h2>
+        <br>
+        <a
+        href="https://docs.google.com/document/d/1qS152-66NPZNgDZJErvmGxYmhs_gidVBqAoktVYCDeY/edit?usp=sharing"
+        >Presenter User Manual</a
+      >
+      <br />
+      <a
+        href="https://docs.google.com/document/d/1KgFQLQaOtnlIfH0Td-CdLzJq9ANOtGg3TeJ2YIG7kkM/edit?usp=sharing"
+        >Participant User Manual</a
+      >
+      <br>
+      <br>
+      <br>
+      <br>
+      </div>
+  </body>
+</html>
