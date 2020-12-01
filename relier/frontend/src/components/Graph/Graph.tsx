@@ -28,7 +28,7 @@ class Graph extends Component<
   chartRef: any = React.createRef<HTMLDivElement>();
 
   handleChange = (index) => {
-    const TIMEOUT = 10000;
+    const TIMEOUT = 30000;
     const newVote = index;
     const prevVote = this.state.prevVote;
     const timeoutId = this.state.timeoutId;
