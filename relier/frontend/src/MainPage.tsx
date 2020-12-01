@@ -88,7 +88,11 @@ function MainPage({ userInfo: { username, role } }: { userInfo: UserInfo }) {
         }
         if (serverMessage.type === "emotes") {
           setEmoji(serverMessage.data);
-          if(serverMessage.data === []){
+          if(serverMessage.data.length === 0){
+            selectedEmojis.forEach((emoji) => {
+              clearTimeout(emoji.timeoutId);
+              sendEmoji(emoji.emoji, "down");
+            });
             setSelectedEmoji(serverMessage.data);
           }
         }

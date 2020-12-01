@@ -107,7 +107,7 @@ export default function EmojiSelector({
           <Button
             className={classes.reactionButton}
             value="check"
-            selected={selectedEmojis.current.some(({ emoji }) => (emoji === reaction.id ) )}
+            selected={selectedEmojis.some(({ emoji }) => (emoji === reaction.id ) )}
             onChange={() => handleReactionClick(reaction.id)}
           >
             <img
