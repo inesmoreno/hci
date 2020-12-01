@@ -12,9 +12,9 @@ export default function Who({
 }) {
   return (
     <div className="who" onClick={() => sendName(username)}>
-        {names.map( name => (
-          <div key={name}> {name} </div>
-        ))}
+      {names.map((name) => (
+        <div key={name}> {name} </div>
+      ))}
     </div>
   );
 }

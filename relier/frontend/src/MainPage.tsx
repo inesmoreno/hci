@@ -16,13 +16,23 @@ import AccordionDetails from "@material-ui/core/AccordionDetails";
 import Typography from "@material-ui/core/Typography";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 
-function MainPage({ userInfo: { username, role } }: { userInfo: UserInfo }) {
+function MainPage({
+  userInfo: { username, role },
+}: {
+  userInfo: UserInfo;
+}) {
   //web socket
   const [ws, setWs] = useState<WebSocket | null>(null);
   //chat messages in the chat section
   const [chats, setChats] = useState<Message[]>([]);
   //graph histogram [#, #, #, #, #]
-  const [histogram, setHistogram] = useState<number[]>([0, 0, 0, 0, 0]);
+  const [histogram, setHistogram] = useState<number[]>([
+    0,
+    0,
+    0,
+    0,
+    0,
+  ]);
   const [emoji, setEmoji] = useState<Emoji[]>([]);
   const [selectedEmojis, setSelectedEmoji] = useState<
     {
@@ -30,19 +40,19 @@ function MainPage({ userInfo: { username, role } }: { userInfo: UserInfo }) {
       timeoutId: ReturnType<typeof setTimeout>;
     }[]
   >([]);
-  
+
   const [hands, setHands] = useState<string[]>([]);
   const [names, setName] = useState<string[]>([]);
   const [tab, setTab] = useState(1);
 
-  const useStyles = makeStyles(theme => ({
+  const useStyles = makeStyles((theme) => ({
     root: {
-      width: "100%"
+      width: "100%",
     },
     heading: {
       fontSize: theme.typography.pxToRem(15),
-      fontWeight: theme.typography.fontWeightRegular
-    }
+      fontWeight: theme.typography.fontWeightRegular,
+    },
   }));
 
   useEffect(() => {
@@ -57,14 +67,14 @@ function MainPage({ userInfo: { username, role } }: { userInfo: UserInfo }) {
         ws.send(
           JSON.stringify({
             type: "name",
-            author: username
+            author: username,
           })
         )
       );
 
       //const ws = new WebSocket(`ws://${window.location.host}/api/start-socket`);
       //"message" here is a message from the server, not a necessarily a chat msg
-      ws.addEventListener("message", function(event) {
+      ws.addEventListener("message", function (event) {
         //what to do when you get something from the server
 
         const serverMessage = JSON.parse(event.data);
@@ -73,10 +83,10 @@ function MainPage({ userInfo: { username, role } }: { userInfo: UserInfo }) {
         //and what we do is update the chat state for display
         if (serverMessage.type === "chat") {
           console.log("I got a message");
-          setChats(ms =>
+          setChats((ms) =>
             ms.concat({
               message: serverMessage.data,
-              author: serverMessage.author
+              author: serverMessage.author,
             })
           );
         }
@@ -88,13 +98,14 @@ function MainPage({ userInfo: { username, role } }: { userInfo: UserInfo }) {
         }
         if (serverMessage.type === "emotes") {
           setEmoji(serverMessage.data);
-          if(serverMessage.data.length === 0){
+          if (serverMessage.data.length === 0) {
             selectedEmojis.forEach((emoji) => {
               if (emoji !== undefined) {
                 clearTimeout(emoji.timeoutId);
                 sendEmoji(emoji.emoji, "down");
               }
             });
+
             setSelectedEmoji(serverMessage.data);
           }
         }
@@ -113,7 +124,7 @@ function MainPage({ userInfo: { username, role } }: { userInfo: UserInfo }) {
       JSON.stringify({
         type: "chat",
         data: message,
-        author: username
+        author: username,
       })
     );
   };
@@ -123,49 +134,75 @@ function MainPage({ userInfo: { username, role } }: { userInfo: UserInfo }) {
       JSON.stringify({
         type: "graph",
         vote: vote,
-        prevVote: prevVote
+        prevVote: prevVote,
       })
     );
   };
 
   const sendHand = (username: string) => {
     if (ws === null) return;
-    ws.send(JSON.stringify({ type: "hand", author: username }));
+    ws.send(
+      JSON.stringify({ type: "hand", author: username })
+    );
   };
-  const sendEmoji = (emojiName: string, direction: string) => {
+  const sendEmoji = (
+    emojiName: string,
+    direction: string
+  ) => {
     if (ws === null) return;
     ws.send(
       JSON.stringify({
         type: "emote",
         direction: direction,
-        name: emojiName
+        name: emojiName,
       })
     );
   };
   const clearHand = () => {
-    if (window.confirm("Are you sure you want to clear the queue?")) {
+    if (
+      window.confirm(
+        "Are you sure you want to clear the queue?"
+      )
+    ) {
       if (ws === null) return;
-      ws.send(JSON.stringify({ type: "clear", data: "hands" }));
+      ws.send(
+        JSON.stringify({ type: "clear", data: "hands" })
+      );
     }
   };
 
   const clearHistogram = () => {
-    if (window.confirm("Are you sure you want to clear all?")) {
+    if (
+      window.confirm("Are you sure you want to clear all?")
+    ) {
       if (ws === null) return;
-      ws.send(JSON.stringify({ type: "clear", data: "understanding" }));
+      ws.send(
+        JSON.stringify({
+          type: "clear",
+          data: "understanding",
+        })
+      );
     }
   };
 
   const clearReactions = () => {
-    if (window.confirm("Are you sure you want to clear all reactions?")) {
+    if (
+      window.confirm(
+        "Are you sure you want to clear all reactions?"
+      )
+    ) {
       if (ws === null) return;
-      ws.send(JSON.stringify({ type: "clear", data: "reactions" }));
+      ws.send(
+        JSON.stringify({ type: "clear", data: "reactions" })
+      );
     }
   };
 
   const sendName = async (username: string) => {
     if (ws === null) return;
-    ws.send(JSON.stringify({ type: "name", author: username }));
+    ws.send(
+      JSON.stringify({ type: "name", author: username })
+    );
   };
 
   const classes = useStyles();
@@ -173,9 +210,13 @@ function MainPage({ userInfo: { username, role } }: { userInfo: UserInfo }) {
     return (
       <Accordion>
         <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-          <Typography className={classes.heading}>{header}</Typography>
+          <Typography className={classes.heading}>
+            {header}
+          </Typography>
         </AccordionSummary>
-        <AccordionDetails className="accordion">{body}</AccordionDetails>
+        <AccordionDetails className="accordion">
+          {body}
+        </AccordionDetails>
       </Accordion>
     );
   };
@@ -186,7 +227,12 @@ function MainPage({ userInfo: { username, role } }: { userInfo: UserInfo }) {
         <div className="relier"> R e l i e r </div>
         {generateAccordion(
           "Level of Understanding",
-          <Graph histogram={histogram} sendVote={sendVote} clearHistogram={clearHistogram} role={role} />
+          <Graph
+            histogram={histogram}
+            sendVote={sendVote}
+            clearHistogram={clearHistogram}
+            role={role}
+          />
         )}
 
         {generateAccordion(
@@ -198,18 +244,34 @@ function MainPage({ userInfo: { username, role } }: { userInfo: UserInfo }) {
               clearHand={clearHand}
             />
           ) : (
-            <HandQueue sendHand={sendHand} hands={hands} username={username} />
+            <HandQueue
+              sendHand={sendHand}
+              hands={hands}
+              username={username}
+            />
           )
         )}
         {generateAccordion(
           "Reaction Panel",
           <div>
             {role === "presenter" ? (
-              <EmojiGraph histogram={emoji} clearReactions={clearReactions} role="presenter" />
+              <EmojiGraph
+                histogram={emoji}
+                clearReactions={clearReactions}
+                role="presenter"
+              />
             ) : (
               <>
-                <EmojiGraph histogram={emoji} clearReactions={clearReactions} role="student" />
-                <EmojiSelector sendEmoji={sendEmoji} setSelectedEmoji={setSelectedEmoji} selectedEmojis={selectedEmojis} />
+                <EmojiGraph
+                  histogram={emoji}
+                  clearReactions={clearReactions}
+                  role="student"
+                />
+                <EmojiSelector
+                  sendEmoji={sendEmoji}
+                  setSelectedEmoji={setSelectedEmoji}
+                  selectedEmojis={selectedEmojis}
+                />
               </>
             )}
           </div>
@@ -217,10 +279,16 @@ function MainPage({ userInfo: { username, role } }: { userInfo: UserInfo }) {
         {generateAccordion(
           "Chat",
           <div>
-            <button className="chat-button" onClick={() => setTab(1)}>
+            <button
+              className="chat-button"
+              onClick={() => setTab(1)}
+            >
               Chat
             </button>
-            <button className="chat-button" onClick={() => setTab(2)}>
+            <button
+              className="chat-button"
+              onClick={() => setTab(2)}
+            >
               Who is online
             </button>
             {tab === 1 ? (
@@ -230,7 +298,11 @@ function MainPage({ userInfo: { username, role } }: { userInfo: UserInfo }) {
                 messages={chats}
               />
             ) : (
-              <Who names={names} sendName={sendName} username={username} />
+              <Who
+                names={names}
+                sendName={sendName}
+                username={username}
+              />
             )}
           </div>
         )}

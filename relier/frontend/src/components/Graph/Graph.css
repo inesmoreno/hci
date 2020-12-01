@@ -19,6 +19,22 @@
   width: 100%;
 }
 
+.understanding .MuiToggleButton-root {
+  font-size: 2em;
+  line-height: 1em;
+}
+.understanding {
+  display: flex;
+  flex-flow: row nowrap;
+  flex-grow: 1;
+  justify-content: space-between;
+  padding: 0 1.1em;
+  font-size: 1em;
+}
+
+.levels-wrapper {
+  width: 100%;
+}
 datalist {
   margin-left: -10%;
   width: 121%;

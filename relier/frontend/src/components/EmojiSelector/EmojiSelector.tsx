@@ -1,4 +1,9 @@
-import React, { useEffect, useReducer, useRef, useState } from "react";
+import React, {
+  useEffect,
+  useReducer,
+  useRef,
+  useState,
+} from "react";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Grid from "@material-ui/core/Grid";
@@ -43,10 +48,12 @@ const TIMEOUT = 5000;
 //};
 
 export default function EmojiSelector({
-  sendEmoji, setSelectedEmoji, selectedEmojis
+  sendEmoji,
+  setSelectedEmoji,
+  selectedEmojis,
 }: {
   sendEmoji: (emoji: string, diection: string) => void;
-  setSelectedEmoji: any ;
+  setSelectedEmoji: any;
   selectedEmojis: any;
 }) {
   const classes = useStyles();
@@ -61,24 +68,31 @@ export default function EmojiSelector({
   selectedEmojiRef.current = selectedEmojis;
 
   const undoReaction = (reaction: string) => {
-    console.log("Reaction to undo: ", reaction, "Emoji list: ", selectedEmojis);
+    console.log(
+      "Reaction to undo: ",
+      reaction,
+      "Emoji list: ",
+      selectedEmojis
+    );
     const newEmojiList = [...selectedEmojiRef.current];
     const indexOfNewEmoji = newEmojiList.findIndex(
       ({ emoji }) => emoji === reaction
     );
-    const [{ timeoutId }] = newEmojiList.splice(indexOfNewEmoji, 1);
+    const [{ timeoutId }] = newEmojiList.splice(
+      indexOfNewEmoji,
+      1
+    );
     clearTimeout(timeoutId);
     sendEmoji(reaction, "down");
     setSelectedEmoji(newEmojiList);
     console.log(selectedEmojiRef.current);
   };
-  
-  //const clearMyReactions = () => {
-   // selectedEmojis.map(({emoji, timeoutId }) => {
-    //  undoReaction(emoji);
-    //});
- // };
 
+  //const clearMyReactions = () => {
+  // selectedEmojis.map(({emoji, timeoutId }) => {
+  //  undoReaction(emoji);
+  //});
+  // };
 
   const handleReactionClick = (reaction: string) => {
     const indexOfNewEmoji = selectedEmojis.findIndex(
@@ -90,7 +104,10 @@ export default function EmojiSelector({
       }
       const newEmoji = {
         emoji: reaction,
-        timeoutId: setTimeout(() => undoReaction(reaction), TIMEOUT),
+        timeoutId: setTimeout(
+          () => undoReaction(reaction),
+          TIMEOUT
+        ),
       };
       sendEmoji(reaction, "up");
       setSelectedEmoji((currentEmojiList) =>
@@ -101,32 +118,38 @@ export default function EmojiSelector({
 
   // Populate emoji reaction buttons in grid
 
-    reactions.forEach((reaction) => {
-      elements.push(
-        <Grid key={reaction.id}>
-          <Button
-            className={classes.reactionButton}
-            value="check"
-            selected={selectedEmojis.some(({ emoji }) => (emoji === reaction.id ) )}
-            onChange={() => handleReactionClick(reaction.id)}
-          >
-            <img
-              className={classes.imageButton}
-              src={"./assets/" + reaction.id + ".png"}
-              alt={reaction.alt}
-              title={reaction.alt}
-            />
-          </Button>
-        </Grid>
-      );
-    });
-  
+  reactions.forEach((reaction) => {
+    elements.push(
+      <Grid key={reaction.id}>
+        <Button
+          className={classes.reactionButton}
+          value="check"
+          selected={selectedEmojis.some(
+            ({ emoji }) => emoji === reaction.id
+          )}
+          onChange={() => handleReactionClick(reaction.id)}
+        >
+          <img
+            className={classes.imageButton}
+            src={"./assets/" + reaction.id + ".png"}
+            alt={reaction.alt}
+            title={reaction.alt}
+          />
+        </Button>
+      </Grid>
+    );
+  });
 
   return (
     <div className={classes.root}>
       <Card className={classes.card}>
         <CardContent className={classes.cardContent}>
-          <Grid container direction="row" justify="flex-start" spacing={1}>
+          <Grid
+            container
+            direction="row"
+            justify="flex-start"
+            spacing={1}
+          >
             {elements}
           </Grid>
         </CardContent>

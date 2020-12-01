@@ -2,11 +2,13 @@ import React, { Component } from "react";
 import Button from "@material-ui/lab/ToggleButton";
 import Chart from "chart.js";
 import "./Graph.css";
+import { useStyles } from "./../../style";
 
 let myLineChart;
 
 type State = {
   prevVote: number;
+  timeoutId: any;
 };
 
 class Graph extends Component<
@@ -20,17 +22,32 @@ class Graph extends Component<
 > {
   state = {
     prevVote: -1,
+    timeoutId: -1,
   };
 
   chartRef: any = React.createRef<HTMLDivElement>();
 
-  handleChange = (event) => {
-    const newVote = event.target.value;
+  handleChange = (index) => {
+    const TIMEOUT = 10000;
+    const newVote = index;
     const prevVote = this.state.prevVote;
+    const timeoutId = this.state.timeoutId;
+
+    if (timeoutId !== -1) {
+      clearTimeout(timeoutId);
+    }
 
     this.props.sendVote(newVote, prevVote);
+    const newTimeoutId = setTimeout(() => {
+      this.props.sendVote(-1, newVote);
+      this.setState({
+        prevVote: -1,
+      });
+    }, TIMEOUT);
+
     this.setState({
       prevVote: newVote,
+      timeoutId: newTimeoutId,
     });
   };
 
@@ -49,7 +66,7 @@ class Graph extends Component<
     myLineChart = new Chart(ctx, {
       type: "line",
       data: {
-        labels: ["\u{1F630}", "😧", "🤔", "🙂", "😀"],
+        labels: ["", "", "", "", ""],
         datasets: [
           {
             type: "bar",
@@ -85,6 +102,7 @@ class Graph extends Component<
           },
           xAxes: [
             {
+              display: false,
               offset: true,
               categoryPercentage: 1.0,
               barPercentage: 0.9,
@@ -96,7 +114,7 @@ class Graph extends Component<
           ],
           yAxes: [
             {
-              display: true,
+              display: false,
               scaleLabel: {
                 display: false,
                 labelString: "Reactions",
@@ -120,34 +138,29 @@ class Graph extends Component<
   render() {
     const { role } = this.props;
 
+    const levels = ["\u{1F630}", "😧", "🤔", "🙂", "😀"];
     return (
-      <div style={{ width: "100%" }}>
+      <div className="levels-wrapper">
         <div className="graph">
           <canvas id="myChart" ref={this.chartRef} />
         </div>
         {role === "presenter" ? (
-          <Button className="clearAll" onClick={() => this.props.clearHistogram()}>
-          Clear all
-         </Button>
+          <Button
+            className="clearAll"
+            onClick={() => this.props.clearHistogram()}
+          >
+            Clear all
+          </Button>
         ) : (
-          <div className="bar">
-            <div className="level">
-              <input
-                type="range"
-                min="1"
-                max="5"
-                list="num"
-                className="slider"
-                onClick={this.handleChange}
-              />
-              <datalist id="num">
-                <option value="1" label={"\u{1F630}"} />
-                <option value="2" label="😧" />
-                <option value="3" label="🤔" />
-                <option value="4" label="🙂" />
-                <option value="5" label="😀" />
-              </datalist>
-            </div>
+          <div className="understanding">
+            {levels.map((emote, index) => (
+              <Button
+                selected={this.state.prevVote === index}
+                onClick={() => this.handleChange(index)}
+              >
+                {emote}
+              </Button>
+            ))}
           </div>
         )}
       </div>

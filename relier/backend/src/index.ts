@@ -26,17 +26,9 @@ function updatewhoIsIn(name: string) {
 function updateHist(newVote: number, prevVote: number) {
   const tempHist = histogram;
   if (prevVote !== -1)
-    tempHist.splice(
-      prevVote - 1,
-      1,
-      tempHist[prevVote - 1] - 1
-    );
+    tempHist.splice(prevVote, 1, tempHist[prevVote] - 1);
   if (newVote >= 0) {
-    tempHist.splice(
-      newVote - 1,
-      1,
-      tempHist[newVote - 1] + 1
-    );
+    tempHist.splice(newVote, 1, tempHist[newVote] + 1);
   }
   histogram = tempHist;
   return histogram;
@@ -191,7 +183,7 @@ app.get(
           handRaised = false;
           console.log(hands);
         }
-        if (jsonMsg.data === "understanding"){
+        if (jsonMsg.data === "understanding") {
           histogram.fill(0);
           sendToAll(
             JSON.stringify({
@@ -201,7 +193,7 @@ app.get(
           );
           console.log(histogram);
         }
-        if (jsonMsg.data === "reactions"){
+        if (jsonMsg.data === "reactions") {
           globalEmotes.splice(0, globalEmotes.length);
           sendToAll(
             JSON.stringify({
