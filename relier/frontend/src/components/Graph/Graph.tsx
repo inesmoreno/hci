@@ -153,12 +153,6 @@ class Graph extends Component<
                 </div>
               ))}
             </div>
-            <Button
-              className="clearAll"
-              onClick={() => this.props.clearHistogram()}
-            >
-              Clear all
-            </Button>
           </>
         ) : (
           <div className="understanding">
