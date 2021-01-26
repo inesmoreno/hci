@@ -8,7 +8,7 @@ communicating emotional expression through the use of emojis and graphics. With 
 engaging experience with your video conferences! 
 
 In this repository you will find: 
-- The project's notebook reporting on all stages of the design process and deliverables
+- The project's notebook reporting on all stages of the design process and deliverables (folder /website)
 
   To view the website navigate to https://inesmoreno.github.io/hci/website/ 
   
@@ -23,7 +23,7 @@ In this repository you will find:
 It is important to note that this final version is not a ready-for-market product as the effort of this class was to focus on usability rather than functionality. 
 We conducted further testing 
 
- - The web-app's code
+ - The web-app's code (folder /relier)
  
  Access the web-app navigating to: http://www.relier.emayhew.com/
  
