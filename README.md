@@ -21,7 +21,7 @@ In this repository you will find:
    - Beta System: Refined the system based on the feedback received.
 
 It is important to note that this final version is not a ready-for-market product as the effort of this class was to focus on usability rather than functionality. 
-We conducted further testing 
+ 
 
  - The web-app's code (folder /relier)
  
