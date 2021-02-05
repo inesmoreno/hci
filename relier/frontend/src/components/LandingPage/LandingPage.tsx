@@ -94,12 +94,13 @@ function LandingPage({
   }, [state.username, state.meetingId]);
 
   const handleJoin = () => {
-    if (state.meetingId.toUpperCase() !== "HCI") {
-      dispatch({
-        type: "loginFailed",
-        payload: "Incorrect meeting ID",
-      });
-    } else if (state.username.toUpperCase() === "ADMIN") {
+    //if (state.meetingId.toUpperCase() !== "HCI") {
+    //dispatch({
+    //type: "loginFailed",
+    //payload: "Incorrect meeting ID",
+    //});
+    //}
+     if (state.username.toUpperCase() === "ADMIN") {
       setUserInfo({ username: state.username, role: "presenter" });
     } else {
       setUserInfo({ username: state.username, role: "participant" });
