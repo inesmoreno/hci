@@ -27,6 +27,6 @@ It is important to note that this final version is not a ready-for-market produc
  
  Access the web-app navigating to: http://www.relier.emayhew.com/
  
-   To view the presenter's UI you must input 'admin' as name and 'hci' as meeting ID.</br>
-   To view the participant's UI you must input 'hci' as meeting ID.
+   Note: To view the presenter's UI you must input 'admin' as name.</br>
+   
   
